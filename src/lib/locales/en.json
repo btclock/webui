@@ -1,0 +1,12 @@
+{
+    "my": {
+        "translation": {
+            "key": "Test"
+        }
+    },
+    "section": {
+        "settings": {
+            "title": "Settings"
+        }
+    }
+}
