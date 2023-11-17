@@ -1,7 +1,65 @@
 {
-    "section": {
-        "settings": {
-            "title": "Configuración"
-        }
+  "section": {
+    "settings": {
+      "title": "Configuración",
+      "textColor": "Color de texto",
+      "backgroundColor": "Color de fondo",
+      "ledBrightness": "Brillo LED",
+      "screens": "Pantallas",
+      "shortAmountsWarning": "Cantidades pequeñas pueden acortar la vida útil.",
+      "fullRefreshEvery": "Actualización completa cada",
+      "timePerScreen": "Tiempo por pantalla",
+      "tzOffsetHelpText": "Es necesario reiniciar para aplicar la compensación.",
+      "timezoneOffset": "Compensación de zona horaria",
+      "StealFocusOnNewBlock": "Presta atención al nuevo bloque",
+      "ledFlashOnBlock": "El LED parpadea con un bloque nuevo",
+      "useBigCharsMcap": "Utilice caracteres grandes para la market cap",
+      "fetchEuroPrice": "Obtener precio en €",
+      "timeBetweenPriceUpdates": "Tiempo entre actualizaciones de precios",
+      "ledPowerOnTest": "Prueba de encendido del LED",
+      "enableMdns": "mDNS",
+      "hostnamePrefix": "Prefijo de nombre de host",
+      "mempoolnstance": "Instancia de Mempool",
+      "otaUpdates": "Actualización por aire"
+    },
+    "control": {
+      "turnOff": "Apagar",
+      "setColor": "Establecer el color",
+      "version": "Versión",
+      "ledColor": "color del LED",
+      "systemInfo": "Info del sistema",
+      "showText": "Poner texto",
+      "text": "Texto",
+      "title": "Control",
+      "buildTime": "Tiempo de construcción"
+    },
+    "status": {
+      "memoryFree": "Memoria RAM libre",
+      "wsPriceConnection": "Conexión WebSocket Precio",
+      "wsMempoolConnection": "Conexión WebSocket Mempool.space",
+      "screenCycle": "Rotacion de pantalla",
+      "uptime": "Tiempo de funcionamiento",
+      "fetchEuroNote": "Si utiliza \"Obtener precio en €\", la conexión de Precio WS mostrará ❌ ya que utiliza otra fuente de datos.",
+      "title": "Estado"
     }
+  },
+  "button": {
+    "save": "Guardar",
+    "reset": "Restaurar",
+    "restart": "Reiniciar",
+    "forceFullRefresh": "Forzar refresco"
+  },
+  "colors": {
+    "black": "Negro",
+    "white": "Blanco"
+  },
+  "restartRequired": "reinicio requerido",
+  "time": {
+    "minutes": "minutos",
+    "seconds": "segundos"
+  },
+  "timer": {
+    "running": "funcionando",
+    "stopped": "detenido"
+  }
 }

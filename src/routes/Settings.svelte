@@ -107,7 +107,7 @@
 							<Input type="number" min={1} step="1" bind:value={$settings.minSecPriceUpd} />
 							<InputGroupText>{ $_('time.seconds') }</InputGroupText>
 						</InputGroup>
-						<FormText>Short amounts might shorten lifespan.</FormText>
+						<FormText>{ $_('section.settings.shortAmountsWarning') }</FormText>
 					</Col>
 				</Row>
 				<Row>
@@ -124,7 +124,7 @@
 							/>
 							<InputGroupText>{ $_('time.minutes') }</InputGroupText>
 						</InputGroup>
-						<FormText>A restart is required to apply TZ offset.</FormText>
+						<FormText>{ $_('section.settings.tzOffsetHelpText') }</FormText>
 					</Col>
 				</Row>
 				<Row>
@@ -181,18 +181,18 @@
                         <Input id="mcapBigChar" bind:checked={$settings.mcapBigChar} type="switch" bsSize="sm" label="{ $_('section.settings.useBigCharsMcap') }" />
                     </Col>
                     <Col md="6">
-                        <Input id="otaEnabled" bind:checked={$settings.otaEnabled} type="switch" bsSize="sm" label="{ $_('section.settings.otaUpdates') }" />
+                        <Input id="otaEnabled" bind:checked={$settings.otaEnabled} type="switch" bsSize="sm" label="{ $_('section.settings.otaUpdates') } ({ $_('restartRequired') })" />
                     </Col>
                     <Col md="6">
-                        <Input id="mdnsEnabled" bind:checked={$settings.mdnsEnabled} type="switch" bsSize="sm" label="{ $_('section.settings.enableMdns') }" />
+                        <Input id="mdnsEnabled" bind:checked={$settings.mdnsEnabled} type="switch" bsSize="sm" label="{ $_('section.settings.enableMdns') } ({ $_('restartRequired') })" />
                     </Col>
                        <Col md="6">
-                        <Input id="fetchEurPrice" bind:checked={$settings.fetchEurPrice} type="switch" bsSize="sm" label="{ $_('section.settings.fetchEuroPrice') }" />
+                        <Input id="fetchEurPrice" bind:checked={$settings.fetchEurPrice} type="switch" bsSize="sm" label="{ $_('section.settings.fetchEuroPrice') } ({ $_('restartRequired') })" />
                     </Col>
                 </Row>
 
                 <Row>
-                    <h3>Screens</h3>
+                    <h3>{ $_('section.settings.screens') }</h3>
                     {#if $settings.screens}
                     {#each $settings.screens as s}
                     <Col md="6">
@@ -201,8 +201,8 @@
                     {/each}
                     {/if}
                 </Row>
-                <Button type="reset" color="secondary">Reset</Button>
-                <Button color="primary">Save</Button>
+                <Button type="reset" color="secondary">{ $_('button.reset') }</Button>
+                <Button color="primary">{ $_('button.save') }</Button>
 			</Form>
 		</CardBody>
 	</Card>

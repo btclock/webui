@@ -25,6 +25,10 @@
                 if (data.fgColor> 65535) {
                     data.fgColor = "65535";
                 }
+
+                if (data.bgColor> 65535) {
+                    data.bgColor = "65535";
+                }
 				settings.set(data);
 			});
 	});

@@ -12,12 +12,14 @@
 		DropdownToggle
 	} from 'sveltestrap';
 
-	import { locale, locales } from 'svelte-i18n';
+	import { locale, locales, waitLocale } from 'svelte-i18n';
+	import type { LayoutLoad } from './$types';
+	import { browser } from '$app/environment';
 
     export const setLocale = (lang: string) => () => {
         locale.set(lang);
+        localStorage.setItem("locale", lang)
     }
-
 </script>
 
 <Navbar expand="md">

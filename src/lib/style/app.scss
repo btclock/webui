@@ -9,6 +9,12 @@
 $form-range-track-bg: #fff;
 $color-mode-type: media-query;
 $font-family-base: "Ubuntu";
+$font-size-base: 0.9rem;
+//$font-size-sm: $font-size-base * .875 !default;
+//$form-label-font-size: $font-size-base * .575 !default;
+//$input-btn-font-size-sm: 0.4rem;
+//$form-label-font-size: 0.4rem;
+$input-font-size-sm: $font-size-base * .875;
 
 // $border-radius:               .675rem;
 
@@ -77,6 +83,17 @@ nav {
     padding: 10px;
     max-width: 700px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    align-content: stretch;
+    font-family: 'Oswald', sans-serif;
+
+    >div {
+        padding: 5px;
+    }
 
     .digit,
     .splitText,
@@ -97,44 +114,20 @@ nav {
     }
 }
 
-.btclock {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    align-content: stretch;
-    font-family: 'Oswald', sans-serif;
-}
-
-.btclock>div {
-    padding: 5px;
-}
-
-.fg-ffff .btclock>div {
+.darkMode .btclock>div {
     color: #fff;
     border-color: #fff;
 }
 
-.bg-ffff .btclock>div {
+.lightMode .btclock>div {
     background: #fff;
 }
 
-.fg-f800 .btclock>div {
-    color: #f00;
-    border-color: #f00;
-}
-
-.bg-f800 .btclock>div {
-    background: #f00;
-}
-
-.fg-0 .btclock>div {
+.lightMode .btclock>div {
     color: #000;
-    border-color: #000;
 }
 
-.bg-0 .btclock>div {
+.darkMode .btclock>div {
     background: #000;
 }
 
@@ -180,15 +173,14 @@ nav {
 #customText {
     text-transform: uppercase;
 }
-
-#toggleTimerArea {
-    cursor: pointer;
-}
-
 .system_info {
     padding: 0;
 
     li {
         list-style: none;
     }
+}
+
+.card-title {
+    margin-bottom: 0;
 }

@@ -15,9 +15,32 @@
       "hostnamePrefix": "Hostname prefix",
       "StealFocusOnNewBlock": "Steal focus on new block",
       "useBigCharsMcap": "Use big characters for market cap",
-      "otaUpdates": "OTA updates (restart required)",
-      "enableMdns": "mDNS (restart required)",
-      "fetchEuroPrice": "Fetch € price (restart required)"
+      "otaUpdates": "OTA updates",
+      "enableMdns": "mDNS",
+      "fetchEuroPrice": "Fetch € price",
+      "shortAmountsWarning": "Short amounts might shorten lifespan.",
+      "tzOffsetHelpText": "A restart is required to apply TZ offset.",
+      "screens": "Screens"
+    },
+    "control": {
+      "systemInfo": "System info",
+      "version": "Version",
+      "buildTime": "Build time",
+      "ledColor": "LED color",
+      "turnOff": "Turn off",
+      "setColor": "Set color",
+      "showText": "Show text",
+      "text": "Text",
+      "title": "Control"
+    },
+    "status": {
+      "title": "Status",
+      "screenCycle": "Screen cycle",
+      "memoryFree": "Memory free",
+      "wsPriceConnection": "WS Price connection",
+      "wsMempoolConnection": "WS Mempool.space connection",
+      "fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
+      "uptime": "Uptime"
     }
   },
   "colors": {
@@ -27,5 +50,16 @@
   "time": {
     "minutes": "minutes",
     "seconds": "seconds"
+  },
+  "restartRequired": "restart required",
+  "button": {
+    "save": "Save",
+    "reset": "Reset",
+    "restart": "Restart",
+    "forceFullRefresh": "Force full refresh"
+  },
+  "timer": {
+    "running": "running",
+    "stopped": "stopped"
   }
 }

@@ -52,37 +52,37 @@ const forceFullRefresh = () => {
 		<CardBody>
 			<Form>
 				<Row>
-					<Label md={6} for="customText" size="sm">Text</Label>
+					<Label md={6} for="customText">{ $_('section.control.text') }</Label>
 					<Col md="6">
 						<Input type="text" id="customText" bind:value={customText} bsSize="sm" maxLength="{$settings.numScreens}"/>
 					</Col>
 				</Row>
-                <Button color="primary" on:click={setCustomText}>Show text</Button>
+                <Button color="primary" on:click={setCustomText}>{ $_('section.control.showText') }</Button>
 
 			</Form>
 			<hr />
 			<h3>LEDs</h3>
             <Form>
 				<Row>
-					<Label md={6} for="ledColorPicker" size="sm">LEDs color</Label>
+					<Label md={6} for="ledColorPicker" size="sm">{ $_('section.control.ledColor') }</Label>
 					<Col md="6">
 						<Input type="color" id="ledColorPicker" bind:value="{ledColor}" />
 					</Col>
 				</Row>
-                <Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}>Turn off</Button>
-                <Button color="primary" on:click={setLEDcolor}>Set color</Button>
+                <Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}>{ $_('section.control.turnOff') }</Button>
+                <Button color="primary" on:click={setLEDcolor}>{ $_('section.control.setColor') }</Button>
 			</Form>
 
 			<hr />
-			<h3>System info</h3>
+			<h3>{ $_('section.control.systemInfo') }</h3>
 			<ul class="small system_info">
-				<li>Version: {$settings.gitRev}</li>
-				<li>Build time: {new Date(($settings.lastBuildTime * 1000)).toLocaleString()}</li>
+				<li>{ $_('section.control.version') }: {$settings.gitRev}</li>
+				<li>{ $_('section.control.buildTime') }: {new Date(($settings.lastBuildTime * 1000)).toLocaleString()}</li>
 				<li>IP: {$settings.ip}</li>
 				<li>Hostname: {$settings.hostname}</li>
 			</ul>
-            <Button color="danger" id="restartBtn" on:click="{restartClock}">Restart</Button>
-            <Button color="warning" id="forceFullRefresh" on:click="{forceFullRefresh}">Force full refresh</Button>
+            <Button color="danger" id="restartBtn" on:click="{restartClock}">{ $_('button.restart') }</Button>
+            <Button color="warning" id="forceFullRefresh" on:click="{forceFullRefresh}">{ $_('button.forceFullRefresh') }</Button>
 		</CardBody>
 	</Card>
 </Col>

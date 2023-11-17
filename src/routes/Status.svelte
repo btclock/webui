@@ -8,6 +8,7 @@
 	import { Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress,CardTitle } from 'sveltestrap';
 	import Rendered from './Rendered.svelte';
 	
+    export let settings; 
 
     const status = writable({
         data: ["L", "O", "A", "D", "I", "N", "G"],
@@ -58,9 +59,14 @@
     }
 
     let memoryFreePercent:number = 50;
-    
+    let lightMode:boolean = false;
+
     status.subscribe((value) => {
         memoryFreePercent = Math.round(value.espFreeHeap / value.espHeapSize * 100);
+    });
+
+    settings.subscribe((value) => {
+        lightMode = value.bgColor > value.fgColor;
     });
 
     const setScreen = (id:number) => () => {
@@ -75,7 +81,10 @@
         }
     }
 
-    export let settings; 
+    const isLightMode = () => {
+        return $settings.bgColor > $settings.fgColor;
+    }
+
 </script>
 
 <Col>
@@ -92,21 +101,23 @@
               </ButtonGroup>
               <hr>
               {#if $status.data}
-              <Rendered status="{$status}"></Rendered>
-              Screen cycle: <a style="cursor: pointer" on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; running{:else}&#9208; stopped{/if}</a>
+              <section class={lightMode ? 'lightMode': ''}>
+                  <Rendered status="{$status}"></Rendered>
+              </section>
+              { $_('section.status.screenCycle') }: <a style="cursor: pointer" on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; { $_('timer.running') }{:else}&#9208; { $_('timer.stopped') }{/if}</a>
               {/if}
             {/if}
         <hr>
         <Progress striped value={memoryFreePercent}>{ memoryFreePercent }%</Progress>
         <div class="d-flex justify-content-between">
-            <div>Memory free </div>
+            <div>{ $_('section.status.memoryFree') } </div>
             <div>{ Math.round($status.espFreeHeap / 1024)  } / { Math.round($status.espHeapSize / 1024) } KiB</div>
           </div>
         <hr>
-        Uptime: {toUptimeString($status.espUptime)}
+        { $_('section.status.uptime') }: {toUptimeString($status.espUptime)}
         <br>
         <p>
-            WS Price connection:
+            { $_('section.status.wsPriceConnection') }:
             <span>
             {#if $status.connectionStatus && $status.connectionStatus.price}
             &#9989;
@@ -115,7 +126,7 @@
             {/if}
             </span>
             - 
-            WS Mempool.space connection:
+            { $_('section.status.wsMempoolConnection') }:
             <span>
               {#if $status.connectionStatus && $status.connectionStatus.blocks}
               &#9989;
@@ -124,7 +135,7 @@
               {/if}
             </span><br>
             {#if $settings.fetchEurPrice}
-            <small>If you use "Fetch &euro; price" the WS Price connection will show &#10060; since it uses another data source.</small>
+            <small>{ $_('section.status.fetchEuroNote') }</small>
             {/if}
           </p>
         </CardBody>
