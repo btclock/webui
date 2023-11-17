@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { PUBLIC_BASE_URL } from '$env/static/public';
+
 	import { onMount } from 'svelte';
 	import { readonly, writable } from 'svelte/store';
 
@@ -8,6 +10,7 @@
 		Container,
 		Row,
 		Card,
+        CardTitle,
 		CardHeader,
 		CardBody,
 		Form,
@@ -21,21 +24,38 @@
 	} from 'sveltestrap';
 
 	export let settings;
+
+    const onSave = async(e:Event) => {
+        e.preventDefault();
+        let formSettings = $settings;
+
+        delete formSettings["gitRev"];
+        delete formSettings["ip"];
+        delete formSettings["lastBuildTime"];
+
+        const res = await fetch(`${PUBLIC_BASE_URL}/api/json/settings`, {
+			method: 'PATCH',
+            headers: {
+                "Content-Type": "application/json",
+            },
+			body: JSON.stringify(formSettings)
+		})		
+    }
 </script>
 
 <Col>
 	<Card>
 		<CardHeader>
-			<h2>{$_('section.settings.title', { default: 'Settings' })}</h2>
+			<CardTitle>{$_('section.settings.title', { default: 'Settings' })}</CardTitle>
 		</CardHeader>
 		<CardBody>
-			<Form>
+			<Form on:submit={onSave}>
 				<Row>
 					<Label md={6} for="fgColor" size="sm">Text color</Label>
 					<Col md="6">
 						<Input
 							type="select"
-							value={$settings.fgColor}
+							bind:value={$settings.fgColor}
 							name="select"
 							id="fgColor"
 							bsSize="sm"
@@ -66,7 +86,7 @@
 					<Label md={6} for="timePerScreen" size="sm">Time per screen</Label>
 					<Col md="6">
 						<InputGroup size="sm">
-							<Input type="number" min={1} step="1" bind:value={$settings.timerSeconds} />
+							<Input type="number" min={1} step="1" bind:value={$settings.timePerScreen} />
 							<InputGroupText>minutes</InputGroupText>
 						</InputGroup>
 					</Col>
@@ -147,7 +167,41 @@
 						</Input>
 					</Col>
 				</Row>
-                <Button color="secondary">Reset</Button>
+                <Row>
+                    <Col md="6">
+                        <Input id="ledTestOnPower" bind:checked={$settings.ledTestOnPower} type="switch" bsSize="sm" label="LED power-on test" />
+                    </Col>
+                    <Col md="6">
+                        <Input id="ledFlashOnUpd" bind:checked={$settings.ledFlashOnUpd} type="switch" bsSize="sm" label="LED flash on new block" />
+                    </Col>
+                    <Col md="6">
+                        <Input id="stealFocus" bind:checked={$settings.stealFocus} type="switch" bsSize="sm" label="Steal focus on new block" />
+                    </Col>
+                    <Col md="6">
+                        <Input id="mcapBigChar" bind:checked={$settings.mcapBigChar} type="switch" bsSize="sm" label="Use big characters for market cap" />
+                    </Col>
+                    <Col md="6">
+                        <Input id="otaEnabled" bind:checked={$settings.otaEnabled} type="switch" bsSize="sm" label="OTA updates (restart required)" />
+                    </Col>
+                    <Col md="6">
+                        <Input id="mdnsEnabled" bind:checked={$settings.mdnsEnabled} type="switch" bsSize="sm" label="mDNS (restart required)" />
+                    </Col>
+                       <Col md="6">
+                        <Input id="fetchEurPrice" bind:checked={$settings.fetchEurPrice} type="switch" bsSize="sm" label="Fetch &euro; price (restart required)" />
+                    </Col>
+                </Row>
+
+                <Row>
+                    <h3>Screens</h3>
+                    {#if $settings.screens}
+                    {#each $settings.screens as s}
+                    <Col md="6">
+                        <Input id="screens_{s.id}" bind:checked={s.enabled} type="switch" bsSize="sm" label="{s.name}" />
+                    </Col>
+                    {/each}
+                    {/if}
+                </Row>
+                <Button type="reset" color="secondary">Reset</Button>
                 <Button color="primary">Save</Button>
 			</Form>
 		</CardBody>

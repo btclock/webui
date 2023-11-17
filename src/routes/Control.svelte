@@ -5,6 +5,7 @@ import {
     Button,
     ButtonGroup,
     Card,
+    CardTitle,
     CardBody,
     CardHeader,
     Col,
@@ -17,27 +18,43 @@ import {
 
 export let settings = {};
 export let customText:String;
+export let ledColor:String = "#FFCC00";
+
 
 const setCustomText = () => {
     fetch(`${PUBLIC_BASE_URL}/api/show/text/${customText}`).catch(err => { });
 };
 
 const setLEDcolor = () => {
-
+    console.log(`${PUBLIC_BASE_URL}/api/lights/${ledColor}`);
+    fetch(`${PUBLIC_BASE_URL}/api/lights/${encodeURIComponent(ledColor.replace(/^#/, ''))}`).catch(err => { });
 };
+
+const turnOffLeds = () => {
+    fetch(`${PUBLIC_BASE_URL}/api/lights/off`).catch(err => { });
+};
+
+const restartClock = () => {
+    fetch(`${PUBLIC_BASE_URL}/api/restart`).catch(err => { });
+}
+
+const forceFullRefresh = () => {
+    fetch(`${PUBLIC_BASE_URL}/api/full_refresh`).catch(err => { });
+}
+
 </script>
 
 <Col>
 	<Card>
 		<CardHeader>
-			<h2>{$_('section.control.title', { default: 'Control' })}</h2>
+			<CardTitle>{$_('section.control.title', { default: 'Control' })}</CardTitle>
 		</CardHeader>
 		<CardBody>
 			<Form>
 				<Row>
 					<Label md={6} for="customText" size="sm">Text</Label>
 					<Col md="6">
-						<Input type="text" id="customText"bind:value={customText} bsSize="sm" maxLength="{$settings.numScreens}"/>
+						<Input type="text" id="customText" bind:value={customText} bsSize="sm" maxLength="{$settings.numScreens}"/>
 					</Col>
 				</Row>
                 <Button color="primary" on:click={setCustomText}>Show text</Button>
@@ -49,11 +66,11 @@ const setLEDcolor = () => {
 				<Row>
 					<Label md={6} for="ledColorPicker" size="sm">LEDs color</Label>
 					<Col md="6">
-						<Input type="color" id="ledColorPicker" />
+						<Input type="color" id="ledColorPicker" bind:value="{ledColor}" />
 					</Col>
 				</Row>
-                <Button color="secondary" id="turnOffLedsBtn">Turn off</Button>
-                <Button color="primary">Set color</Button>
+                <Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}>Turn off</Button>
+                <Button color="primary" on:click={setLEDcolor}>Set color</Button>
 			</Form>
 
 			<hr />
@@ -64,8 +81,8 @@ const setLEDcolor = () => {
 				<li>IP: {$settings.ip}</li>
 				<li>Hostname: {$settings.hostname}</li>
 			</ul>
-            <Button color="danger" id="restartBtn">Restart</Button>
-            <Button color="warning" id="forceFullRefresh">Force full refresh</Button>
+            <Button color="danger" id="restartBtn" on:click="{restartClock}">Restart</Button>
+            <Button color="warning" id="forceFullRefresh" on:click="{forceFullRefresh}">Force full refresh</Button>
 		</CardBody>
 	</Card>
 </Col>

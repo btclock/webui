@@ -5,7 +5,7 @@
 
 	import { _ } from 'svelte-i18n';
 	import { writable } from 'svelte/store';
-	import { Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress } from 'sveltestrap';
+	import { Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress,CardTitle } from 'sveltestrap';
 	import Rendered from './Rendered.svelte';
 	
 
@@ -81,7 +81,7 @@
 <Col>
 	<Card>
 		<CardHeader>
-			<h2>{$_('section.status.title', { default: 'Status' })}</h2>
+			<CardTitle>{$_('section.status.title', { default: 'Status' })}</CardTitle>
 		</CardHeader>
 		<CardBody>
             {#if $settings.screens}
@@ -93,7 +93,7 @@
               <hr>
               {#if $status.data}
               <Rendered status="{$status}"></Rendered>
-              Screen cycle: {#if status.timerRunning}&#9205; running{:else}&#9208; stopped{/if}
+              Screen cycle: <span on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; running{:else}&#9208; stopped{/if}</span>
               {/if}
             {/if}
         <hr>
@@ -123,7 +123,9 @@
               &#10060;
               {/if}
             </span><br>
+            {#if $settings.fetchEurPrice}
             <small>If you use "Fetch &euro; price" the WS Price connection will show &#10060; since it uses another data source.</small>
+            {/if}
           </p>
         </CardBody>
         

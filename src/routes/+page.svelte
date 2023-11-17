@@ -10,7 +10,9 @@
 	import { writable } from 'svelte/store';
 	import { onMount } from 'svelte';
 
-	let settings = writable({});
+	let settings = writable({
+        fgColor: "0"
+    });
 
 	onMount(() => {
 		fetch( PUBLIC_BASE_URL + `/api/settings`)
@@ -18,6 +20,11 @@
 			.then((data) => {
 				data.fgColor = String(data.fgColor);
 				data.bgColor = String(data.bgColor);
+                data.timePerScreen = data.timerSeconds / 60;
+
+                if (data.fgColor> 65535) {
+                    data.fgColor = "65535";
+                }
 				settings.set(data);
 			});
 	});
