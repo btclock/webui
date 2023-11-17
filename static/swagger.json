@@ -68,6 +68,26 @@
             "description": "successful operation"
           }
         }
+      },
+      "patch": {
+        "tags": [
+          "system"
+        ],
+        "summary": "Save current settings",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Settings"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
       }
     },
     "/action/pause": {
@@ -272,7 +292,7 @@
             "default": true,
             "description": "Enable over-the-air updates"
           },
-          "stealFocusOnBlock": {
+          "stealFocus": {
             "type": "boolean",
             "default": false,
             "description": "Steal focus on new block"

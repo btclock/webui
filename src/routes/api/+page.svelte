@@ -1,26 +1,36 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
-	import { Col, Container, Row } from 'sveltestrap';
+	import { Col, Container, Row, Button } from 'sveltestrap';
 
 	import { onMount } from 'svelte';
-	import * as swaggerJson from './swagger.json';
+	//import * as swaggerJson from '../../../static/swagger.json';
 	//	import SwaggerUI from 'swagger-ui';
 	import 'swagger-ui/dist/swagger-ui.css';
 
+	let swaggerLoaded:boolean = false;
+
 	onMount(async () => {
 		// @ts-ignore
-		SwaggerUIBundle({
-			spec: swaggerJson,
-			dom_id: '#swagger-ui-container',
-			presets: [
-				// @ts-ignore
-				SwaggerUIBundle.presets.apis,
-				// @ts-ignore
-				SwaggerUIStandalonePreset
-			],
-//				layout: "StandaloneLayout",
-			});
+		loadSwagger();
 	});
+
+	const loadSwagger = () => {
+		if (!SwaggerUIBundle)
+			return;
+		swaggerLoaded = true;
+		window.ui = SwaggerUIBundle({
+				url: '/swagger.json',
+				dom_id: '#swagger-ui-container',
+				presets: [
+					// @ts-ignore
+					SwaggerUIBundle.presets.apis,
+					// @ts-ignore
+					SwaggerUIStandalonePreset
+				],
+				//	layout: "StandaloneLayout",
+				});
+			}
+		
 </script>
 
 <svelte:head>
@@ -44,8 +54,11 @@
 		crossorigin="anonymous"
 		referrerpolicy="no-referrer"
 	/>
+
 </svelte:head>
 
-<Container fluid>
+<Container fluid class="bg-light">
+	<section class:invisible={swaggerLoaded}><Button  on:click="{loadSwagger}">Load</Button></section>
 	<div id="swagger-ui-container" />
+
 </Container>
