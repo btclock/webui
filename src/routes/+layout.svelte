@@ -15,6 +15,7 @@
 	import { locale, locales, waitLocale } from 'svelte-i18n';
 	import type { LayoutLoad } from './$types';
 	import { browser } from '$app/environment';
+	import { page } from '$app/stores';
 
     export const setLocale = (lang: string) => () => {
         locale.set(lang);
@@ -27,10 +28,10 @@
 	<Collapse navbar expand="md">
 		<Nav class="me-auto" navbar>
 			<NavItem>
-				<NavLink href="/">Home</NavLink>
+				<NavLink href="/" active="{$page.url.pathname === ("/")}">Home</NavLink>
 			</NavItem>
 			<NavItem>
-				<NavLink href="/api">API</NavLink>
+				<NavLink href="/api" active="{$page.url.pathname === ("/api")}">API</NavLink>
 			</NavItem>
 		</Nav>
 		<Dropdown inNavbar>

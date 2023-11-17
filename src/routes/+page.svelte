@@ -34,6 +34,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>&#8383;TClock</title>
+</svelte:head>
+
 <Container fluid>
 	<Row>
 		<Control bind:settings></Control>
