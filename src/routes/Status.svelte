@@ -93,7 +93,7 @@
               <hr>
               {#if $status.data}
               <Rendered status="{$status}"></Rendered>
-              Screen cycle: <span on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; running{:else}&#9208; stopped{/if}</span>
+              Screen cycle: <a style="cursor: pointer" on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; running{:else}&#9208; stopped{/if}</a>
               {/if}
             {/if}
         <hr>

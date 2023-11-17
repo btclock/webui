@@ -1,15 +1,8 @@
-// @use "../node_modules/@fontsource/antonio/scss/mixins" as Antonio;
-// $directory: "../node_modules/@fontsource/ubuntu";
-// @use "../node_modules/@fontsource/ubuntu/scss/mixins" as Ubuntu;
-
-
-// @import "../node_modules/bootstrap/scss/bootstrap";
-
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
 @import "../node_modules/bootstrap/scss/variables-dark";
 
-@import "@fontsource/antonio/latin-400.css";
+//@import "@fontsource/antonio/latin-400.css";
 @import "@fontsource/ubuntu/latin-400.css";
 @import "@fontsource/oswald/latin-400.css";
 
@@ -100,6 +93,7 @@ nav {
         }
 
         text-align: center;
+        color: #fff;
     }
 }
 

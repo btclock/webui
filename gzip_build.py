@@ -22,8 +22,7 @@ def process_directory(input_dir, output_dir):
                 gzip_file(input_file_path, output_file_path)
                 print(f'Compressed: {input_file_path} -> {output_file_path}')
 
-# Replace 'input_directory' and 'output_directory' with your actual input and output directories
-input_directory = 'build'
+input_directory = 'dist'
 output_directory = 'build_gz'
 
 process_directory(input_directory, output_directory)

@@ -3,6 +3,7 @@ node_modules
 /build
 build
 build_gz
+dist
 /.svelte-kit
 /package
 .env
@@ -10,3 +11,4 @@ build_gz
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+yarn-error.log
