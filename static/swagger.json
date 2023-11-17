@@ -45,7 +45,14 @@
         "summary": "Get current settings",
         "responses": {
           "200": {
-            "description": "successful operation"
+            "description": "successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": null
+                }
+              }
+            }
           }
         }
       },
@@ -201,6 +208,19 @@
         }
       }
     },
+    "/lights": {
+      "get": {
+        "tags": [
+          "lights"
+        ],
+        "summary": "Get LEDs status",
+        "responses": {
+          "200": {
+            "description": "successful operation"
+          }
+        }
+      }
+    },
     "/lights/{color}": {
       "get": {
         "tags": [
@@ -255,6 +275,26 @@
   },
   "components": {
     "schemas": {
+      "ArrayOfLeds": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "red": {
+              "type": "integer"
+            },
+            "green": {
+              "type": "integer"
+            },
+            "blue": {
+              "type": "integer"
+            },
+            "hex": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "Settings": {
         "type": "object",
         "properties": {
