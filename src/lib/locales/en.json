@@ -1,12 +1,31 @@
 {
-    "my": {
-        "translation": {
-            "key": "Test"
-        }
-    },
-    "section": {
-        "settings": {
-            "title": "Settings"
-        }
+  "section": {
+    "settings": {
+      "title": "Settings",
+      "textColor": "Text color",
+      "backgroundColor": "Background color",
+      "ledPowerOnTest": "LED power-on test",
+      "ledFlashOnBlock": "LED flash on new block",
+      "timePerScreen": "Time per screen",
+      "ledBrightness": "LED brightness",
+      "timezoneOffset": "Timezone offset",
+      "timeBetweenPriceUpdates": "Time between price updates",
+      "fullRefreshEvery": "Full refresh every",
+      "mempoolnstance": "Mempool Instance",
+      "hostnamePrefix": "Hostname prefix",
+      "StealFocusOnNewBlock": "Steal focus on new block",
+      "useBigCharsMcap": "Use big characters for market cap",
+      "otaUpdates": "OTA updates (restart required)",
+      "enableMdns": "mDNS (restart required)",
+      "fetchEuroPrice": "Fetch € price (restart required)"
     }
+  },
+  "colors": {
+    "black": "Black",
+    "white": "White"
+  },
+  "time": {
+    "minutes": "minutes",
+    "seconds": "seconds"
+  }
 }

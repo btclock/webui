@@ -1,7 +1,22 @@
 {
-    "section": {
-        "settings": {
-            "title": "Instellingen"
-        }
+  "section": {
+    "settings": {
+      "title": "Instellingen",
+      "textColor": "Tekstkleur",
+      "backgroundColor": "Achtergrondkleur",
+      "timeBetweenPriceUpdates": "Tijd tussen prijs updates",
+      "timezoneOffset": "Tijdzone afwijking",
+      "ledBrightness": "LED helderheid",
+      "timePerScreen": "Tijd per scherm",
+      "fullRefreshEvery": "Volledig verversen"
     }
+  },
+  "colors": {
+    "black": "Zwart",
+    "white": "Wit"
+  },
+  "time": {
+    "minutes": "minuten",
+    "seconds": "seconden"
+  }
 }
