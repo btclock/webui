@@ -2,10 +2,9 @@
     import { PUBLIC_BASE_URL } from '$env/static/public';
 
     import { onMount } from 'svelte';
-
 	import { _ } from 'svelte-i18n';
 	import { writable } from 'svelte/store';
-	import { Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress,CardTitle } from 'sveltestrap';
+	import { Row, Input, Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress,CardTitle } from 'sveltestrap';
 	import Rendered from './Rendered.svelte';
 	
     export let settings; 
@@ -109,6 +108,16 @@
               { $_('section.status.screenCycle') }: <a style="cursor: pointer" on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; { $_('timer.running') }{:else}&#9208; { $_('timer.stopped') }{/if}</a>
               {/if}
             {/if}
+        <hr>
+        <Row class="justify-content-evenly">
+            {#if $status.leds}
+            {#each $status.leds as led}
+            <Col>
+            <Input type="color" id="ledColorPicker" bind:value="{led.hex}" class="mx-auto" disabled />
+            </Col>
+            {/each}
+            {/if}
+        </Row>
         <hr>
         <Progress striped value={memoryFreePercent}>{ memoryFreePercent }%</Progress>
         <div class="d-flex justify-content-between">
