@@ -94,11 +94,13 @@
 		</CardHeader>
 		<CardBody>
             {#if $settings.screens}
-            <ButtonGroup size="sm">
-                {#each $settings.screens as s}
-                <Button color="outline-primary" active={$status.currentScreen == s.id} on:click={setScreen(s.id)}>{s.name}</Button>
-                {/each}
-              </ButtonGroup>
+            <div class="d-flex justify-content-center">
+                <ButtonGroup size="sm">
+                    {#each $settings.screens as s}
+                    <Button color="outline-primary" active={$status.currentScreen == s.id} on:click={setScreen(s.id)}>{s.name}</Button>
+                    {/each}
+                </ButtonGroup>
+                </div>
               <hr>
               {#if $status.data}
               <section class={lightMode ? 'lightMode': ''}>

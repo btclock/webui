@@ -31,7 +31,8 @@
       "showText": "Poner texto",
       "text": "Texto",
       "title": "Control",
-      "buildTime": "Tiempo de construcción"
+      "buildTime": "Tiempo de construcción",
+      "hostname": "Nombre de host"
     },
     "status": {
       "memoryFree": "Memoria RAM libre",

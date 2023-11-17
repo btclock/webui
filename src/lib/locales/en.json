@@ -31,7 +31,8 @@
       "setColor": "Set color",
       "showText": "Show text",
       "text": "Text",
-      "title": "Control"
+      "title": "Control",
+      "hostname": "Hostname"
     },
     "status": {
       "title": "Status",

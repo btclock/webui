@@ -79,7 +79,7 @@ const forceFullRefresh = () => {
 				<li>{ $_('section.control.version') }: {$settings.gitRev}</li>
 				<li>{ $_('section.control.buildTime') }: {new Date(($settings.lastBuildTime * 1000)).toLocaleString()}</li>
 				<li>IP: {$settings.ip}</li>
-				<li>Hostname: {$settings.hostname}</li>
+				<li>{ $_('section.control.hostname') }: {$settings.hostname}</li>
 			</ul>
             <Button color="danger" id="restartBtn" on:click="{restartClock}">{ $_('button.restart') }</Button>
             <Button color="warning" id="forceFullRefresh" on:click="{forceFullRefresh}">{ $_('button.forceFullRefresh') }</Button>
