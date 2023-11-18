@@ -3,36 +3,12 @@
 
     import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
-	import { writable } from 'svelte/store';
+	import { writable, type Writable } from 'svelte/store';
 	import { Row, Input, Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress,CardTitle } from 'sveltestrap';
 	import Rendered from './Rendered.svelte';
 	
     export let settings; 
-
-    const status = writable({
-        data: ["L", "O", "A", "D", "I", "N", "G"],
-        espFreeHeap: 0,
-        espHeapSize: 0,
-        connectionStatus: {
-            "price": false,
-            "blocks": false
-        }
-    }); 
-
-    onMount(() => {
-        fetch(`${PUBLIC_BASE_URL}/api/status`)
-        .then((res) => res.json())
-		.then((data) => {
-            status.set(data);
-        });
-
-        const evtSource = new EventSource(`${PUBLIC_BASE_URL}/events`);
-
-        evtSource.addEventListener('status', (e) => {
-            let dataObj = (JSON.parse(e.data));
-            status.set(dataObj);
-        });
-    });
+    export let status:Writable<{}>;
 
     const toTime = (secs:Number) => {
         var hours = Math.floor(secs / (60 * 60));
@@ -60,11 +36,11 @@
     let memoryFreePercent:number = 50;
     let lightMode:boolean = false;
 
-    status.subscribe((value) => {
+    status.subscribe((value: {}) => {
         memoryFreePercent = Math.round(value.espFreeHeap / value.espHeapSize * 100);
     });
 
-    settings.subscribe((value) => {
+    settings.subscribe((value: {}) => {
         lightMode = value.bgColor > value.fgColor;
     });
 

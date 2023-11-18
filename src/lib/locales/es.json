@@ -62,5 +62,10 @@
   "timer": {
     "running": "funcionando",
     "stopped": "detenido"
+  },
+  "sections": {
+    "control": {
+      "keepSameColor": "Mantén el mismo color"
+    }
   }
 }

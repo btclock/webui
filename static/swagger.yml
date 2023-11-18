@@ -4,7 +4,7 @@ info:
   version: '3.0'
   description: BTClock V3 API
 servers:
-  - url: /api/
+  - url: http://192.168.20.231/api/
 paths:
   /status:
     get:
@@ -135,6 +135,24 @@ paths:
       responses:
         '200':
           description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArrayOfLeds'
+    patch:
+      tags: 
+        - lights
+      summary: Set individual LEDs
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArrayOfLedsInput'
+      responses:
+        "200":
+          description: succesful operation
+        "400":
+          description: invalid colors or wrong amount of LEDs
   /lights/{color}:
     get:
       tags:
@@ -169,19 +187,47 @@ paths:
           description: successful operation
 components:
   schemas:
-    ArrayOfLeds:
-      type: array
-      items:
+    RgbColorValues:
         type: object
         properties:
           red:
             type: integer
+            minimum: 0
+            maximum: 255
+            example: 255
           green:
             type: integer
+            minimum: 0
+            maximum: 255
+            example: 204
           blue:
             type: integer
+            minimum: 0
+            maximum: 255
+            example: 0
+    RgbColorHex:
+        type: object
+        properties:
           hex:
             type: string
+            pattern: ^#(?:[0-9a-fA-F]{3}){1,2}$
+            example: "#FFCC00"
+    RgbColorValueAndHex:
+        allOf: 
+            - $ref: '#/components/schemas/RgbColorValues'
+            - $ref: '#/components/schemas/RgbColorHex'
+    RgbColorValueOrHex:
+        oneOf: 
+            - $ref: '#/components/schemas/RgbColorValues'
+            - $ref: '#/components/schemas/RgbColorHex'
+    ArrayOfLeds:
+      type: array
+      items:
+        $ref: '#/components/schemas/RgbColorValueAndHex'
+    ArrayOfLedsInput:
+      type: array
+      items:
+        $ref: '#/components/schemas/RgbColorValueOrHex'
     Settings:
       type: object
       properties:

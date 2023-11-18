@@ -62,5 +62,10 @@
   "timer": {
     "running": "running",
     "stopped": "stopped"
+  },
+  "sections": {
+    "control": {
+      "keepSameColor": "Keep same color"
+    }
   }
 }

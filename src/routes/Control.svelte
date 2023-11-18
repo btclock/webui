@@ -1,6 +1,9 @@
 <script lang="ts">
 import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { onDestroy } from 'svelte';
 import { _ } from 'svelte-i18n';
+	import type { Subscriber, Unsubscriber } from 'svelte/motion';
+	import type { Writable } from 'svelte/store';
 import {
     Button,
     ButtonGroup,
@@ -19,15 +22,37 @@ import {
 export let settings = {};
 export let customText:String;
 export let ledColor:String = "#FFCC00";
-
+export let status:Writable<{leds:[]}>;
+let ledStatus = [];
+let keepLedsSameColor = false;
 
 const setCustomText = () => {
     fetch(`${PUBLIC_BASE_URL}/api/show/text/${customText}`).catch(err => { });
 };
 
+const checkSyncLeds = (e:Event) => {
+	console.log('checksyncleds', keepLedsSameColor);
+	if (keepLedsSameColor) {
+		console.log(e.target.value);
+
+		ledStatus.forEach((element, i) => {
+			if (ledStatus[i].hex != e.target_value) {
+				ledStatus[i].hex = e.target.value;
+			}
+		});
+	}
+}
+
 const setLEDcolor = () => {
     console.log(`${PUBLIC_BASE_URL}/api/lights/${ledColor}`);
-    fetch(`${PUBLIC_BASE_URL}/api/lights/${encodeURIComponent(ledColor.replace(/^#/, ''))}`).catch(err => { });
+    fetch(`${PUBLIC_BASE_URL}/api/lights`, {
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		method: 'PATCH',
+		body: JSON.stringify(ledStatus)
+	}
+	).catch(err => { });
 };
 
 const turnOffLeds = () => {
@@ -42,6 +67,16 @@ const forceFullRefresh = () => {
     fetch(`${PUBLIC_BASE_URL}/api/full_refresh`).catch(err => { });
 }
 
+let firstLedDataSubscription = () => {};
+
+firstLedDataSubscription = status.subscribe(async(val) => {
+	if (val && val.leds) {
+		ledStatus = val.leds.map((obj) => ({ ["hex"]: obj["hex"] }));
+		firstLedDataSubscription();
+	}
+})
+
+onDestroy(firstLedDataSubscription);
 </script>
 
 <Col>
@@ -54,7 +89,7 @@ const forceFullRefresh = () => {
 				<Row>
 					<Label md={6} for="customText">{ $_('section.control.text') }</Label>
 					<Col md="6">
-						<Input type="text" id="customText" bind:value={customText} bsSize="sm" maxLength="{$settings.numScreens}"/>
+						<Input type="text" id="customText" bind:value={customText} bsSize="sm" maxLength="{$settings.numScreens}" />
 					</Col>
 				</Row>
                 <Button color="primary" on:click={setCustomText}>{ $_('section.control.showText') }</Button>
@@ -66,7 +101,18 @@ const forceFullRefresh = () => {
 				<Row>
 					<Label md={6} for="ledColorPicker" size="sm">{ $_('section.control.ledColor') }</Label>
 					<Col md="6">
-						<Input type="color" id="ledColorPicker" bind:value="{ledColor}" />
+						<Row class="justify-content-between">
+							{#if ledStatus}
+							{#each ledStatus as led, i }
+							<Col>
+							<Input type="color" id="ledColorPicker[{i}]" bind:value="{led.hex}" class="mx-auto" on:change="{checkSyncLeds}" />
+							</Col>
+							{/each}
+							{/if}
+							<Col>
+							<Input bind:checked={keepLedsSameColor} type="switch" class="mx-auto"  label="{ $_('sections.control.keepSameColor') }" />
+							</Col>
+						</Row>
 					</Col>
 				</Row>
                 <Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}>{ $_('section.control.turnOff') }</Button>
