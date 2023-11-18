@@ -4,7 +4,7 @@ info:
   version: '3.0'
   description: BTClock V3 API
 servers:
-  - url: http://192.168.20.231/api/
+  - url: /api/
 paths:
   /status:
     get:

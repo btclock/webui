@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://192.168.20.231/api/"
+      "url": "/api/"
     }
   ],
   "paths": {
