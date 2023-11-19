@@ -39,7 +39,7 @@ jobs:
           git submodule update --init &&
           make dist
       - name: Install yarn
-        run: yarn
+        run: yarn && yarn postinstall
       - name: Build WebUI
         run: yarn build
       - name: gzip build for LittleFS
@@ -57,6 +57,8 @@ jobs:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
+          tag: main
+          commit: main
           name: release-${{ steps.date.outputs.dateAndTime }}
           artifacts: "littlefs.bin,webui.tgz"
           allowUpdates: true
