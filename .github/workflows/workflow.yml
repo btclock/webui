@@ -42,6 +42,9 @@ jobs:
         run: yarn && yarn postinstall
       - name: Build WebUI
         run: yarn build
+      - name: Get current block
+        id: getBlockHeight
+        run: echo "blockHeight=$(curl -s https://mempool.space/api/blocks/tip/height)" >> $GITHUB_OUTPUT
       - name: gzip build for LittleFS
         run: find dist -type f ! -name ".*" -exec sh -c 'mkdir -p "build_gz/$(dirname "${1#dist/}")" && gzip -k "$1" -c > "build_gz/${1#dist/}".gz' _ {} \;
       - name: Create tarball
@@ -59,7 +62,7 @@ jobs:
         with:
           tag: main
           commit: main
-          name: release-${{ steps.dateAndTime.outputs.dateAndTime }}
+          name: release-${{ steps.getBlockHeight.outputs.blockHeight }}
           artifacts: "littlefs.bin,webui.tgz"
           allowUpdates: true
           removeArtifacts: true
