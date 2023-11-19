@@ -1,0 +1,64 @@
+name: BTClock WebUI CI
+
+on: [push]
+
+env:
+  PUBLIC_BASE_URL: ""
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+          cache: yarn
+          cache-dependency-path: '**/yarn.lock'
+      - uses: actions/cache@v3
+        with:
+          path: |
+            ~/.cache/pip
+            ~/node_modules
+          key: ${{ runner.os }}-pio
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Get current date
+        id: dateAndTime
+        run: echo "dateAndTime=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+      - name: Install mklittlefs
+        run: >
+          git clone https://github.com/earlephilhower/mklittlefs.git /usr/src/mklittlefs && \
+          cd /usr/src/mklittlefs && \
+          git submodule update --init && \
+          make dist
+      - name: Install yarn
+        run: yarn
+      - name: Build WebUI
+        run: yarn build
+      - name: gzip build for LittleFS
+        run: find dist -type f ! -name ".*" -exec sh -c 'mkdir -p "build_gz/$(dirname "${1#dist/}")" && gzip -k "$1" -c > "build_gz/${1#dist/}".gz' _ {} \;
+      - name: Create tarball
+        run: tar czf webui.tgz --strip-components=1 dist
+      - name: Build LittleFS
+        run: /usr/src/mklittlefs/mklittlefs -c build_gz -s 409600 littlefs.bin 
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: |
+            webui.tgz
+            littlefs.bin
+      - name: Create release
+        uses: ncipollo/release-action@v1
+        with:
+          name: release-${{ steps.date.outputs.dateAndTime }}
+          artifacts: "littlefs.bin,webui.tgz"
+          allowUpdates: true
+          removeArtifacts: true
+          makeLatest: true
