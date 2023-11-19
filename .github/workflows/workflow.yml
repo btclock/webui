@@ -31,7 +31,7 @@ jobs:
           python-version: '3.9'
       - name: Get current date
         id: dateAndTime
-        run: echo "dateAndTime=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
+        run: echo "dateAndTime=$(date +'%Y-%m-%d-%H:%M')" >> $GITHUB_OUTPUT
       - name: Install mklittlefs
         run: >
           git clone https://github.com/earlephilhower/mklittlefs.git /tmp/mklittlefs &&
@@ -59,7 +59,7 @@ jobs:
         with:
           tag: main
           commit: main
-          name: release-${{ steps.date.outputs.dateAndTime }}
+          name: release-${{ steps.dateAndTime.outputs.dateAndTime }}
           artifacts: "littlefs.bin,webui.tgz"
           allowUpdates: true
           removeArtifacts: true
