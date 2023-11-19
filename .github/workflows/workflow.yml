@@ -6,8 +6,27 @@ env:
   PUBLIC_BASE_URL: ""
 
 jobs:
-  build:
+  check-changes:
     runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get changed files count
+        id: changed-files
+        uses: tj-actions/changed-files@v40.1.1
+
+      - name: Print changed files count
+        run: echo "Changed files count: ${{ steps.changed-files.outputs.all_changed_and_modified_files_count }}"
+
+      - name: Fail if less than 2 changes detected
+        run: exit $(( ${{ steps.changed-files.outputs.all_changed_and_modified_files_count }} < 2 ))
+
+  build:
+    needs: check-changes
+    runs-on: ubuntu-latest
+    if: ${{ needs.check-changes.result == 'success' }}
     permissions:
       contents: write
 
