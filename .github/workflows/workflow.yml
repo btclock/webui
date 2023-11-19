@@ -8,7 +8,8 @@ env:
 jobs:
   check-changes:
     runs-on: ubuntu-latest
-    continue-on-error: true
+    outputs:
+      all_changed_and_modified_files_count: ${{ steps.changed-files.outputs.all_changed_and_modified_files_count }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -20,12 +21,12 @@ jobs:
       - name: Print changed files count
         run: >
           echo "Changed files count: ${{ 
-          steps.changed-files.outputs.all_changed_and_modified_files_count }}"
+            steps.changed-files.outputs.all_changed_and_modified_files_count }}"
 
   build:
     needs: check-changes
     runs-on: ubuntu-latest
-    if: steps.changed-files.outputs.all_changed_and_modified_files_count >= 2
+    if: ${{ needs.check-changes.outputs >= 2 }}
     permissions:
       contents: write
 
