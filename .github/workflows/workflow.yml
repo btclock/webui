@@ -18,7 +18,7 @@ jobs:
         id: changed-files
         uses: tj-actions/changed-files@v40.1.1
         with:
-          files_ignore: "doc/**,README.md,Dockerfile,.*,.github/**"
+          files_ignore: "doc/**,README.md,Dockerfile,.*"
           files_ignore_separator: ','
       - name: Print changed files count
         run: >
@@ -28,7 +28,7 @@ jobs:
   build:
     needs: check-changes
     runs-on: ubuntu-latest
-    if: ${{ needs.check-changes.outputs >= 1 }}
+    if: ${{ needs.check-changes.outputs.all_changed_and_modified_files_count >= 1 }}
     permissions:
       contents: write
 
