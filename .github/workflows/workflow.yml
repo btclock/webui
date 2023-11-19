@@ -60,7 +60,7 @@ jobs:
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
-          tag: main
+          tag: ${{ steps.getBlockHeight.outputs.blockHeight }}
           commit: main
           name: release-${{ steps.getBlockHeight.outputs.blockHeight }}
           artifacts: "littlefs.bin,webui.tgz"
