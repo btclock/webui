@@ -34,9 +34,9 @@ jobs:
         run: echo "dateAndTime=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
       - name: Install mklittlefs
         run: >
-          git clone https://github.com/earlephilhower/mklittlefs.git /tmp/mklittlefs  
-          cd /tmp/mklittlefs 
-          git submodule update --init 
+          git clone https://github.com/earlephilhower/mklittlefs.git /tmp/mklittlefs &&
+          cd /tmp/mklittlefs &&
+          git submodule update --init &&
           make dist
       - name: Install yarn
         run: yarn
