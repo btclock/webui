@@ -3,7 +3,7 @@ name: BTClock WebUI CI
 on: [push]
 
 env:
-  PUBLIC_BASE_URL: ""
+  PUBLIC_BASE_URL: ''
 
 jobs:
   check-changes:
@@ -12,13 +12,13 @@ jobs:
       all_changed_and_modified_files_count: ${{ steps.changed-files.outputs.all_changed_and_modified_files_count }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Get changed files count
         id: changed-files
         uses: tj-actions/changed-files@v40.1.1
         with:
-          files_ignore: "doc/**,README.md,Dockerfile,.*"
+          files_ignore: 'doc/**,README.md,Dockerfile,.*'
           files_ignore_separator: ','
       - name: Print changed files count
         run: >
@@ -33,7 +33,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           submodules: recursive
       - uses: actions/setup-node@v3
@@ -71,7 +71,7 @@ jobs:
       - name: Create tarball
         run: tar czf webui.tgz --strip-components=1 dist
       - name: Build LittleFS
-        run: /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 littlefs.bin 
+        run: /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 littlefs.bin
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
@@ -84,7 +84,7 @@ jobs:
           tag: ${{ steps.getBlockHeight.outputs.blockHeight }}
           commit: main
           name: release-${{ steps.getBlockHeight.outputs.blockHeight }}
-          artifacts: "littlefs.bin,webui.tgz"
+          artifacts: 'littlefs.bin,webui.tgz'
           allowUpdates: true
           removeArtifacts: true
           makeLatest: true

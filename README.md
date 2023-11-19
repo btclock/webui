@@ -35,7 +35,7 @@ To upload the firmware to the BTClock, you need to GZIP all the files. You can u
 Then you can make a `LittleFS.bin` with mklittlefs:
 
 ```bash
-mklittlefs -c build_gz -s 409600 littlefs.bin 
+mklittlefs -c build_gz -s 409600 littlefs.bin
 ```
 
 You can preview the production build with `yarn preview`.

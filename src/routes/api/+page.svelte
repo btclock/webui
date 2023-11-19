@@ -1,36 +1,31 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
-	import { Col, Container, Row, Button } from 'sveltestrap';
+	import { Button, Container } from 'sveltestrap';
 
 	import { onMount } from 'svelte';
-	//import * as swaggerJson from '../../../static/swagger.json';
-	//	import SwaggerUI from 'swagger-ui';
-	import 'swagger-ui/dist/swagger-ui.css';
-
-	let swaggerLoaded:boolean = false;
+	let swaggerLoaded: boolean = false;
 
 	onMount(async () => {
-		// @ts-ignore
 		loadSwagger();
 	});
 
 	const loadSwagger = () => {
-		if (!SwaggerUIBundle)
-			return;
+		// @ts-expect-error: SwaggerUIBundle is loaded from external script from CDN
+		if (!SwaggerUIBundle) return; // eslint-disable-line
 		swaggerLoaded = true;
+		// @ts-expect-error: SwaggerUIBundle is loaded from external script from CDN
+		// eslint-disable-next-line
 		window.ui = SwaggerUIBundle({
-				url: '/swagger.json',
-				dom_id: '#swagger-ui-container',
-				presets: [
-					// @ts-ignore
-					SwaggerUIBundle.presets.apis,
-					// @ts-ignore
-					SwaggerUIStandalonePreset
-				],
-				//	layout: "StandaloneLayout",
-				});
-			}
-		
+			url: '/swagger.json',
+			dom_id: '#swagger-ui-container',
+			presets: [
+				// @ts-expect-error: SwaggerUIBundle is loaded from external script from CDN
+				SwaggerUIBundle.presets.apis, // eslint-disable-line
+				// @ts-expect-error: SwaggerUIStandalonePreset is loaded from external script from CDN
+				SwaggerUIStandalonePreset // eslint-disable-line
+			]
+			//	layout: "StandaloneLayout",
+		});
+	};
 </script>
 
 <svelte:head>
@@ -54,11 +49,9 @@
 		crossorigin="anonymous"
 		referrerpolicy="no-referrer"
 	/>
-
 </svelte:head>
 
 <Container fluid class="bg-light">
-	<section class:invisible={swaggerLoaded}><Button  on:click="{loadSwagger}">Load</Button></section>
+	<section class:invisible={swaggerLoaded}><Button on:click={loadSwagger}>Load</Button></section>
 	<div id="swagger-ui-container" />
-
 </Container>

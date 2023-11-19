@@ -1,21 +1,19 @@
 <script lang="ts">
 	import {
-		Navbar,
-		NavbarBrand,
+		Collapse,
+		Dropdown,
+		DropdownItem,
+		DropdownMenu,
+		DropdownToggle,
 		Nav,
 		NavItem,
 		NavLink,
-		Collapse,
-		Dropdown,
-		DropdownMenu,
-		DropdownItem,
-		DropdownToggle
+		Navbar,
+		NavbarBrand
 	} from 'sveltestrap';
 
-	import { locale, locales, waitLocale } from 'svelte-i18n';
-	import type { LayoutLoad } from './$types';
-	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
+	import { locale, locales } from 'svelte-i18n';
 
 	export const setLocale = (lang: string) => () => {
 		locale.set(lang);
@@ -33,7 +31,7 @@
 		const lowercaseCode = languageCode.toLowerCase();
 
 		// Check if the language code is in the flagMap
-		if (flagMap.hasOwnProperty(lowercaseCode)) {
+		if (Object.prototype.hasOwnProperty.call(flagMap, lowercaseCode)) {
 			return flagMap[lowercaseCode];
 		} else {
 			// Return null for unsupported language codes
@@ -50,7 +48,7 @@
 
 		const lowercaseCode = languageCode.toLowerCase();
 
-		return languageNames.hasOwnProperty(lowercaseCode)
+		return Object.prototype.hasOwnProperty.call(languageNames, lowercaseCode)
 			? languageNames[lowercaseCode][lowercaseCode]
 			: null;
 	};
@@ -71,7 +69,9 @@
 			<DropdownToggle nav caret>{getFlagEmoji($locale)} {getLanguageName($locale)}</DropdownToggle>
 			<DropdownMenu end>
 				{#each $locales as locale}
-					<DropdownItem on:click={setLocale(locale)}>{getFlagEmoji(locale)} {getLanguageName(locale)}</DropdownItem>
+					<DropdownItem on:click={setLocale(locale)}
+						>{getFlagEmoji(locale)} {getLanguageName(locale)}</DropdownItem
+					>
 				{/each}
 			</DropdownMenu>
 		</Dropdown>

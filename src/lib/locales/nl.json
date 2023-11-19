@@ -1,70 +1,70 @@
 {
-  "section": {
-    "settings": {
-      "title": "Instellingen",
-      "textColor": "Tekstkleur",
-      "backgroundColor": "Achtergrondkleur",
-      "timeBetweenPriceUpdates": "Tijd tussen prijs updates",
-      "timezoneOffset": "Tijdzone afwijking",
-      "ledBrightness": "LED helderheid",
-      "timePerScreen": "Tijd per scherm",
-      "fullRefreshEvery": "Volledig verversen elke",
-      "shortAmountsWarning": "Lage waardes verkorten levensduur",
-      "tzOffsetHelpText": "Herstart nodig voor toepassen afwijking.",
-      "enableMdns": "mDNS",
-      "ledPowerOnTest": "LED test bij aanzetten",
-      "StealFocusOnNewBlock": "Pak aandacht bij nieuw blok",
-      "ledFlashOnBlock": "Knipper led bij nieuw blok",
-      "useBigCharsMcap": "Gebruik grote tekens bij market cap",
-      "fetchEuroPrice": "Toon € prijs",
-      "screens": "Schermen",
-      "hostnamePrefix": "Hostnaam voorvoegsel",
-      "mempoolnstance": "Mempool instantie",
-      "otaUpdates": "OTA updates"
-    },
-    "control": {
-      "systemInfo": "Systeeminformatie",
-      "version": "Versie",
-      "buildTime": "Bouwtijd",
-      "setColor": "Kleur instellen",
-      "turnOff": "Uitzetten",
-      "ledColor": "LED kleur",
-      "showText": "Toon tekst",
-      "text": "Tekst",
-      "title": "Besturing"
-    },
-    "status": {
-      "title": "Status",
-      "memoryFree": "Geheugen vrij",
-      "screenCycle": "Scherm cyclus",
-      "wsPriceConnection": "WS Prijs verbinding",
-      "wsMempoolConnection": "WS Mempool.space verbinding",
-      "fetchEuroNote": "Wanneer je \"Toon € prijs\" aanzet, zal de prijsverbinding als ❌ verbroken getoond worden vanwege het gebruik van een andere bron.",
-      "uptime": "Uptime"
-    }
-  },
-  "colors": {
-    "black": "Zwart",
-    "white": "Wit"
-  },
-  "time": {
-    "minutes": "minuten",
-    "seconds": "seconden"
-  },
-  "restartRequired": "herstart nodig",
-  "button": {
-    "save": "Opslaan",
-    "reset": "Herstel",
-    "restart": "Herstart",
-    "forceFullRefresh": "Forceer scherm verversen"
-  },
-  "timer": {
-    "running": "actief",
-    "stopped": "gestopt"
-  },
-  "sections": {
-    "control": {
-      "keepSameColor": "Behoud zelfde kleur"
-    }
-  }
+	"section": {
+		"settings": {
+			"title": "Instellingen",
+			"textColor": "Tekstkleur",
+			"backgroundColor": "Achtergrondkleur",
+			"timeBetweenPriceUpdates": "Tijd tussen prijs updates",
+			"timezoneOffset": "Tijdzone afwijking",
+			"ledBrightness": "LED helderheid",
+			"timePerScreen": "Tijd per scherm",
+			"fullRefreshEvery": "Volledig verversen elke",
+			"shortAmountsWarning": "Lage waardes verkorten levensduur",
+			"tzOffsetHelpText": "Herstart nodig voor toepassen afwijking.",
+			"enableMdns": "mDNS",
+			"ledPowerOnTest": "LED test bij aanzetten",
+			"StealFocusOnNewBlock": "Pak aandacht bij nieuw blok",
+			"ledFlashOnBlock": "Knipper led bij nieuw blok",
+			"useBigCharsMcap": "Gebruik grote tekens bij market cap",
+			"fetchEuroPrice": "Toon € prijs",
+			"screens": "Schermen",
+			"hostnamePrefix": "Hostnaam voorvoegsel",
+			"mempoolnstance": "Mempool instantie",
+			"otaUpdates": "OTA updates"
+		},
+		"control": {
+			"systemInfo": "Systeeminformatie",
+			"version": "Versie",
+			"buildTime": "Bouwtijd",
+			"setColor": "Kleur instellen",
+			"turnOff": "Uitzetten",
+			"ledColor": "LED kleur",
+			"showText": "Toon tekst",
+			"text": "Tekst",
+			"title": "Besturing"
+		},
+		"status": {
+			"title": "Status",
+			"memoryFree": "Geheugen vrij",
+			"screenCycle": "Scherm cyclus",
+			"wsPriceConnection": "WS Prijs verbinding",
+			"wsMempoolConnection": "WS Mempool.space verbinding",
+			"fetchEuroNote": "Wanneer je \"Toon € prijs\" aanzet, zal de prijsverbinding als ❌ verbroken getoond worden vanwege het gebruik van een andere bron.",
+			"uptime": "Uptime"
+		}
+	},
+	"colors": {
+		"black": "Zwart",
+		"white": "Wit"
+	},
+	"time": {
+		"minutes": "minuten",
+		"seconds": "seconden"
+	},
+	"restartRequired": "herstart nodig",
+	"button": {
+		"save": "Opslaan",
+		"reset": "Herstel",
+		"restart": "Herstart",
+		"forceFullRefresh": "Forceer scherm verversen"
+	},
+	"timer": {
+		"running": "actief",
+		"stopped": "gestopt"
+	},
+	"sections": {
+		"control": {
+			"keepSameColor": "Behoud zelfde kleur"
+		}
+	}
 }

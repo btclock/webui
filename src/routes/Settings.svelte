@@ -1,46 +1,41 @@
 <script lang="ts">
-    import { PUBLIC_BASE_URL } from '$env/static/public';
-
-	import { onMount } from 'svelte';
-	import { readonly, writable } from 'svelte/store';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
 
 	import { _ } from 'svelte-i18n';
 	import {
-		Col,
-		Container,
-		Row,
+		Button,
 		Card,
-        CardTitle,
-		CardHeader,
 		CardBody,
+		CardHeader,
+		CardTitle,
+		Col,
 		Form,
-		FormGroup,
 		FormText,
-		Label,
 		Input,
 		InputGroup,
 		InputGroupText,
-        Button
+		Label,
+		Row
 	} from 'sveltestrap';
 
 	export let settings;
 
-    const onSave = async(e:Event) => {
-        e.preventDefault();
-        let formSettings = $settings;
+	const onSave = async (e: Event) => {
+		e.preventDefault();
+		let formSettings = $settings;
 
-        delete formSettings["gitRev"];
-        delete formSettings["ip"];
-        delete formSettings["lastBuildTime"];
+		delete formSettings['gitRev'];
+		delete formSettings['ip'];
+		delete formSettings['lastBuildTime'];
 
-        const res = await fetch(`${PUBLIC_BASE_URL}/api/json/settings`, {
+		await fetch(`${PUBLIC_BASE_URL}/api/json/settings`, {
 			method: 'PATCH',
-            headers: {
-                "Content-Type": "application/json",
-            },
+			headers: {
+				'Content-Type': 'application/json'
+			},
 			body: JSON.stringify(formSettings)
-		})		
-    }
+		});
+	};
 </script>
 
 <Col>
@@ -51,7 +46,9 @@
 		<CardBody>
 			<Form on:submit={onSave}>
 				<Row>
-					<Label md={6} for="fgColor" size="sm">{$_('section.settings.textColor', { default: 'Text color' })}</Label>
+					<Label md={6} for="fgColor" size="sm"
+						>{$_('section.settings.textColor', { default: 'Text color' })}</Label
+					>
 					<Col md="6">
 						<Input
 							type="select"
@@ -61,13 +58,13 @@
 							bsSize="sm"
 							class="form-select-sm"
 						>
-							<option value="0">{ $_('colors.black') }</option>
-							<option value="65535">{ $_('colors.white') }</option>
+							<option value="0">{$_('colors.black')}</option>
+							<option value="65535">{$_('colors.white')}</option>
 						</Input>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="bgColor" size="sm">{ $_('section.settings.backgroundColor') }</Label>
+					<Label md={6} for="bgColor" size="sm">{$_('section.settings.backgroundColor')}</Label>
 					<Col md="6">
 						<Input
 							type="select"
@@ -77,41 +74,45 @@
 							bsSize="sm"
 							class="form-select-sm"
 						>
-							<option value="0">{ $_('colors.black') }</option>
-							<option value="65535">{ $_('colors.white') }</option>
+							<option value="0">{$_('colors.black')}</option>
+							<option value="65535">{$_('colors.white')}</option>
 						</Input>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="timePerScreen" size="sm">{ $_('section.settings.timePerScreen') }</Label>
+					<Label md={6} for="timePerScreen" size="sm">{$_('section.settings.timePerScreen')}</Label>
 					<Col md="6">
 						<InputGroup size="sm">
 							<Input type="number" min={1} step="1" bind:value={$settings.timePerScreen} />
-							<InputGroupText>{ $_('time.minutes') }</InputGroupText>
+							<InputGroupText>{$_('time.minutes')}</InputGroupText>
 						</InputGroup>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="fullRefreshMin" size="sm">{ $_('section.settings.fullRefreshEvery') }</Label>
+					<Label md={6} for="fullRefreshMin" size="sm"
+						>{$_('section.settings.fullRefreshEvery')}</Label
+					>
 					<Col md="6">
 						<InputGroup size="sm">
 							<Input type="number" min={1} step="1" bind:value={$settings.fullRefreshMin} />
-							<InputGroupText>{ $_('time.minutes') }</InputGroupText>
+							<InputGroupText>{$_('time.minutes')}</InputGroupText>
 						</InputGroup>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="minSecPriceUpd" size="sm">{ $_('section.settings.timeBetweenPriceUpdates') }</Label>
+					<Label md={6} for="minSecPriceUpd" size="sm"
+						>{$_('section.settings.timeBetweenPriceUpdates')}</Label
+					>
 					<Col md="6">
 						<InputGroup size="sm">
 							<Input type="number" min={1} step="1" bind:value={$settings.minSecPriceUpd} />
-							<InputGroupText>{ $_('time.seconds') }</InputGroupText>
+							<InputGroupText>{$_('time.seconds')}</InputGroupText>
 						</InputGroup>
-						<FormText>{ $_('section.settings.shortAmountsWarning') }</FormText>
+						<FormText>{$_('section.settings.shortAmountsWarning')}</FormText>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="tzOffset" size="sm">{ $_('section.settings.timezoneOffset') }</Label>
+					<Label md={6} for="tzOffset" size="sm">{$_('section.settings.timezoneOffset')}</Label>
 					<Col md="6">
 						<InputGroup size="sm">
 							<Input
@@ -122,19 +123,19 @@
 								id="tzOffset"
 								bind:value={$settings.tzOffset}
 							/>
-							<InputGroupText>{ $_('time.minutes') }</InputGroupText>
+							<InputGroupText>{$_('time.minutes')}</InputGroupText>
 						</InputGroup>
-						<FormText>{ $_('section.settings.tzOffsetHelpText') }</FormText>
+						<FormText>{$_('section.settings.tzOffsetHelpText')}</FormText>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="ledBrightness" size="sm">{ $_('section.settings.ledBrightness') }</Label>
+					<Label md={6} for="ledBrightness" size="sm">{$_('section.settings.ledBrightness')}</Label>
 					<Col md="6">
 						<Input
 							type="range"
 							name="ledBrightness"
 							id="ledBrightness"
-                            bind:value={$settings.ledBrightness}
+							bind:value={$settings.ledBrightness}
 							min={0}
 							max={255}
 							step={1}
@@ -142,67 +143,117 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="mempoolInstance" size="sm">{ $_('section.settings.mempoolnstance') }</Label>
-                    <Col md="6">
+					<Label md={6} for="mempoolInstance" size="sm"
+						>{$_('section.settings.mempoolnstance')}</Label
+					>
+					<Col md="6">
 						<Input
 							type="text"
 							bind:value={$settings.mempoolInstance}
 							name="mempoolInstance"
 							id="mempoolInstance"
 							bsSize="sm"
-						>
-						</Input>
+						></Input>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="hostnamePrefix" size="sm">{ $_('section.settings.hostnamePrefix') }</Label>
-                    <Col md="6">
+					<Label md={6} for="hostnamePrefix" size="sm"
+						>{$_('section.settings.hostnamePrefix')}</Label
+					>
+					<Col md="6">
 						<Input
 							type="text"
 							bind:value={$settings.hostnamePrefix}
 							name="hostnamePrefix"
 							id="hostnamePrefix"
 							bsSize="sm"
-						>
-						</Input>
+						></Input>
 					</Col>
 				</Row>
-                <Row>
-                    <Col md="6">
-                        <Input id="ledTestOnPower" bind:checked={$settings.ledTestOnPower} type="switch" bsSize="sm" label="{ $_('section.settings.ledPowerOnTest') }" />
-                    </Col>
-                    <Col md="6">
-                        <Input id="ledFlashOnUpd" bind:checked={$settings.ledFlashOnUpd} type="switch" bsSize="sm" label="{ $_('section.settings.ledFlashOnBlock') }" />
-                    </Col>
-                    <Col md="6">
-                        <Input id="stealFocus" bind:checked={$settings.stealFocus} type="switch" bsSize="sm" label="{ $_('section.settings.StealFocusOnNewBlock') }" />
-                    </Col>
-                    <Col md="6">
-                        <Input id="mcapBigChar" bind:checked={$settings.mcapBigChar} type="switch" bsSize="sm" label="{ $_('section.settings.useBigCharsMcap') }" />
-                    </Col>
-                    <Col md="6">
-                        <Input id="otaEnabled" bind:checked={$settings.otaEnabled} type="switch" bsSize="sm" label="{ $_('section.settings.otaUpdates') } ({ $_('restartRequired') })" />
-                    </Col>
-                    <Col md="6">
-                        <Input id="mdnsEnabled" bind:checked={$settings.mdnsEnabled} type="switch" bsSize="sm" label="{ $_('section.settings.enableMdns') } ({ $_('restartRequired') })" />
-                    </Col>
-                       <Col md="6">
-                        <Input id="fetchEurPrice" bind:checked={$settings.fetchEurPrice} type="switch" bsSize="sm" label="{ $_('section.settings.fetchEuroPrice') } ({ $_('restartRequired') })" />
-                    </Col>
-                </Row>
+				<Row>
+					<Col md="6">
+						<Input
+							id="ledTestOnPower"
+							bind:checked={$settings.ledTestOnPower}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.ledPowerOnTest')}
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="ledFlashOnUpd"
+							bind:checked={$settings.ledFlashOnUpd}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.ledFlashOnBlock')}
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="stealFocus"
+							bind:checked={$settings.stealFocus}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.StealFocusOnNewBlock')}
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="mcapBigChar"
+							bind:checked={$settings.mcapBigChar}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.useBigCharsMcap')}
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="otaEnabled"
+							bind:checked={$settings.otaEnabled}
+							type="switch"
+							bsSize="sm"
+							label="{$_('section.settings.otaUpdates')} ({$_('restartRequired')})"
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="mdnsEnabled"
+							bind:checked={$settings.mdnsEnabled}
+							type="switch"
+							bsSize="sm"
+							label="{$_('section.settings.enableMdns')} ({$_('restartRequired')})"
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="fetchEurPrice"
+							bind:checked={$settings.fetchEurPrice}
+							type="switch"
+							bsSize="sm"
+							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
+						/>
+					</Col>
+				</Row>
 
-                <Row>
-                    <h3>{ $_('section.settings.screens') }</h3>
-                    {#if $settings.screens}
-                    {#each $settings.screens as s}
-                    <Col md="6">
-                        <Input id="screens_{s.id}" bind:checked={s.enabled} type="switch" bsSize="sm" label="{s.name}" />
-                    </Col>
-                    {/each}
-                    {/if}
-                </Row>
-                <Button type="reset" color="secondary">{ $_('button.reset') }</Button>
-                <Button color="primary">{ $_('button.save') }</Button>
+				<Row>
+					<h3>{$_('section.settings.screens')}</h3>
+					{#if $settings.screens}
+						{#each $settings.screens as s}
+							<Col md="6">
+								<Input
+									id="screens_{s.id}"
+									bind:checked={s.enabled}
+									type="switch"
+									bsSize="sm"
+									label={s.name}
+								/>
+							</Col>
+						{/each}
+					{/if}
+				</Row>
+				<Button type="reset" color="secondary">{$_('button.reset')}</Button>
+				<Button color="primary">{$_('button.save')}</Button>
 			</Form>
 		</CardBody>
 	</Card>

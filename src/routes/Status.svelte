@@ -1,65 +1,71 @@
 <script lang="ts">
-    import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { PUBLIC_BASE_URL } from '$env/static/public';
 
-    import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
-	import { writable, type Writable } from 'svelte/store';
-	import { Row, Input, Button, ButtonGroup, Card, CardBody, CardHeader, Col, Progress,CardTitle } from 'sveltestrap';
+	import { writable } from 'svelte/store';
+	import {
+		Button,
+		ButtonGroup,
+		Card,
+		CardBody,
+		CardHeader,
+		CardTitle,
+		Col,
+		Input,
+		Progress,
+		Row
+	} from 'sveltestrap';
 	import Rendered from './Rendered.svelte';
-	
-    export let settings; 
-    export let status:Writable<{}>;
 
-    const toTime = (secs:Number) => {
-        var hours = Math.floor(secs / (60 * 60));
+	export let settings;
+	export let status: writable<object>;
 
-        var divisor_for_minutes = secs % (60 * 60);
-        var minutes = Math.floor(divisor_for_minutes / 60);
+	const toTime = (secs: number) => {
+		var hours = Math.floor(secs / (60 * 60));
 
-        var divisor_for_seconds = divisor_for_minutes % 60;
-        var seconds = Math.ceil(divisor_for_seconds);
+		var divisor_for_minutes = secs % (60 * 60);
+		var minutes = Math.floor(divisor_for_minutes / 60);
 
-        var obj = {
-            "h": hours,
-            "m": minutes,
-            "s": seconds
-        };
-        return obj;
-    }
+		var divisor_for_seconds = divisor_for_minutes % 60;
+		var seconds = Math.ceil(divisor_for_seconds);
 
-    const toUptimeString = (secs:Number):String => {
-        let time = toTime(secs);
+		var obj = {
+			h: hours,
+			m: minutes,
+			s: seconds
+		};
+		return obj;
+	};
 
-        return `${time.h}h ${time.m}m ${time.s}s`;
-    }
+	const toUptimestring = (secs: number): string => {
+		let time = toTime(secs);
 
-    let memoryFreePercent:number = 50;
-    let lightMode:boolean = false;
+		return `${time.h}h ${time.m}m ${time.s}s`;
+	};
 
-    status.subscribe((value: {}) => {
-        memoryFreePercent = Math.round(value.espFreeHeap / value.espHeapSize * 100);
-    });
+	let memoryFreePercent: number = 50;
+	let lightMode: boolean = false;
 
-    settings.subscribe((value: {}) => {
-        lightMode = value.bgColor > value.fgColor;
-    });
+	status.subscribe((value: object) => {
+		memoryFreePercent = Math.round((value.espFreeHeap / value.espHeapSize) * 100);
+	});
 
-    const setScreen = (id:number) => () => {
-        fetch(`${PUBLIC_BASE_URL}/api/show/screen/${id}`).catch(err => { });
-    }
+	settings.subscribe((value: object) => {
+		lightMode = value.bgColor > value.fgColor;
+	});
 
-    const toggleTimer = (currentStatus:boolean) => () => {
-        if (currentStatus) {
-            fetch(`${PUBLIC_BASE_URL}/api/action/pause`);
-        } else {
-            fetch(`${PUBLIC_BASE_URL}/api/action/timer_restart`);
-        }
-    }
+	const setScreen = (id: number) => () => {
+		fetch(`${PUBLIC_BASE_URL}/api/show/screen/${id}`).catch(() => {});
+	};
 
-    const isLightMode = () => {
-        return $settings.bgColor > $settings.fgColor;
-    }
-
+	const toggleTimer = (currentStatus: boolean) => (e: Event) => {
+		e.preventDefault();
+		if (currentStatus) {
+			fetch(`${PUBLIC_BASE_URL}/api/action/pause`);
+		} else {
+			fetch(`${PUBLIC_BASE_URL}/api/action/timer_restart`);
+		}
+	};
 </script>
 
 <Col>
@@ -68,64 +74,86 @@
 			<CardTitle>{$_('section.status.title', { default: 'Status' })}</CardTitle>
 		</CardHeader>
 		<CardBody>
-            {#if $settings.screens}
-            <div class="d-flex justify-content-center">
-                <ButtonGroup size="sm">
-                    {#each $settings.screens as s}
-                    <Button color="outline-primary" active={$status.currentScreen == s.id} on:click={setScreen(s.id)}>{s.name}</Button>
-                    {/each}
-                </ButtonGroup>
-                </div>
-              <hr>
-              {#if $status.data}
-              <section class={lightMode ? 'lightMode': ''}>
-                  <Rendered status="{$status}"></Rendered>
-              </section>
-              { $_('section.status.screenCycle') }: <a style="cursor: pointer" on:click="{toggleTimer($status.timerRunning)}">{#if $status.timerRunning}&#9205; { $_('timer.running') }{:else}&#9208; { $_('timer.stopped') }{/if}</a>
-              {/if}
-            {/if}
-        <hr>
-        <Row class="justify-content-evenly">
-            {#if $status.leds}
-            {#each $status.leds as led}
-            <Col>
-            <Input type="color" id="ledColorPicker" bind:value="{led.hex}" class="mx-auto" disabled />
-            </Col>
-            {/each}
-            {/if}
-        </Row>
-        <hr>
-        <Progress striped value={memoryFreePercent}>{ memoryFreePercent }%</Progress>
-        <div class="d-flex justify-content-between">
-            <div>{ $_('section.status.memoryFree') } </div>
-            <div>{ Math.round($status.espFreeHeap / 1024)  } / { Math.round($status.espHeapSize / 1024) } KiB</div>
-          </div>
-        <hr>
-        { $_('section.status.uptime') }: {toUptimeString($status.espUptime)}
-        <br>
-        <p>
-            { $_('section.status.wsPriceConnection') }:
-            <span>
-            {#if $status.connectionStatus && $status.connectionStatus.price}
-            &#9989;
-            {:else}
-            &#10060;
-            {/if}
-            </span>
-            - 
-            { $_('section.status.wsMempoolConnection') }:
-            <span>
-              {#if $status.connectionStatus && $status.connectionStatus.blocks}
-              &#9989;
-              {:else}
-              &#10060;
-              {/if}
-            </span><br>
-            {#if $settings.fetchEurPrice}
-            <small>{ $_('section.status.fetchEuroNote') }</small>
-            {/if}
-          </p>
-        </CardBody>
-        
-    </Card>
+			{#if $settings.screens}
+				<div class="d-flex justify-content-center">
+					<ButtonGroup size="sm">
+						{#each $settings.screens as s}
+							<Button
+								color="outline-primary"
+								active={$status.currentScreen == s.id}
+								on:click={setScreen(s.id)}>{s.name}</Button
+							>
+						{/each}
+					</ButtonGroup>
+				</div>
+				<hr />
+				{#if $status.data}
+					<section class={lightMode ? 'lightMode' : ''}>
+						<Rendered status={$status}></Rendered>
+					</section>
+					{$_('section.status.screenCycle')}:
+					<a
+						href={'#'}
+						style="cursor: pointer"
+						tabindex="0"
+						role="button"
+						aria-pressed="false"
+						on:click={toggleTimer($status.timerRunning)}
+						>{#if $status.timerRunning}&#9205; {$_('timer.running')}{:else}&#9208; {$_(
+								'timer.stopped'
+							)}{/if}</a
+					>
+				{/if}
+			{/if}
+			<hr />
+			<Row class="justify-content-evenly">
+				{#if $status.leds}
+					{#each $status.leds as led}
+						<Col>
+							<Input
+								type="color"
+								id="ledColorPicker"
+								bind:value={led.hex}
+								class="mx-auto"
+								disabled
+							/>
+						</Col>
+					{/each}
+				{/if}
+			</Row>
+			<hr />
+			<Progress striped value={memoryFreePercent}>{memoryFreePercent}%</Progress>
+			<div class="d-flex justify-content-between">
+				<div>{$_('section.status.memoryFree')}</div>
+				<div>
+					{Math.round($status.espFreeHeap / 1024)} / {Math.round($status.espHeapSize / 1024)} KiB
+				</div>
+			</div>
+			<hr />
+			{$_('section.status.uptime')}: {toUptimestring($status.espUptime)}
+			<br />
+			<p>
+				{$_('section.status.wsPriceConnection')}:
+				<span>
+					{#if $status.connectionStatus && $status.connectionStatus.price}
+						&#9989;
+					{:else}
+						&#10060;
+					{/if}
+				</span>
+				-
+				{$_('section.status.wsMempoolConnection')}:
+				<span>
+					{#if $status.connectionStatus && $status.connectionStatus.blocks}
+						&#9989;
+					{:else}
+						&#10060;
+					{/if}
+				</span><br />
+				{#if $settings.fetchEurPrice}
+					<small>{$_('section.status.fetchEuroNote')}</small>
+				{/if}
+			</p>
+		</CardBody>
+	</Card>
 </Col>

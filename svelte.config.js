@@ -5,16 +5,14 @@ import { vitePreprocess } from '@sveltejs/kit/vite';
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: vitePreprocess({
-	
-	}),
-build: {
-	rollupOptions: {
-		output: {
-			assetFilenames: '[hash]'
+	preprocess: vitePreprocess({}),
+	build: {
+		rollupOptions: {
+			output: {
+				assetFilenames: '[hash]'
+			}
 		}
-	}
-},
+	},
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
 		// If your environment is not supported or you settled on a specific environment, switch out the adapter.
@@ -24,11 +22,11 @@ build: {
 			// these options are set automatically — see below
 			pages: 'dist',
 			assets: 'dist',
-			fallback: "bundle.html",
+			fallback: 'bundle.html',
 			precompress: false,
 			strict: true
 		}),
-		appDir: "build",
+		appDir: 'build'
 		// inlineStyleThreshold: 9999999999
 	}
 };

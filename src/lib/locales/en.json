@@ -1,71 +1,71 @@
 {
-  "section": {
-    "settings": {
-      "title": "Settings",
-      "textColor": "Text color",
-      "backgroundColor": "Background color",
-      "ledPowerOnTest": "LED power-on test",
-      "ledFlashOnBlock": "LED flash on new block",
-      "timePerScreen": "Time per screen",
-      "ledBrightness": "LED brightness",
-      "timezoneOffset": "Timezone offset",
-      "timeBetweenPriceUpdates": "Time between price updates",
-      "fullRefreshEvery": "Full refresh every",
-      "mempoolnstance": "Mempool Instance",
-      "hostnamePrefix": "Hostname prefix",
-      "StealFocusOnNewBlock": "Steal focus on new block",
-      "useBigCharsMcap": "Use big characters for market cap",
-      "otaUpdates": "OTA updates",
-      "enableMdns": "mDNS",
-      "fetchEuroPrice": "Fetch € price",
-      "shortAmountsWarning": "Short amounts might shorten lifespan.",
-      "tzOffsetHelpText": "A restart is required to apply TZ offset.",
-      "screens": "Screens"
-    },
-    "control": {
-      "systemInfo": "System info",
-      "version": "Version",
-      "buildTime": "Build time",
-      "ledColor": "LED color",
-      "turnOff": "Turn off",
-      "setColor": "Set color",
-      "showText": "Show text",
-      "text": "Text",
-      "title": "Control",
-      "hostname": "Hostname"
-    },
-    "status": {
-      "title": "Status",
-      "screenCycle": "Screen cycle",
-      "memoryFree": "Memory free",
-      "wsPriceConnection": "WS Price connection",
-      "wsMempoolConnection": "WS Mempool.space connection",
-      "fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
-      "uptime": "Uptime"
-    }
-  },
-  "colors": {
-    "black": "Black",
-    "white": "White"
-  },
-  "time": {
-    "minutes": "minutes",
-    "seconds": "seconds"
-  },
-  "restartRequired": "restart required",
-  "button": {
-    "save": "Save",
-    "reset": "Reset",
-    "restart": "Restart",
-    "forceFullRefresh": "Force full refresh"
-  },
-  "timer": {
-    "running": "running",
-    "stopped": "stopped"
-  },
-  "sections": {
-    "control": {
-      "keepSameColor": "Keep same color"
-    }
-  }
+	"section": {
+		"settings": {
+			"title": "Settings",
+			"textColor": "Text color",
+			"backgroundColor": "Background color",
+			"ledPowerOnTest": "LED power-on test",
+			"ledFlashOnBlock": "LED flash on new block",
+			"timePerScreen": "Time per screen",
+			"ledBrightness": "LED brightness",
+			"timezoneOffset": "Timezone offset",
+			"timeBetweenPriceUpdates": "Time between price updates",
+			"fullRefreshEvery": "Full refresh every",
+			"mempoolnstance": "Mempool Instance",
+			"hostnamePrefix": "Hostname prefix",
+			"StealFocusOnNewBlock": "Steal focus on new block",
+			"useBigCharsMcap": "Use big characters for market cap",
+			"otaUpdates": "OTA updates",
+			"enableMdns": "mDNS",
+			"fetchEuroPrice": "Fetch € price",
+			"shortAmountsWarning": "Short amounts might shorten lifespan.",
+			"tzOffsetHelpText": "A restart is required to apply TZ offset.",
+			"screens": "Screens"
+		},
+		"control": {
+			"systemInfo": "System info",
+			"version": "Version",
+			"buildTime": "Build time",
+			"ledColor": "LED color",
+			"turnOff": "Turn off",
+			"setColor": "Set color",
+			"showText": "Show text",
+			"text": "Text",
+			"title": "Control",
+			"hostname": "Hostname"
+		},
+		"status": {
+			"title": "Status",
+			"screenCycle": "Screen cycle",
+			"memoryFree": "Memory free",
+			"wsPriceConnection": "WS Price connection",
+			"wsMempoolConnection": "WS Mempool.space connection",
+			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
+			"uptime": "Uptime"
+		}
+	},
+	"colors": {
+		"black": "Black",
+		"white": "White"
+	},
+	"time": {
+		"minutes": "minutes",
+		"seconds": "seconds"
+	},
+	"restartRequired": "restart required",
+	"button": {
+		"save": "Save",
+		"reset": "Reset",
+		"restart": "Restart",
+		"forceFullRefresh": "Force full refresh"
+	},
+	"timer": {
+		"running": "running",
+		"stopped": "stopped"
+	},
+	"sections": {
+		"control": {
+			"keepSameColor": "Keep same color"
+		}
+	}
 }

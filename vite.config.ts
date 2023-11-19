@@ -1,61 +1,71 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
-import * as fs from 'fs'
-import * as path from 'path'
+import * as fs from 'fs';
+import * as path from 'path';
 
 const doRewrap = ({ cssClass }) => {
 	try {
 		if (fs.existsSync(path.resolve(__dirname, 'dist/bundle.js'))) {
-			return
+			return;
 		}
-	} catch(e) {}
-	console.log("\nStart re-wrapping...")
-	fs.readFile(path.resolve(__dirname, 'dist/bundle.html'), 'utf8', function(err, data){
+	} catch (e) {}
+	console.log('\nStart re-wrapping...');
+	fs.readFile(path.resolve(__dirname, 'dist/bundle.html'), 'utf8', function (err, data) {
 		if (!data) {
-			console.log(`[Error]: No bundle.html generated, check svelte.config.js -> config.kit.adapter -> fallback: "bundle.html"`)
-			return
+			console.log(
+				`[Error]: No bundle.html generated, check svelte.config.js -> config.kit.adapter -> fallback: "bundle.html"`
+			);
+			return;
 		}
-		let matchData = data.match(/(?<=<script\b[^>]*>)([\s\S]*?)(?=<\/script>)/gm)
+		const matchData = data.match(/(?<=<script\b[^>]*>)([\s\S]*?)(?=<\/script>)/gm);
 		if (matchData) {
-			let cleanData = matchData[0].trim()
-				.replace(`document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode`, `document.querySelector(".${cssClass}")`)
+			const cleanData = matchData[0]
+				.trim()
+				.replace(
+					`document.querySelector('[data-sveltekit-hydrate="45h"]').parentNode`,
+					`document.querySelector(".${cssClass}")`
+				);
 			fs.writeFile(path.resolve(__dirname, 'dist/bundle.js'), cleanData, (err) => {
-				if (err)
-					console.log(err)
+				if (err) console.log(err);
 				else {
 					try {
-						fs.rename(path.resolve(__dirname,'dist/index.page'), path.resolve(__dirname, 'dist/index.html'), (err) => { })
-					} catch (e) { }
+						fs.rename(
+							path.resolve(__dirname, 'dist/index.page'),
+							path.resolve(__dirname, 'dist/index.html'),
+							() => {}
+						);
+					} catch (e) {}
 					try {
-						fs.unlinkSync(path.resolve(__dirname, 'dist/bundle.html'))
-					} catch (e) { }
-					console.log("Finished: bundle.js + index.html have been regenerated.\n")
+						fs.unlinkSync(path.resolve(__dirname, 'dist/bundle.html'));
+					} catch (e) {}
+					console.log('Finished: bundle.js + index.html have been regenerated.\n');
 				}
-			})
-		} else 
-			console.log(`[Error]: No proper <script> tag found in bundle.html`)
-	})
-}
-
+			});
+		} else console.log(`[Error]: No proper <script> tag found in bundle.html`);
+	});
+};
 
 export default defineConfig({
-	plugins: [sveltekit(), {
-		name: 'postbuild-command', 
+	plugins: [
+		sveltekit(),
+		{
+			name: 'postbuild-command',
 			closeBundle: {
 				order: 'post',
 				handler() {
-					setTimeout(() => doRewrap({ cssClass: "overlay" }), Math.random()*500+500)
+					setTimeout(() => doRewrap({ cssClass: 'overlay' }), Math.random() * 500 + 500);
 				}
 			}
-	}],
+		}
+	],
 	build: {
 		minify: true,
 		cssCodeSplit: false,
 		rollupOptions: {
 			output: {
 				manualChunks: () => 'app',
-				assetFileNames: "[name][extname]"
+				assetFileNames: '[name][extname]'
 			}
 		}
 	}
