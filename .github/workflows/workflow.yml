@@ -22,14 +22,10 @@ jobs:
           echo "Changed files count: ${{ 
           steps.changed-files.outputs.all_changed_and_modified_files_count }}"
 
-      - name: Fail if less than 2 changes detected
-        if: steps.changed-files.outputs.all_changed_and_modified_files_count < 2
-        run: exit 1
-
   build:
     needs: check-changes
     runs-on: ubuntu-latest
-    if: ${{ needs.check-changes.result == 'success' }}
+    if: steps.changed-files.outputs.all_changed_and_modified_files_count >= 2
     permissions:
       contents: write
 
