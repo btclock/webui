@@ -34,8 +34,8 @@ jobs:
         run: echo "dateAndTime=$(date +'%Y-%m-%d-%H-%M')" >> $GITHUB_OUTPUT
       - name: Install mklittlefs
         run: >
-          git clone https://github.com/earlephilhower/mklittlefs.git /usr/src/mklittlefs && \
-          cd /usr/src/mklittlefs && \
+          git clone https://github.com/earlephilhower/mklittlefs.git /tmp/mklittlefs && \
+          cd /tmp/mklittlefs && \
           git submodule update --init && \
           make dist
       - name: Install yarn
@@ -47,7 +47,7 @@ jobs:
       - name: Create tarball
         run: tar czf webui.tgz --strip-components=1 dist
       - name: Build LittleFS
-        run: /usr/src/mklittlefs/mklittlefs -c build_gz -s 409600 littlefs.bin 
+        run: /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 littlefs.bin 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
