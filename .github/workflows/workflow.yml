@@ -28,7 +28,7 @@ jobs:
   build:
     needs: check-changes
     runs-on: ubuntu-latest
-    if: ${{ needs.check-changes.outputs >= 2 }}
+    if: ${{ needs.check-changes.outputs >= 1 }}
     permissions:
       contents: write
 

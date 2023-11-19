@@ -9,5 +9,5 @@ register('es', () => import('../locales/es.json'))
 
 init({
 	fallbackLocale: defaultLocale,
-	initialLocale: browser ? window.navigator.language : defaultLocale,
+	initialLocale: browser ? browser && localStorage.getItem('locale') ? localStorage.getItem('locale') : window.navigator.language : defaultLocale,
 })

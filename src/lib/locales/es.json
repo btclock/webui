@@ -28,17 +28,17 @@
       "version": "Versión",
       "ledColor": "color del LED",
       "systemInfo": "Info del sistema",
-      "showText": "Poner texto",
+      "showText": "Mostrar texto",
       "text": "Texto",
       "title": "Control",
-      "buildTime": "Tiempo de construcción",
-      "hostname": "Nombre de host"
+      "buildTime": "Tiempo de compilación",
+      "hostname": "Nombre del host"
     },
     "status": {
       "memoryFree": "Memoria RAM libre",
       "wsPriceConnection": "Conexión WebSocket Precio",
       "wsMempoolConnection": "Conexión WebSocket Mempool.space",
-      "screenCycle": "Rotacion de pantalla",
+      "screenCycle": "Ciclo de pantalla",
       "uptime": "Tiempo de funcionamiento",
       "fetchEuroNote": "Si utiliza \"Obtener precio en €\", la conexión de Precio WS mostrará ❌ ya que utiliza otra fuente de datos.",
       "title": "Estado"
