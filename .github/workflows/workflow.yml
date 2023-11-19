@@ -18,10 +18,13 @@ jobs:
         uses: tj-actions/changed-files@v40.1.1
 
       - name: Print changed files count
-        run: echo "Changed files count: ${{ steps.changed-files.outputs.all_changed_and_modified_files_count }}"
+        run: >
+          echo "Changed files count: ${{ 
+          steps.changed-files.outputs.all_changed_and_modified_files_count }}"
 
       - name: Fail if less than 2 changes detected
-        run: exit $(( ${{ steps.changed-files.outputs.all_changed_and_modified_files_count }} < 2 ))
+        if: steps.changed-files.outputs.all_changed_and_modified_files_count < 2
+        run: exit 1
 
   build:
     needs: check-changes
