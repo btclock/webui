@@ -17,7 +17,9 @@ jobs:
       - name: Get changed files count
         id: changed-files
         uses: tj-actions/changed-files@v40.1.1
-
+        with:
+          files_ignore: "doc/**,README.md,Dockerfile,.*,.github/**"
+          files_ignore_separator: ','
       - name: Print changed files count
         run: >
           echo "Changed files count: ${{ 
