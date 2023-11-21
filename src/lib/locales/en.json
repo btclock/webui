@@ -22,7 +22,9 @@
 			"tzOffsetHelpText": "A restart is required to apply TZ offset.",
 			"screens": "Screens",
 			"wifiTxPowerText": "In most cases this does not need to be set.",
-			"wifiTxPower": "WiFi TX power"
+			"wifiTxPower": "WiFi TX power",
+			"settingsSaved": "Settings saved",
+			"errorSavingSettings": "Error saving settings"
 		},
 		"control": {
 			"systemInfo": "System info",

@@ -22,7 +22,9 @@
 			"mempoolnstance": "Mempool instantie",
 			"otaUpdates": "OTA updates",
 			"wifiTxPower": "WiFi TX power",
-			"wifiTxPowerText": "Meestal hoeft dit niet aangepast te worden."
+			"wifiTxPowerText": "Meestal hoeft dit niet aangepast te worden.",
+			"settingsSaved": "Instellingen opgeslagen",
+			"errorSavingSettings": "Fout bij opslaan instellingen"
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",

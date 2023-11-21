@@ -63,6 +63,8 @@ jobs:
         run: yarn && yarn postinstall
       - name: Build WebUI
         run: yarn build
+      - name: Run linter
+        run: yarn lint
       - name: Get current block
         id: getBlockHeight
         run: echo "blockHeight=$(curl -s https://mempool.space/api/blocks/tip/height)" >> $GITHUB_OUTPUT

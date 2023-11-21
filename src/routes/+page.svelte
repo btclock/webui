@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { PUBLIC_BASE_URL } from '$env/static/public';
 
-	import { Container, Row } from 'sveltestrap';
+	import { Container, Row, Toast, ToastBody } from 'sveltestrap';
 
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
@@ -55,6 +55,16 @@
 			status.set(dataObj);
 		});
 	});
+
+	let toastIsOpen = false;
+	let toastColor = 'success';
+	let toastBody = '';
+
+	export const showToast = (event) => {
+		toastIsOpen = true;
+		toastColor = event.detail.color;
+		toastBody = event.detail.text;
+	};
 </script>
 
 <svelte:head>
@@ -65,6 +75,20 @@
 	<Row>
 		<Control bind:settings bind:status></Control>
 		<Status bind:settings bind:status></Status>
-		<Settings bind:settings></Settings>
+		<Settings bind:settings on:showToast={showToast}></Settings>
 	</Row>
 </Container>
+<div class="position-fixed bottom-0 end-0 p-2">
+	<div class="">
+		<Toast
+			isOpen={toastIsOpen}
+			class="me-1 bg-{toastColor}"
+			autohide
+			on:close={() => (toastIsOpen = false)}
+		>
+			<ToastBody>
+				{toastBody}
+			</ToastBody>
+		</Toast>
+	</div>
+</div>

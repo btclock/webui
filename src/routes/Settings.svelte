@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { createEventDispatcher } from 'svelte';
 
 	import { _ } from 'svelte-i18n';
 	import {
@@ -34,6 +35,8 @@
 		['5dBm', 20] // 5dBm
 	]);
 
+	const dispatch = createEventDispatcher();
+
 	const onSave = async (e: Event) => {
 		e.preventDefault();
 		let formSettings = $settings;
@@ -48,7 +51,19 @@
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify(formSettings)
-		});
+		})
+			.then(() => {
+				dispatch('showToast', {
+					color: 'success',
+					text: $_('section.settings.settingsSaved')
+				});
+			})
+			.catch(() => {
+				dispatch('showToast', {
+					color: 'danger',
+					text: $_('section.settings.errorSavingSettings')
+				});
+			});
 	};
 </script>
 

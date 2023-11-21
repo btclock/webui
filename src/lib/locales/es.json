@@ -21,7 +21,9 @@
 			"hostnamePrefix": "Prefijo de nombre de host",
 			"mempoolnstance": "Instancia de Mempool",
 			"otaUpdates": "Actualización por aire",
-			"wifiTxPowerText": "En la mayoría de los casos no es necesario configurar esto."
+			"wifiTxPowerText": "En la mayoría de los casos no es necesario configurar esto.",
+			"settingsSaved": "Configuración guardada",
+			"errorSavingSettings": "Error al guardar la configuración"
 		},
 		"control": {
 			"turnOff": "Apagar",
