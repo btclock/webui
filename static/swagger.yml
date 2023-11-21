@@ -290,6 +290,8 @@ components:
           type: boolean
         screen[5]:
           type: boolean
+        screen[6]:
+          type: boolean
         tzOffset:
           type: integer
           default: 60
@@ -302,6 +304,9 @@ components:
           type: integer
           default: 30
           description: Time between screens when rotating in minutes
+        txPower:
+          type: integer
+          description: WiFi Tx Power
     CustomText:
       type: array
       items:
