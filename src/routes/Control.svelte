@@ -68,6 +68,15 @@
 	firstLedDataSubscription = status.subscribe(async (val) => {
 		if (val && val.leds) {
 			ledStatus = val.leds.map((obj) => ({ ['hex']: obj['hex'] }));
+
+			for (let led of ledStatus) {
+				if (led['hex'] == '#000000') {
+					led['hex'] = `#${Math.floor(Math.random() * 16777215)
+						.toString(16)
+						.padStart(6, '0')}`;
+				}
+			}
+
 			firstLedDataSubscription();
 		}
 	});
