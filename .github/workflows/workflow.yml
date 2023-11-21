@@ -68,6 +68,21 @@ jobs:
         run: echo "blockHeight=$(curl -s https://mempool.space/api/blocks/tip/height)" >> $GITHUB_OUTPUT
       - name: gzip build for LittleFS
         run: find dist -type f ! -name ".*" -exec sh -c 'mkdir -p "build_gz/$(dirname "${1#dist/}")" && gzip -k "$1" -c > "build_gz/${1#dist/}".gz' _ {} \;
+      - name: Check GZipped directory size
+        run: |
+          # Set the threshold size in bytes
+          THRESHOLD=409600
+
+          # Calculate the total size of files in the directory
+          DIRECTORY_SIZE=$(du -b -s build_gz | awk '{print $1}')
+
+          # Fail the workflow if the size exceeds the threshold
+          if [ "$DIRECTORY_SIZE" -gt "$THRESHOLD" ]; then
+            echo "Directory size exceeds the threshold of $THRESHOLD bytes"
+            exit 1
+          else
+            echo "Directory size is within the threshold"
+          fi
       - name: Create tarball
         run: tar czf webui.tgz --strip-components=1 dist
       - name: Build LittleFS
