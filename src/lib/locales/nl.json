@@ -20,7 +20,9 @@
 			"screens": "Schermen",
 			"hostnamePrefix": "Hostnaam voorvoegsel",
 			"mempoolnstance": "Mempool instantie",
-			"otaUpdates": "OTA updates"
+			"otaUpdates": "OTA updates",
+			"wifiTxPower": "WiFi TX power",
+			"wifiTxPowerText": "Meestal hoeft dit niet aangepast te worden."
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",
@@ -40,7 +42,8 @@
 			"wsPriceConnection": "WS Prijs verbinding",
 			"wsMempoolConnection": "WS Mempool.space verbinding",
 			"fetchEuroNote": "Wanneer je \"Toon € prijs\" aanzet, zal de prijsverbinding als ❌ verbroken getoond worden vanwege het gebruik van een andere bron.",
-			"uptime": "Uptime"
+			"uptime": "Uptime",
+			"wifiSignalStrength": "WiFi signaalsterkte"
 		}
 	},
 	"colors": {
@@ -66,5 +69,8 @@
 		"control": {
 			"keepSameColor": "Behoud zelfde kleur"
 		}
+	},
+	"rssiBar": {
+		"tooltip": "Waarden > -67 dBm zijn goed. > -30 dBm is verbazingwekkend"
 	}
 }

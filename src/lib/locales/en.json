@@ -20,7 +20,9 @@
 			"fetchEuroPrice": "Fetch € price",
 			"shortAmountsWarning": "Short amounts might shorten lifespan.",
 			"tzOffsetHelpText": "A restart is required to apply TZ offset.",
-			"screens": "Screens"
+			"screens": "Screens",
+			"wifiTxPowerText": "In most cases this does not need to be set.",
+			"wifiTxPower": "WiFi TX power"
 		},
 		"control": {
 			"systemInfo": "System info",
@@ -41,7 +43,8 @@
 			"wsPriceConnection": "WS Price connection",
 			"wsMempoolConnection": "WS Mempool.space connection",
 			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
-			"uptime": "Uptime"
+			"uptime": "Uptime",
+			"wifiSignalStrength": "WiFi Signal strength"
 		}
 	},
 	"colors": {
@@ -67,5 +70,8 @@
 		"control": {
 			"keepSameColor": "Keep same color"
 		}
+	},
+	"rssiBar": {
+		"tooltip": "Values > -67 dBm are considered good. > -30 dBm is amazing"
 	}
 }

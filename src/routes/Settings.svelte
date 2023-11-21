@@ -20,6 +20,20 @@
 
 	export let settings;
 
+	const wifiTxPowerMap = new Map<string, number>([
+		['Default', 80],
+		['19.5dBm', 78], // 19.5dBm
+		['19dBm', 76], // 19dBm
+		['18.5dBm', 74], // 18.5dBm
+		['17dBm', 68], // 17dBm
+		['15dBm', 60], // 15dBm
+		['13dBm', 52], // 13dBm
+		['11dBm', 44], // 11dBm
+		['8.5dBm', 34], // 8.5dBm
+		['7dBm', 28], // 7dBm
+		['5dBm', 20] // 5dBm
+	]);
+
 	const onSave = async (e: Event) => {
 		e.preventDefault();
 		let formSettings = $settings;
@@ -168,6 +182,26 @@
 							id="hostnamePrefix"
 							bsSize="sm"
 						></Input>
+					</Col>
+				</Row>
+				<Row>
+					<Label md={6} for="wifiTxPower" size="sm"
+						>{$_('section.settings.wifiTxPower', { default: 'WiFi Tx Power' })}</Label
+					>
+					<Col md="6">
+						<Input
+							type="select"
+							bind:value={$settings.txPower}
+							name="select"
+							id="fgColor"
+							bsSize="sm"
+							class="form-select-sm"
+						>
+							{#each wifiTxPowerMap as [key, value]}
+								<option {value}>{key}</option>
+							{/each}
+						</Input>
+						<FormText>{$_('section.settings.wifiTxPowerText')}</FormText>
 					</Col>
 				</Row>
 				<Row>

@@ -83,8 +83,8 @@
 		<CardBody>
 			<Form>
 				<Row>
-					<Label md={6} for="customText">{$_('section.control.text')}</Label>
-					<Col md="6">
+					<Label md={4} for="customText">{$_('section.control.text')}</Label>
+					<Col md="8">
 						<Input
 							type="text"
 							id="customText"
@@ -100,8 +100,8 @@
 			<h3>LEDs</h3>
 			<Form>
 				<Row>
-					<Label md={6} for="ledColorPicker" size="sm">{$_('section.control.ledColor')}</Label>
-					<Col md="6">
+					<Label md={4} for="ledColorPicker" size="sm">{$_('section.control.ledColor')}</Label>
+					<Col md="8">
 						<Row class="justify-content-between">
 							{#if ledStatus}
 								{#each ledStatus as led, i}
@@ -116,6 +116,8 @@
 									</Col>
 								{/each}
 							{/if}
+						</Row>
+						<Row class="justify-content-between">
 							<Col>
 								<Input
 									bind:checked={keepLedsSameColor}

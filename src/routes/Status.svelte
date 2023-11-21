@@ -13,6 +13,7 @@
 		Col,
 		Input,
 		Progress,
+		Tooltip,
 		Row
 	} from 'sveltestrap';
 	import Rendered from './Rendered.svelte';
@@ -44,10 +45,22 @@
 	};
 
 	let memoryFreePercent: number = 50;
+	let rssiPercent: number = 50;
+	let wifiStrengthColor: string = 'info';
 	let lightMode: boolean = false;
 
 	status.subscribe((value: object) => {
 		memoryFreePercent = Math.round((value.espFreeHeap / value.espHeapSize) * 100);
+
+		rssiPercent = Math.round(((value.rssi + 120) / (-30 + 120)) * 100);
+
+		if (value.rssi > -55) {
+			wifiStrengthColor = 'success';
+		} else if (value.rssi < -87) {
+			wifiStrengthColor = 'warning';
+		} else {
+			wifiStrengthColor = 'info';
+		}
 	});
 
 	settings.subscribe((value: object) => {
@@ -127,6 +140,18 @@
 				<div>{$_('section.status.memoryFree')}</div>
 				<div>
 					{Math.round($status.espFreeHeap / 1024)} / {Math.round($status.espHeapSize / 1024)} KiB
+				</div>
+			</div>
+			<hr />
+			<Progress striped id="rssiBar" color={wifiStrengthColor} value={rssiPercent}
+				>{rssiPercent}%</Progress
+			>
+			<Tooltip target="rssiBar" placement="bottom">{$_('rssiBar.tooltip')}</Tooltip>
+
+			<div class="d-flex justify-content-between">
+				<div>{$_('section.status.wifiSignalStrength')}</div>
+				<div>
+					{$status.rssi} dBm
 				</div>
 			</div>
 			<hr />

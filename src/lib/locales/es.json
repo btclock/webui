@@ -20,7 +20,8 @@
 			"enableMdns": "mDNS",
 			"hostnamePrefix": "Prefijo de nombre de host",
 			"mempoolnstance": "Instancia de Mempool",
-			"otaUpdates": "Actualización por aire"
+			"otaUpdates": "Actualización por aire",
+			"wifiTxPowerText": "En la mayoría de los casos no es necesario configurar esto."
 		},
 		"control": {
 			"turnOff": "Apagar",
@@ -41,7 +42,8 @@
 			"screenCycle": "Ciclo de pantalla",
 			"uptime": "Tiempo de funcionamiento",
 			"fetchEuroNote": "Si utiliza \"Obtener precio en €\", la conexión de Precio WS mostrará ❌ ya que utiliza otra fuente de datos.",
-			"title": "Estado"
+			"title": "Estado",
+			"wifiSignalStrength": "Fuerza de la señal WiFi"
 		}
 	},
 	"button": {
@@ -67,5 +69,8 @@
 		"control": {
 			"keepSameColor": "Mantén el mismo color"
 		}
+	},
+	"rssiBar": {
+		"tooltip": "Se consideran buenos valores > -67 dBm. > -30 dBm es increíble"
 	}
 }
