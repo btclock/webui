@@ -146,7 +146,6 @@
 						<InputGroup size="sm">
 							<Input
 								type="number"
-								min={1}
 								step="1"
 								name="tzOffset"
 								id="tzOffset"
