@@ -62,16 +62,16 @@
 			</NavItem>
 		</Nav>
 		{#if !$isLoading}
-		<Dropdown inNavbar>
-			<DropdownToggle nav caret>{getFlagEmoji($locale)} {languageNames[$locale]}</DropdownToggle>
-			<DropdownMenu end>
-				{#each $locales as locale}
-					<DropdownItem on:click={setLocale(locale)}
-						>{getFlagEmoji(locale)} {languageNames[locale]}</DropdownItem
-					>
-				{/each}
-			</DropdownMenu>
-		</Dropdown>
+			<Dropdown inNavbar>
+				<DropdownToggle nav caret>{getFlagEmoji($locale)} {languageNames[$locale]}</DropdownToggle>
+				<DropdownMenu end>
+					{#each $locales as locale}
+						<DropdownItem on:click={setLocale(locale)}
+							>{getFlagEmoji(locale)} {languageNames[locale]}</DropdownItem
+						>
+					{/each}
+				</DropdownMenu>
+			</Dropdown>
 		{/if}
 	</Collapse>
 </Navbar>

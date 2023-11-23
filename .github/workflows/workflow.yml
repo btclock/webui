@@ -64,7 +64,7 @@ jobs:
       - name: Run linter
         run: yarn lint
       - name: Run vitest tests
-        run: yarn vitest run  --reporter=json 
+        run: yarn vitest run  --reporter=json
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
       - name: Run Playwright tests
