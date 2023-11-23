@@ -1,5 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+//import { defineConfig } from 'vite';
+import { defineConfig } from 'vitest/config';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -68,5 +69,10 @@ export default defineConfig({
 				assetFileNames: '[name][extname]'
 			}
 		}
+	},
+	test: {
+		include: ['src/**/*.{test,spec}.{js,ts}'],
+		globals: true,
+		environment: 'jsdom'
 	}
 });

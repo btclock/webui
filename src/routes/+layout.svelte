@@ -13,7 +13,7 @@
 	} from 'sveltestrap';
 
 	import { page } from '$app/stores';
-	import { locale, locales } from 'svelte-i18n';
+	import { locale, locales, isLoading } from 'svelte-i18n';
 
 	export const setLocale = (lang: string) => () => {
 		locale.set(lang);
@@ -39,19 +39,15 @@
 		}
 	};
 
-	export const getLanguageName = (languageCode: string): string | null => {
-		const languageNames: { [key: string]: { [key: string]: string } } = {
-			en: { en: 'English', nl: 'English', es: 'English' },
-			nl: { en: 'Nederlands', nl: 'Nederlands', es: 'Neerlandés' },
-			es: { en: 'Español', nl: 'Spaans', es: 'Español' }
-		};
+	let languageNames = {};
 
-		const lowercaseCode = languageCode.toLowerCase();
+	locale.subscribe(() => {
+		let newLanguageNames = new Intl.DisplayNames([$locale], { type: 'language' });
 
-		return Object.prototype.hasOwnProperty.call(languageNames, lowercaseCode)
-			? languageNames[lowercaseCode][lowercaseCode]
-			: null;
-	};
+		for (let l: string of $locales) {
+			languageNames[l] = newLanguageNames.of(l);
+		}
+	});
 </script>
 
 <Navbar expand="md">
@@ -65,16 +61,18 @@
 				<NavLink href="/api" active={$page.url.pathname === '/api'}>API</NavLink>
 			</NavItem>
 		</Nav>
+		{#if !$isLoading}
 		<Dropdown inNavbar>
-			<DropdownToggle nav caret>{getFlagEmoji($locale)} {getLanguageName($locale)}</DropdownToggle>
+			<DropdownToggle nav caret>{getFlagEmoji($locale)} {languageNames[$locale]}</DropdownToggle>
 			<DropdownMenu end>
 				{#each $locales as locale}
 					<DropdownItem on:click={setLocale(locale)}
-						>{getFlagEmoji(locale)} {getLanguageName(locale)}</DropdownItem
+						>{getFlagEmoji(locale)} {languageNames[locale]}</DropdownItem
 					>
 				{/each}
 			</DropdownMenu>
 		</Dropdown>
+		{/if}
 	</Collapse>
 </Navbar>
 

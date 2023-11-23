@@ -12,6 +12,6 @@ init({
 	initialLocale: browser
 		? browser && localStorage.getItem('locale')
 			? localStorage.getItem('locale')
-			: window.navigator.language
+			: window.navigator.language.slice(0, 2)
 		: defaultLocale
 });
