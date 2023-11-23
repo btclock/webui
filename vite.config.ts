@@ -1,6 +1,6 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-//import { defineConfig } from 'vite';
 import { defineConfig } from 'vitest/config';
+import GithubActionsReporter from 'vitest-github-actions-reporter';
 
 import * as fs from 'fs';
 import * as path from 'path';
@@ -73,6 +73,7 @@ export default defineConfig({
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 		globals: true,
-		environment: 'jsdom'
+		environment: 'jsdom',
+		reporters: process.env.GITHUB_ACTIONS ? ['default', new GithubActionsReporter()] : 'default'
 	}
 });
