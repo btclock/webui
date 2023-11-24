@@ -62,7 +62,7 @@
 			</NavItem>
 		</Nav>
 		{#if !$isLoading}
-			<Dropdown inNavbar>
+			<Dropdown id="nav-language-dropdown" inNavbar>
 				<DropdownToggle nav caret>{getFlagEmoji($locale)} {languageNames[$locale]}</DropdownToggle>
 				<DropdownMenu end>
 					{#each $locales as locale}

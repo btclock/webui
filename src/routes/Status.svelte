@@ -106,6 +106,7 @@
 					</section>
 					{$_('section.status.screenCycle')}:
 					<a
+						id="timerStatusText"
 						href={'#'}
 						style="cursor: pointer"
 						tabindex="0"

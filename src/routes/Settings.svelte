@@ -37,6 +37,11 @@
 
 	const dispatch = createEventDispatcher();
 
+	const handleReset = (e: Event) => {
+		e.preventDefault();
+		dispatch('formReset');
+	};
+
 	const onSave = async (e: Event) => {
 		e.preventDefault();
 		let formSettings = $settings;
@@ -112,7 +117,13 @@
 					<Label md={6} for="timePerScreen" size="sm">{$_('section.settings.timePerScreen')}</Label>
 					<Col md="6">
 						<InputGroup size="sm">
-							<Input type="number" min={1} step="1" bind:value={$settings.timePerScreen} />
+							<Input
+								type="number"
+								id="timePerScreen"
+								min={1}
+								step="1"
+								bind:value={$settings.timePerScreen}
+							/>
 							<InputGroupText>{$_('time.minutes')}</InputGroupText>
 						</InputGroup>
 					</Col>
@@ -123,7 +134,13 @@
 					>
 					<Col md="6">
 						<InputGroup size="sm">
-							<Input type="number" min={1} step="1" bind:value={$settings.fullRefreshMin} />
+							<Input
+								type="number"
+								id="fullRefreshMin"
+								min={1}
+								step="1"
+								bind:value={$settings.fullRefreshMin}
+							/>
 							<InputGroupText>{$_('time.minutes')}</InputGroupText>
 						</InputGroup>
 					</Col>
@@ -134,7 +151,13 @@
 					>
 					<Col md="6">
 						<InputGroup size="sm">
-							<Input type="number" min={1} step="1" bind:value={$settings.minSecPriceUpd} />
+							<Input
+								type="number"
+								id="minSecPriceUpd"
+								min={1}
+								step="1"
+								bind:value={$settings.minSecPriceUpd}
+							/>
 							<InputGroupText>{$_('time.seconds')}</InputGroupText>
 						</InputGroup>
 						<FormText>{$_('section.settings.shortAmountsWarning')}</FormText>
@@ -300,7 +323,7 @@
 						{/each}
 					{/if}
 				</Row>
-				<Button type="reset" color="secondary">{$_('button.reset')}</Button>
+				<Button on:click={handleReset} color="secondary">{$_('button.reset')}</Button>
 				<Button color="primary">{$_('button.save')}</Button>
 			</Form>
 		</CardBody>

@@ -24,7 +24,15 @@
 		leds: []
 	});
 
-	onMount(() => {
+	const fetchStatusData = () => {
+		fetch(`${PUBLIC_BASE_URL}/api/status`)
+			.then((res) => res.json())
+			.then((data) => {
+				status.set(data);
+			});
+	};
+
+	const fetchSettingsData = () => {
 		fetch(PUBLIC_BASE_URL + `/api/settings`)
 			.then((res) => res.json())
 			.then((data) => {
@@ -41,12 +49,11 @@
 				}
 				settings.set(data);
 			});
+	};
 
-		fetch(`${PUBLIC_BASE_URL}/api/status`)
-			.then((res) => res.json())
-			.then((data) => {
-				status.set(data);
-			});
+	onMount(() => {
+		fetchSettingsData();
+		fetchStatusData();
 
 		const evtSource = new EventSource(`${PUBLIC_BASE_URL}/events`);
 
@@ -75,7 +82,7 @@
 	<Row>
 		<Control bind:settings bind:status></Control>
 		<Status bind:settings bind:status></Status>
-		<Settings bind:settings on:showToast={showToast}></Settings>
+		<Settings bind:settings on:showToast={showToast} on:formReset={fetchSettingsData}></Settings>
 	</Row>
 </Container>
 <div class="position-fixed bottom-0 end-0 p-2">

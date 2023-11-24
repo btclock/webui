@@ -80,7 +80,7 @@ nav {
 	margin-bottom: 3px;
 }
 
-#btcclock-wrapper {
+#btclock-wrapper {
 	margin: 0 auto;
 }
 
@@ -158,8 +158,16 @@ nav {
 	font-size: 3rem;
 	padding-left: 5px;
 	padding-right: 5px;
-	padding-top: 20px !important;
-	padding-bottom: 20px !important;
+	@include media-breakpoint-up(sm) {
+		font-size: 1.8rem;
+		padding-top: 13px !important;
+		padding-bottom: 13px !important;
+	}
+	@include media-breakpoint-up(xxl) {
+		font-size: 3rem;
+		padding-top: 29px !important;
+		padding-bottom: 29px !important;
+	}
 }
 
 .digit {
