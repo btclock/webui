@@ -94,20 +94,33 @@ jobs:
       - name: Create tarball
         run: tar czf webui.tgz --strip-components=1 dist
       - name: Build LittleFS
-        run: /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 littlefs.bin
+        run: mkdir -p output && /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 output/littlefs.bin
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           path: |
             webui.tgz
-            littlefs.bin
+            output/littlefs.bin
       - name: Create release
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.getBlockHeight.outputs.blockHeight }}
           commit: main
           name: release-${{ steps.getBlockHeight.outputs.blockHeight }}
-          artifacts: 'littlefs.bin,webui.tgz'
+          artifacts: 'output/littlefs.bin,webui.tgz'
           allowUpdates: true
           removeArtifacts: true
           makeLatest: true
+      - name: Pushes littlefs.bin to web flasher
+        id: push_directory
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          SSH_DEPLOY_KEY: ${{ secrets.SSH_DEPLOY_KEY }}
+        with:
+          source-directory: output/
+          target-directory: webui/
+          destination-github-username: 'btclock'
+          destination-repository-name: 'web-flasher'
+          target-branch: btclock
+          user-name: ${{github.actor}}
+          user-email: ${{github.actor}}@users.noreply.github.com
