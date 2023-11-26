@@ -77,7 +77,7 @@ jobs:
       - name: Write block height to file
         env:
           BLOCK_HEIGHT: ${{ steps.getBlockHeight.outputs.blockHeight }}
-        run: echo "$BLOCK_HEIGHT" > output/version.txt
+        run: mkdir -p output && echo "$BLOCK_HEIGHT" > output/version.txt
       - name: gzip build for LittleFS
         run: find dist -type f ! -name ".*" -exec sh -c 'mkdir -p "build_gz/$(dirname "${1#dist/}")" && gzip -k "$1" -c > "build_gz/${1#dist/}".gz' _ {} \;
       - name: Check GZipped directory size
@@ -98,7 +98,7 @@ jobs:
       - name: Create tarball
         run: tar czf webui.tgz --strip-components=1 dist
       - name: Build LittleFS
-        run: mkdir -p output && /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 output/littlefs.bin
+        run: /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 output/littlefs.bin
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
