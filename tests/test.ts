@@ -19,57 +19,86 @@ const statusJson = {
 	]
 };
 
+const settingsJson = {
+	numScreens: 7,
+	fgColor: 415029,
+	bgColor: 0,
+	timerSeconds: 1800,
+	timerRunning: true,
+	minSecPriceUpd: 30,
+	fullRefreshMin: 60,
+	wpTimeout: 600,
+	tzOffset: 0,
+	useBitcoinNode: false,
+	mempoolInstance: 'mempool.space',
+	ledTestOnPower: true,
+	ledFlashOnUpd: true,
+	ledBrightness: 128,
+	stealFocus: true,
+	mcapBigChar: true,
+	mdnsEnabled: true,
+	otaEnabled: true,
+	fetchEurPrice: false,
+	hostnamePrefix: 'btclock',
+	hostname: 'btclock-d60b14',
+	ip: '192.168.20.231',
+	txPower: 78,
+	gitRev: '25d8b92bcbc8938417c140355ea3ba99ff9eb4b7',
+	lastBuildTime: '1700666677',
+	screens: [
+		{ id: 0, name: 'Block Height', enabled: true },
+		{ id: 1, name: 'Sats per dollar', enabled: true },
+		{ id: 2, name: 'Ticker', enabled: true },
+		{ id: 3, name: 'Time', enabled: true },
+		{ id: 4, name: 'Halving countdown', enabled: true },
+		{ id: 5, name: 'Market Cap', enabled: true }
+	]
+};
+
 test.beforeEach(async ({ page }) => {
 	await page.route('*/**/api/status', async (route) => {
 		await route.fulfill({ json: statusJson });
 	});
+
+	await page.route('*/**/api/show/screen/1', async (route) => {
+		//if (route.request().url().includes('*/**/api/show/screen/1')) {
+		statusJson.currentScreen = 1;
+		statusJson.data = ['MSCW/TIME', ' ', ' ', '2', '6', '4', '4'];
+		statusJson.rendered = statusJson.data;
+		//}
+
+		await route.fulfill({ json: statusJson });
+	});
+
+	await page.route('*/**/api/show/screen/2', async (route) => {
+		statusJson.currentScreen = 2;
+		(statusJson.data = ['BTC/USD', '$', '3', '7', '8', '2', '4']),
+			(statusJson.rendered = statusJson.data);
+
+		await route.fulfill({ json: statusJson });
+	});
+
+	await page.route('*/**/api/show/screen/4', async (route) => {
+		statusJson.currentScreen = 4;
+		(statusJson.data = ['BIT/COIN', 'HALV/ING', '0/YRS', '149/DAYS', '8/HRS', '30/MINS', 'TO/GO']),
+			(statusJson.rendered = statusJson.data);
+
+		await route.fulfill({ json: statusJson });
+	});
+
 	await page.route('*/**/api/settings', async (route) => {
-		const json = {
-			numScreens: 7,
-			fgColor: 415029,
-			bgColor: 0,
-			timerSeconds: 1800,
-			timerRunning: true,
-			minSecPriceUpd: 30,
-			fullRefreshMin: 60,
-			wpTimeout: 600,
-			tzOffset: 0,
-			useBitcoinNode: false,
-			mempoolInstance: 'mempool.space',
-			ledTestOnPower: true,
-			ledFlashOnUpd: true,
-			ledBrightness: 128,
-			stealFocus: true,
-			mcapBigChar: true,
-			mdnsEnabled: true,
-			otaEnabled: true,
-			fetchEurPrice: false,
-			hostnamePrefix: 'btclock',
-			hostname: 'btclock-d60b14',
-			ip: '192.168.20.231',
-			txPower: 78,
-			gitRev: '25d8b92bcbc8938417c140355ea3ba99ff9eb4b7',
-			lastBuildTime: '1700666677',
-			screens: [
-				{ id: 0, name: 'Block Height', enabled: true },
-				{ id: 1, name: 'Sats per dollar', enabled: true },
-				{ id: 2, name: 'Ticker', enabled: true },
-				{ id: 3, name: 'Time', enabled: true },
-				{ id: 4, name: 'Halving countdown', enabled: true },
-				{ id: 5, name: 'Market Cap', enabled: true }
-			]
-		};
-		await route.fulfill({ json });
+		await route.fulfill({ json: settingsJson });
 	});
 
 	await page.route('**/events', (route) => {
-		//statusJson.data = ['S', 'S', 'E', 'V', 'E', 'N', 'T'];
+		const newStatus = statusJson;
+		newStatus.data = ['BLOCK/HEIGHT', '8', '0', '0', '8', '1', '5'];
 
 		// Respond with a custom SSE message
 		route.fulfill({
 			status: 200,
 			contentType: 'text/event-stream',
-			body: `data: ${JSON.stringify(statusJson)}\n\n`
+			json: `${JSON.stringify(newStatus)}\n\n`
 		});
 	});
 });
@@ -158,8 +187,30 @@ test('info message when fetch eur price is enabled', async ({ page }) => {
 	await expect(page.getByText('the WS Price connection will show')).toBeVisible();
 });
 
+test('screens should be able to change', async ({ page }) => {
+	await page.goto('/');
+	await expect(page.getByRole('button', { name: 'Sats per Dollar' })).toBeVisible();
+	const responsePromise = page.waitForRequest('*/**/api/show/screen/*');
+
+	await page.getByRole('button', { name: 'Sats per Dollar' }).click();
+	const response = await responsePromise;
+	expect(response.url()).toContain('api/show/screen/1');
+});
+
 test('parse all types of EPD content correctly', async ({ page }) => {
 	statusJson.data[2] = '123';
+
+	await page.route('**/events', (route) => {
+		const newStatus = statusJson;
+		newStatus.data = ['BLOCK/HEIGHT', '8', '123', '0', '8', '1', '5'];
+
+		// Respond with a custom SSE message
+		route.fulfill({
+			status: 200,
+			contentType: 'text/event-stream',
+			json: `${JSON.stringify(newStatus)}\n\n`
+		});
+	});
 
 	await page.goto('/');
 
@@ -174,4 +225,22 @@ test('parse all types of EPD content correctly', async ({ page }) => {
 	await expect(page.locator('#btclock-wrapper > div > div:nth-child(2)')).toHaveClass('digit');
 	expect(statusJson.data[2]).toHaveLength(3);
 	await expect(page.locator('#btclock-wrapper > div > div:nth-child(3)')).toHaveClass('mediumText');
+});
+
+test('should work with more than 7 screens', async ({ page }) => {
+	statusJson.data[2] = '1';
+	statusJson.numScreens = 9;
+	settingsJson.numScreens = 9;
+	statusJson.data.splice(1, 0, ' ', ' ');
+
+	await page.goto('/');
+
+	await expect(page.getByRole('heading', { name: 'Status' })).toBeVisible();
+	await page.waitForSelector('#timerStatusText:has-text("running")');
+	await expect(page.locator('#btclock-wrapper > div > div:nth-child(9)')).toBeTruthy();
+
+	await expect(page.locator('#customText')).toHaveAttribute(
+		'maxlength',
+		statusJson.numScreens.toString()
+	);
 });

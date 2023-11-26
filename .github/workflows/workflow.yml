@@ -74,6 +74,10 @@ jobs:
       - name: Get current block
         id: getBlockHeight
         run: echo "blockHeight=$(curl -s https://mempool.space/api/blocks/tip/height)" >> $GITHUB_OUTPUT
+      - name: Write block height to file
+        env:
+          BLOCK_HEIGHT: ${{ steps.getBlockHeight.outputs.blockHeight }}
+        run: echo "$BLOCK_HEIGHT" > output/version.txt
       - name: gzip build for LittleFS
         run: find dist -type f ! -name ".*" -exec sh -c 'mkdir -p "build_gz/$(dirname "${1#dist/}")" && gzip -k "$1" -c > "build_gz/${1#dist/}".gz' _ {} \;
       - name: Check GZipped directory size
