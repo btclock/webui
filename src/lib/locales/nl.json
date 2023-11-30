@@ -9,7 +9,7 @@
 			"ledBrightness": "LED helderheid",
 			"timePerScreen": "Tijd per scherm",
 			"fullRefreshEvery": "Volledig verversen elke",
-			"shortAmountsWarning": "Lage waardes verkorten levensduur",
+			"shortAmountsWarning": "Lage waardes verkorten mogelijk levensduur schermen",
 			"tzOffsetHelpText": "Herstart nodig voor toepassen afwijking.",
 			"enableMdns": "mDNS",
 			"ledPowerOnTest": "LED test bij aanzetten",

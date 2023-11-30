@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { PUBLIC_BASE_URL } from '$lib/config';
 
 	import { Container, Row, Toast, ToastBody } from 'sveltestrap';
 

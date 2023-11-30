@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_BASE_URL } from '$env/static/public';
+	import { PUBLIC_BASE_URL } from '$lib/config';
 	import { onDestroy } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import type { Writable } from 'svelte/store';

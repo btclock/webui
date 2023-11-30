@@ -6,7 +6,7 @@
 			"backgroundColor": "Color de fondo",
 			"ledBrightness": "Brillo LED",
 			"screens": "Pantallas",
-			"shortAmountsWarning": "Cantidades pequeñas pueden acortar la vida útil.",
+			"shortAmountsWarning": "Pequeñas cantidades pueden acortar la vida útil de los displays",
 			"fullRefreshEvery": "Actualización completa cada",
 			"timePerScreen": "Tiempo por pantalla",
 			"tzOffsetHelpText": "Es necesario reiniciar para aplicar la compensación.",

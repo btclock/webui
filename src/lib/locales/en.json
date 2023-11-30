@@ -18,7 +18,7 @@
 			"otaUpdates": "OTA updates",
 			"enableMdns": "mDNS",
 			"fetchEuroPrice": "Fetch € price",
-			"shortAmountsWarning": "Short amounts might shorten lifespan.",
+			"shortAmountsWarning": "Short amounts might shorten lifespan of the displays",
 			"tzOffsetHelpText": "A restart is required to apply TZ offset.",
 			"screens": "Screens",
 			"wifiTxPowerText": "In most cases this does not need to be set.",
