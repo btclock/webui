@@ -16,6 +16,8 @@
 			"StealFocusOnNewBlock": "Pak aandacht bij nieuw blok",
 			"ledFlashOnBlock": "Knipper led bij nieuw blok",
 			"useBigCharsMcap": "Gebruik grote tekens bij market cap",
+			"useBlkCountdown": "Blocks aftellen voor halving",
+			"useSatsSymbol": "Gebruik sats symbol",
 			"fetchEuroPrice": "Toon € prijs",
 			"screens": "Schermen",
 			"hostnamePrefix": "Hostnaam voorvoegsel",

@@ -14,6 +14,8 @@
 			"StealFocusOnNewBlock": "Presta atención al nuevo bloque",
 			"ledFlashOnBlock": "El LED parpadea con un bloque nuevo",
 			"useBigCharsMcap": "Utilice caracteres grandes para la market cap",
+			"useBlkCountdown": "Cuenta regresiva en bloques",
+			"useSatsSymbol": "Usar símbolo sats",
 			"fetchEuroPrice": "Obtener precio en €",
 			"timeBetweenPriceUpdates": "Tiempo entre actualizaciones de precios",
 			"ledPowerOnTest": "Prueba de encendido del LED",

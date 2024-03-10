@@ -305,6 +305,24 @@
 							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
 						/>
 					</Col>
+					<Col md="6">
+						<Input
+							id="useBlkCountdown"
+							bind:checked={$settings.useBlkCountdown}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.useBlkCountdown')}
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="useSatsSymbol"
+							bind:checked={$settings.useSatsSymbol}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.useSatsSymbol')}
+						/>
+					</Col>
 				</Row>
 
 				<Row>

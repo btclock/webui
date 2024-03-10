@@ -5,6 +5,7 @@
 //@import "@fontsource/antonio/latin-400.css";
 @import '@fontsource/ubuntu/latin-400.css';
 @import '@fontsource/oswald/latin-400.css';
+@import './satsymbol.scss';
 
 $form-range-track-bg: #fff;
 $color-mode-type: media-query;
@@ -180,6 +181,13 @@ nav {
 	}
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+.digit.sats {
+	padding-top: 15px;
+	padding-bottom: 5px;
+	font-size: 4.5rem;
+	font-family: 'Satoshi Symbol';
 }
 
 .digit-blank {

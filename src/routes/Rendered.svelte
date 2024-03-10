@@ -15,6 +15,8 @@
 						<div class="flex-items">{part}</div>
 					{/each}
 				</div>
+			{:else if char === 'STS'}
+				<div class="digit sats">S</div>
 			{:else if char.length >= 3}
 				<div class="mediumText">{char}</div>
 			{:else if char.length === 0 || char === ' '}
