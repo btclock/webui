@@ -323,6 +323,24 @@
 							label={$_('section.settings.useSatsSymbol')}
 						/>
 					</Col>
+					<Col md="6">
+						<Input
+							id="suffixPrice"
+							bind:checked={$settings.suffixPrice}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.suffixPrice')}
+						/>
+					</Col>
+					<Col md="6">
+						<Input
+							id="disableLeds"
+							bind:checked={$settings.disableLeds}
+							type="switch"
+							bsSize="sm"
+							label={$_('section.settings.disableLeds')}
+						/>
+					</Col>
 				</Row>
 
 				<Row>

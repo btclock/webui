@@ -22,6 +22,8 @@
 			"enableMdns": "mDNS",
 			"hostnamePrefix": "Prefijo de nombre de host",
 			"mempoolnstance": "Instancia de Mempool",
+			"suffixPrice": "Precio con sufijos",
+			"disableLeds": "Desactivar efectos de LED",
 			"otaUpdates": "Actualización por aire",
 			"wifiTxPowerText": "En la mayoría de los casos no es necesario configurar esto.",
 			"settingsSaved": "Configuración guardada",

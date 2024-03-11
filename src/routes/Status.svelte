@@ -120,22 +120,24 @@
 				{/if}
 			{/if}
 			<hr />
-			<Row class="justify-content-evenly">
-				{#if $status.leds}
-					{#each $status.leds as led}
-						<Col>
-							<Input
-								type="color"
-								id="ledColorPicker"
-								bind:value={led.hex}
-								class="mx-auto"
-								disabled
-							/>
-						</Col>
-					{/each}
-				{/if}
-			</Row>
-			<hr />
+			{#if !$settings.disableLeds}
+				<Row class="justify-content-evenly">
+					{#if $status.leds}
+						{#each $status.leds as led}
+							<Col>
+								<Input
+									type="color"
+									id="ledColorPicker"
+									bind:value={led.hex}
+									class="mx-auto"
+									disabled
+								/>
+							</Col>
+						{/each}
+					{/if}
+				</Row>
+				<hr />
+			{/if}
 			<Progress striped value={memoryFreePercent}>{memoryFreePercent}%</Progress>
 			<div class="d-flex justify-content-between">
 				<div>{$_('section.status.memoryFree')}</div>

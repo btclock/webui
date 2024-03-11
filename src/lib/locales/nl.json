@@ -22,6 +22,8 @@
 			"screens": "Schermen",
 			"hostnamePrefix": "Hostnaam voorvoegsel",
 			"mempoolnstance": "Mempool instantie",
+			"suffixPrice": "Achtervoegsel prijs formaat",
+			"disableLeds": "Alle LEDs effecten uit",
 			"otaUpdates": "OTA updates",
 			"wifiTxPower": "WiFi TX power",
 			"wifiTxPowerText": "Meestal hoeft dit niet aangepast te worden.",

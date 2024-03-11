@@ -106,45 +106,46 @@
 				<Button color="primary" on:click={setCustomText}>{$_('section.control.showText')}</Button>
 			</Form>
 			<hr />
-			<h3>LEDs</h3>
-			<Form>
-				<Row>
-					<Label md={4} for="ledColorPicker" size="sm">{$_('section.control.ledColor')}</Label>
-					<Col md="8">
-						<Row class="justify-content-between">
-							{#if ledStatus}
-								{#each ledStatus as led, i}
-									<Col>
-										<Input
-											type="color"
-											id="ledColorPicker[{i}]"
-											bind:value={led.hex}
-											class="mx-auto"
-											on:change={checkSyncLeds}
-										/>
-									</Col>
-								{/each}
-							{/if}
-						</Row>
-						<Row class="justify-content-between">
-							<Col>
-								<Input
-									bind:checked={keepLedsSameColor}
-									type="switch"
-									class="mx-auto"
-									label={$_('sections.control.keepSameColor')}
-								/>
-							</Col>
-						</Row>
-					</Col>
-				</Row>
-				<Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}
-					>{$_('section.control.turnOff')}</Button
-				>
-				<Button color="primary" on:click={setLEDcolor}>{$_('section.control.setColor')}</Button>
-			</Form>
-
-			<hr />
+			{#if !$settings.disableLeds}
+				<h3>LEDs</h3>
+				<Form>
+					<Row>
+						<Label md={4} for="ledColorPicker" size="sm">{$_('section.control.ledColor')}</Label>
+						<Col md="8">
+							<Row class="justify-content-between">
+								{#if ledStatus}
+									{#each ledStatus as led, i}
+										<Col>
+											<Input
+												type="color"
+												id="ledColorPicker[{i}]"
+												bind:value={led.hex}
+												class="mx-auto"
+												on:change={checkSyncLeds}
+											/>
+										</Col>
+									{/each}
+								{/if}
+							</Row>
+							<Row class="justify-content-between">
+								<Col>
+									<Input
+										bind:checked={keepLedsSameColor}
+										type="switch"
+										class="mx-auto"
+										label={$_('sections.control.keepSameColor')}
+									/>
+								</Col>
+							</Row>
+						</Col>
+					</Row>
+					<Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}
+						>{$_('section.control.turnOff')}</Button
+					>
+					<Button color="primary" on:click={setLEDcolor}>{$_('section.control.setColor')}</Button>
+				</Form>
+				<hr />
+			{/if}
 			<h3>{$_('section.control.systemInfo')}</h3>
 			<ul class="small system_info">
 				<li>{$_('section.control.version')}: {$settings.gitRev}</li>
