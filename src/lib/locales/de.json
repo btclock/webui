@@ -1,0 +1,88 @@
+{
+	"section": {
+		"settings": {
+			"title": "Einstellungen",
+			"textColor": "Textfarbe",
+			"backgroundColor": "Hintergrundfarbe",
+			"ledPowerOnTest": "LED-Einschalttest",
+			"ledFlashOnBlock": "LED blinkt bei neuem Block",
+			"timePerScreen": "Zeit pro Bildschirm",
+			"ledBrightness": "LED-Helligkeit",
+			"flMaxBrightness": "Displaybeleuchtung Helligkeit",
+			"timezoneOffset": "Zeitzonenoffset",
+			"timeBetweenPriceUpdates": "Zeit zwischen Preisaktualisierungen",
+			"fullRefreshEvery": "Vollständige Aktualisierung alle",
+			"mempoolnstance": "Mempool Instance",
+			"hostnamePrefix": "Hostnamen-Präfix",
+			"StealFocusOnNewBlock": "Steal focus on new block",
+			"useBigCharsMcap": "Verwende große Zeichen für die Marktkapitalisierung",
+			"useBlkCountdown": "Blocks Countdown zur Halbierung",
+			"useSatsSymbol": "Sats-Symbol verwenden",
+			"suffixPrice": "Suffix-Preisformat",
+			"disableLeds": "Alle LED-Effekte deaktivieren",
+			"otaUpdates": "OTA updates",
+			"enableMdns": "mDNS",
+			"fetchEuroPrice": "€-Preis abrufen",
+			"shortAmountsWarning": "Geringe Beträge können die Lebensdauer der Displays verkürzen",
+			"tzOffsetHelpText": "Ein Neustart ist erforderlich, um den TZ-Offset anzuwenden.",
+			"screens": "Bildschirme",
+			"wifiTxPowerText": "In den meisten Fällen muss dies nicht eingestellt werden.",
+			"wifiTxPower": "WiFi-TX-Leistung",
+			"settingsSaved": "Einstellungen gespeichert",
+			"errorSavingSettings": "Fehler beim Speichern der Einstellungen",
+			"ownPriceSource": "BTClock-Preisquelle verwenden",
+			"flAlwaysOn": "Displaybeleuchtung immer an"
+		},
+		"control": {
+			"systemInfo": "Systeminfo",
+			"version": "Version",
+			"buildTime": "Build time",
+			"ledColor": "LED-Farbe",
+			"turnOff": "Ausschalten",
+			"setColor": "Farbe festlegen",
+			"showText": "Text anzeigen",
+			"text": "Text",
+			"title": "Kontrolle",
+			"hostname": "Hostname",
+			"frontlight": "Displaybeleuchtung",
+			"turnOn": "Einschalten"
+		},
+		"status": {
+			"title": "Status",
+			"screenCycle": "Bildschirmzyklus",
+			"memoryFree": "Speicher frei",
+			"wsPriceConnection": "WS-Preisverbindung",
+			"wsMempoolConnection": "WS Mempool.space-Verbindung",
+			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
+			"uptime": "Betriebszeit",
+			"wifiSignalStrength": "WiFi-Signalstärke"
+		}
+	},
+	"colors": {
+		"black": "Schwarz",
+		"white": "Weiss"
+	},
+	"time": {
+		"minutes": "Minuten",
+		"seconds": "Sekunden"
+	},
+	"restartRequired": "Neustart erforderlich",
+	"button": {
+		"save": "Speichern",
+		"reset": "Zurücksetzen",
+		"restart": "Neustart",
+		"forceFullRefresh": "Vollständige Aktualisierung erzwingen"
+	},
+	"timer": {
+		"running": "läuft",
+		"stopped": "gestoppt"
+	},
+	"sections": {
+		"control": {
+			"keepSameColor": "Gleiche Farbe beibehalten"
+		}
+	},
+	"rssiBar": {
+		"tooltip": "Werte > -67 dBm gelten als gut. > -30 dBm ist erstaunlich"
+	}
+}

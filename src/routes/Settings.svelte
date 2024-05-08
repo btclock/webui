@@ -193,6 +193,24 @@
 						/>
 					</Col>
 				</Row>
+				{#if $settings.hasFrontlight}
+					<Row>
+						<Label md={6} for="flMaxBrightness" size="sm"
+							>{$_('section.settings.flMaxBrightness')}</Label
+						>
+						<Col md="6">
+							<Input
+								type="range"
+								name="flMaxBrightness"
+								id="flMaxBrightness"
+								bind:value={$settings.flMaxBrightness}
+								min={0}
+								max={4095}
+								step={1}
+							/>
+						</Col>
+					</Row>
+				{/if}
 				<Row>
 					<Label md={6} for="mempoolInstance" size="sm"
 						>{$_('section.settings.mempoolnstance')}</Label
@@ -341,6 +359,26 @@
 							label={$_('section.settings.disableLeds')}
 						/>
 					</Col>
+					<Col md="6">
+						<Input
+							id="ownPriceSource"
+							bind:checked={$settings.ownPriceSource}
+							type="switch"
+							bsSize="sm"
+							label="{$_('section.settings.ownPriceSource')} ({$_('restartRequired')})"
+						/>
+					</Col>
+					{#if $settings.hasFrontlight}
+						<Col md="6">
+							<Input
+								id="flAlwaysOn"
+								bind:checked={$settings.flAlwaysOn}
+								type="switch"
+								bsSize="sm"
+								label={$_('section.settings.flAlwaysOn')}
+							/>
+						</Col>
+					{/if}
 				</Row>
 
 				<Row>

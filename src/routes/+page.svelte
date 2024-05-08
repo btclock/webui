@@ -75,7 +75,7 @@
 </script>
 
 <svelte:head>
-	<title>&#8383;TClock</title>
+	<title>BTClock</title>
 </svelte:head>
 
 <Container fluid>

@@ -24,7 +24,8 @@
 		const flagMap: { [key: string]: string } = {
 			en: '🇬🇧', // English flag emoji
 			nl: '🇳🇱', // Dutch flag emoji
-			es: '🇪🇸' // Spanish flag emoji
+			es: '🇪🇸', // Spanish flag emoji
+			de: '🇩🇪' // German flag emoji
 		};
 
 		// Convert the language code to lowercase for case-insensitive matching

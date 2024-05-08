@@ -27,7 +27,10 @@
 			"otaUpdates": "Actualización por aire",
 			"wifiTxPowerText": "En la mayoría de los casos no es necesario configurar esto.",
 			"settingsSaved": "Configuración guardada",
-			"errorSavingSettings": "Error al guardar la configuración"
+			"errorSavingSettings": "Error al guardar la configuración",
+			"ownPriceSource": "Usar fuente de precios BTClock",
+			"flMaxBrightness": "Brillo de luz de la pantalla",
+			"flAlwaysOn": "Luz de la pantalla siempre encendida"
 		},
 		"control": {
 			"turnOff": "Apagar",
@@ -39,7 +42,9 @@
 			"text": "Texto",
 			"title": "Control",
 			"buildTime": "Tiempo de compilación",
-			"hostname": "Nombre del host"
+			"hostname": "Nombre del host",
+			"turnOn": "Encender",
+			"frontlight": "Luz de la pantalla"
 		},
 		"status": {
 			"memoryFree": "Memoria RAM libre",

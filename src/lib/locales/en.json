@@ -28,7 +28,10 @@
 			"wifiTxPowerText": "In most cases this does not need to be set.",
 			"wifiTxPower": "WiFi TX power",
 			"settingsSaved": "Settings saved",
-			"errorSavingSettings": "Error saving settings"
+			"errorSavingSettings": "Error saving settings",
+			"ownPriceSource": "Use BTClock price source",
+			"flMaxBrightness": "Frontlight brightness",
+			"flAlwaysOn": "Frontlight always on"
 		},
 		"control": {
 			"systemInfo": "System info",
@@ -40,7 +43,9 @@
 			"showText": "Show text",
 			"text": "Text",
 			"title": "Control",
-			"hostname": "Hostname"
+			"hostname": "Hostname",
+			"frontlight": "Frontlight",
+			"turnOn": "Turn on"
 		},
 		"status": {
 			"title": "Status",

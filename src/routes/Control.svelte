@@ -55,6 +55,14 @@
 		fetch(`${PUBLIC_BASE_URL}/api/lights/off`).catch(() => {});
 	};
 
+	const turnOnFrontlight = () => {
+		fetch(`${PUBLIC_BASE_URL}/api/frontlight/on`).catch(() => {});
+	};
+
+	const turnOffFrontlight = () => {
+		fetch(`${PUBLIC_BASE_URL}/api/frontlight/off`).catch(() => {});
+	};
+
 	const restartClock = () => {
 		fetch(`${PUBLIC_BASE_URL}/api/restart`).catch(() => {});
 	};
@@ -144,6 +152,14 @@
 					>
 					<Button color="primary" on:click={setLEDcolor}>{$_('section.control.setColor')}</Button>
 				</Form>
+				<hr />
+			{/if}
+			{#if $settings.hasFrontlight}
+				<h3>{$_('section.control.frontlight')}</h3>
+				<Button color="secondary" id="turnOffFrontlightBtn" on:click={turnOffFrontlight}
+					>{$_('section.control.turnOff')}</Button
+				>
+				<Button color="primary" on:click={turnOnFrontlight}>{$_('section.control.turnOn')}</Button>
 				<hr />
 			{/if}
 			<h3>{$_('section.control.systemInfo')}</h3>
