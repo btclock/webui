@@ -212,20 +212,6 @@
 					</Row>
 				{/if}
 				<Row>
-					<Label md={6} for="mempoolInstance" size="sm"
-						>{$_('section.settings.mempoolnstance')}</Label
-					>
-					<Col md="6">
-						<Input
-							type="text"
-							bind:value={$settings.mempoolInstance}
-							name="mempoolInstance"
-							id="mempoolInstance"
-							bsSize="sm"
-						></Input>
-					</Col>
-				</Row>
-				<Row>
 					<Label md={6} for="hostnamePrefix" size="sm"
 						>{$_('section.settings.hostnamePrefix')}</Label
 					>
