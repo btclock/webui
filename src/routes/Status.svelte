@@ -161,23 +161,34 @@
 			{$_('section.status.uptime')}: {toUptimestring($status.espUptime)}
 			<br />
 			<p>
-				{$_('section.status.wsPriceConnection')}:
-				<span>
-					{#if $status.connectionStatus && $status.connectionStatus.price}
-						&#9989;
-					{:else}
-						&#10060;
-					{/if}
-				</span>
-				-
-				{$_('section.status.wsMempoolConnection')}:
-				<span>
-					{#if $status.connectionStatus && $status.connectionStatus.blocks}
-						&#9989;
-					{:else}
-						&#10060;
-					{/if}
-				</span><br />
+				{#if !$settings.ownDataSource}
+					{$_('section.status.wsPriceConnection')}:
+					<span>
+						{#if $status.connectionStatus && $status.connectionStatus.price}
+							&#9989;
+						{:else}
+							&#10060;
+						{/if}
+					</span>
+					-
+					{$_('section.status.wsMempoolConnection')}:
+					<span>
+						{#if $status.connectionStatus && $status.connectionStatus.blocks}
+							&#9989;
+						{:else}
+							&#10060;
+						{/if}
+					</span><br />
+				{:else}
+					{$_('section.status.wsDataConnection')}:
+					<span>
+						{#if $status.connectionStatus && $status.connectionStatus.price}
+							&#9989;
+						{:else}
+							&#10060;
+						{/if}
+					</span>
+				{/if}
 				{#if $settings.fetchEurPrice}
 					<small>{$_('section.status.fetchEuroNote')}</small>
 				{/if}

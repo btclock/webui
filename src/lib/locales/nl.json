@@ -29,7 +29,7 @@
 			"wifiTxPowerText": "Meestal hoeft dit niet aangepast te worden.",
 			"settingsSaved": "Instellingen opgeslagen",
 			"errorSavingSettings": "Fout bij opslaan instellingen",
-			"ownPriceSource": "Gebruik BTClock prijs bron",
+			"ownDataSource": "BTClock-gegevensbron gebruiken",
 			"flMaxBrightness": "Displaylicht helderheid",
 			"flAlwaysOn": "Displaylicht altijd aan"
 		},
@@ -54,7 +54,8 @@
 			"wsMempoolConnection": "WS Mempool.space verbinding",
 			"fetchEuroNote": "Wanneer je \"Toon € prijs\" aanzet, zal de prijsverbinding als ❌ verbroken getoond worden vanwege het gebruik van een andere bron.",
 			"uptime": "Uptime",
-			"wifiSignalStrength": "WiFi signaalsterkte"
+			"wifiSignalStrength": "WiFi signaalsterkte",
+			"wsDataConnection": "BTClock-gegevensbron verbinding"
 		}
 	},
 	"colors": {

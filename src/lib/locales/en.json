@@ -29,7 +29,7 @@
 			"wifiTxPower": "WiFi TX power",
 			"settingsSaved": "Settings saved",
 			"errorSavingSettings": "Error saving settings",
-			"ownPriceSource": "Use BTClock price source",
+			"ownDataSource": "Use BTClock data source",
 			"flMaxBrightness": "Frontlight brightness",
 			"flAlwaysOn": "Frontlight always on"
 		},
@@ -55,7 +55,8 @@
 			"wsMempoolConnection": "WS Mempool.space connection",
 			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
 			"uptime": "Uptime",
-			"wifiSignalStrength": "WiFi Signal strength"
+			"wifiSignalStrength": "WiFi Signal strength",
+			"wsDataConnection": "BTClock data-source connection"
 		}
 	},
 	"colors": {

@@ -361,11 +361,11 @@
 					</Col>
 					<Col md="6">
 						<Input
-							id="ownPriceSource"
-							bind:checked={$settings.ownPriceSource}
+							id="ownDataSource"
+							bind:checked={$settings.ownDataSource}
 							type="switch"
 							bsSize="sm"
-							label="{$_('section.settings.ownPriceSource')} ({$_('restartRequired')})"
+							label="{$_('section.settings.ownDataSource')} ({$_('restartRequired')})"
 						/>
 					</Col>
 					{#if $settings.hasFrontlight}

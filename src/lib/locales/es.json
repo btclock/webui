@@ -28,7 +28,7 @@
 			"wifiTxPowerText": "En la mayoría de los casos no es necesario configurar esto.",
 			"settingsSaved": "Configuración guardada",
 			"errorSavingSettings": "Error al guardar la configuración",
-			"ownPriceSource": "Usar fuente de precios BTClock",
+			"ownDataSource": "Utilice la fuente de datos BTClock",
 			"flMaxBrightness": "Brillo de luz de la pantalla",
 			"flAlwaysOn": "Luz de la pantalla siempre encendida"
 		},
@@ -54,7 +54,8 @@
 			"uptime": "Tiempo de funcionamiento",
 			"fetchEuroNote": "Si utiliza \"Obtener precio en €\", la conexión de Precio WS mostrará ❌ ya que utiliza otra fuente de datos.",
 			"title": "Estado",
-			"wifiSignalStrength": "Fuerza de la señal WiFi"
+			"wifiSignalStrength": "Fuerza de la señal WiFi",
+			"wsDataConnection": "Conexión de fuente de datos BTClock"
 		}
 	},
 	"button": {
