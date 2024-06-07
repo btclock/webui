@@ -31,7 +31,9 @@
 			"settingsSaved": "Einstellungen gespeichert",
 			"errorSavingSettings": "Fehler beim Speichern der Einstellungen",
 			"ownDataSource": "BTClock-Datenquelle verwenden",
-			"flAlwaysOn": "Displaybeleuchtung immer an"
+			"flAlwaysOn": "Displaybeleuchtung immer an",
+			"flEffectDelay": "Displaybeleuchtungeffekt Geschwindigkeit",
+			"flFlashOnUpd": "Displaybeleuchting bei neuem Block"
 		},
 		"control": {
 			"systemInfo": "Systeminfo",
@@ -45,7 +47,8 @@
 			"title": "Kontrolle",
 			"hostname": "Hostname",
 			"frontlight": "Displaybeleuchtung",
-			"turnOn": "Einschalten"
+			"turnOn": "Einschalten",
+			"flashFrontlight": "Blinken"
 		},
 		"status": {
 			"title": "Status",

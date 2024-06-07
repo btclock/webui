@@ -31,7 +31,9 @@
 			"errorSavingSettings": "Fout bij opslaan instellingen",
 			"ownDataSource": "BTClock-gegevensbron gebruiken",
 			"flMaxBrightness": "Displaylicht helderheid",
-			"flAlwaysOn": "Displaylicht altijd aan"
+			"flAlwaysOn": "Displaylicht altijd aan",
+			"flEffectDelay": "Displaylicht effect snelheid",
+			"flFlashOnUpd": "Knipper displaylicht bij nieuw blok"
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",
@@ -44,7 +46,8 @@
 			"text": "Tekst",
 			"title": "Besturing",
 			"frontlight": "Displaylicht",
-			"turnOn": "Aanzetten"
+			"turnOn": "Aanzetten",
+			"flashFrontlight": "Knipper"
 		},
 		"status": {
 			"title": "Status",

@@ -59,6 +59,10 @@
 		fetch(`${PUBLIC_BASE_URL}/api/frontlight/on`).catch(() => {});
 	};
 
+	const flashFrontlight = () => {
+		fetch(`${PUBLIC_BASE_URL}/api/frontlight/flash`).catch(() => {});
+	};
+
 	const turnOffFrontlight = () => {
 		fetch(`${PUBLIC_BASE_URL}/api/frontlight/off`).catch(() => {});
 	};
@@ -160,6 +164,9 @@
 					>{$_('section.control.turnOff')}</Button
 				>
 				<Button color="primary" on:click={turnOnFrontlight}>{$_('section.control.turnOn')}</Button>
+				<Button color="success" id="flashFrontlight" on:click={flashFrontlight}
+					>{$_('section.control.flashFrontlight')}</Button
+				>
 				<hr />
 			{/if}
 			<h3>{$_('section.control.systemInfo')}</h3>

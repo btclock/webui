@@ -70,6 +70,15 @@
 				});
 			});
 	};
+
+	const onFlBrightnessChange = async () => {
+		await fetch(`${PUBLIC_BASE_URL}/api/frontlight/brightness/${$settings.flMaxBrightness}`, {
+			method: 'GET',
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		});
+	};
 </script>
 
 <Col>
@@ -204,8 +213,25 @@
 								name="flMaxBrightness"
 								id="flMaxBrightness"
 								bind:value={$settings.flMaxBrightness}
+								on:change={onFlBrightnessChange}
 								min={0}
 								max={4095}
+								step={1}
+							/>
+						</Col>
+					</Row>
+					<Row>
+						<Label md={6} for="flEffectDelay" size="sm"
+							>{$_('section.settings.flEffectDelay')}</Label
+						>
+						<Col md="6">
+							<Input
+								type="range"
+								name="flEffectDelay"
+								id="flEffectDelay"
+								bind:value={$settings.flEffectDelay}
+								min={5}
+								max={300}
 								step={1}
 							/>
 						</Col>
@@ -362,6 +388,15 @@
 								type="switch"
 								bsSize="sm"
 								label={$_('section.settings.flAlwaysOn')}
+							/>
+						</Col>
+						<Col md="6">
+							<Input
+								id="flFlashOnUpd"
+								bind:checked={$settings.flFlashOnUpd}
+								type="switch"
+								bsSize="sm"
+								label={$_('section.settings.flFlashOnUpd')}
 							/>
 						</Col>
 					{/if}

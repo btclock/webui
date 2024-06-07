@@ -31,7 +31,9 @@
 			"errorSavingSettings": "Error saving settings",
 			"ownDataSource": "Use BTClock data source",
 			"flMaxBrightness": "Frontlight brightness",
-			"flAlwaysOn": "Frontlight always on"
+			"flAlwaysOn": "Frontlight always on",
+			"flEffectDelay": "Frontlight effect speed",
+			"flFlashOnUpd": "Frontlight flash on new block"
 		},
 		"control": {
 			"systemInfo": "System info",
@@ -45,7 +47,8 @@
 			"title": "Control",
 			"hostname": "Hostname",
 			"frontlight": "Frontlight",
-			"turnOn": "Turn on"
+			"turnOn": "Turn on",
+			"flashFrontlight": "Flash"
 		},
 		"status": {
 			"title": "Status",

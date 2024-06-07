@@ -30,7 +30,9 @@
 			"errorSavingSettings": "Error al guardar la configuración",
 			"ownDataSource": "Utilice la fuente de datos BTClock",
 			"flMaxBrightness": "Brillo de luz de la pantalla",
-			"flAlwaysOn": "Luz de la pantalla siempre encendida"
+			"flAlwaysOn": "Luz de la pantalla siempre encendida",
+			"flEffectDelay": "Velocidad del efecto de luz de la pantalla",
+			"flFlashOnUpd": "Luz de la pantalla parpadea con un nuevo bloque"
 		},
 		"control": {
 			"turnOff": "Apagar",
@@ -44,7 +46,8 @@
 			"buildTime": "Tiempo de compilación",
 			"hostname": "Nombre del host",
 			"turnOn": "Encender",
-			"frontlight": "Luz de la pantalla"
+			"frontlight": "Luz de la pantalla",
+			"flashFrontlight": "Luz intermitente"
 		},
 		"status": {
 			"memoryFree": "Memoria RAM libre",
