@@ -64,7 +64,12 @@
 			"fileUploadSuccess": "Archivo cargado exitosamente, reiniciando el dispositivo. Recargando WebUI en {countdown} segundos",
 			"fileUploadFailed": "Error al cargar el archivo. \nAsegúrese de haber seleccionado el archivo correcto e inténtelo nuevamente.",
 			"uploading": "Subiendo",
-			"firmwareUpdateText": "Cuando utilice la función de carga de firmware, asegúrese de utilizar los archivos correctos. \nCargar archivos incorrectos puede provocar que el dispositivo no funcione. \nSi sale mal, puede restaurar el firmware cargando la imagen completa después de configurar el dispositivo en modo BOOT."
+			"firmwareUpdateText": "Cuando utilice la función de carga de firmware, asegúrese de utilizar los archivos correctos. \nCargar archivos incorrectos puede provocar que el dispositivo no funcione. \nSi sale mal, puede restaurar el firmware cargando la imagen completa después de configurar el dispositivo en modo BOOT.",
+			"swUpToDate": "Tienes la ultima version.",
+			"swUpdateAvailable": "¡Una nueva versión está disponible!",
+			"latestVersion": "Ultima versión",
+			"releaseDate": "Fecha de lanzamiento",
+			"viewRelease": "Ver lanzamiento"
 		}
 	},
 	"button": {

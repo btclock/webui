@@ -1,10 +1,19 @@
 <script lang="ts">
 	import { PUBLIC_BASE_URL } from '$lib/config';
+	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { writable } from 'svelte/store';
 	import { Progress, Alert, Button } from 'sveltestrap';
 
 	export let settings = { hwRev: '' };
+
+	let currentVersion: string = $settings.gitTag; // Replace with your current version
+
+	let latestVersion: string = '';
+	let isNewerVersionAvailable: boolean = false;
+	let releaseDate: string = '';
+	let releaseUrl: string = '';
+
 	const countdown = writable(10);
 	let firmwareUploadFile: File | null = null;
 	let firmwareWebUiFile: File | null = null;
@@ -97,8 +106,54 @@
 
 		return binaryFilename;
 	};
+
+	onMount(async () => {
+		try {
+			const response = await fetch(
+				'https://api.github.com/repos/btclock/btclock_v3/releases/latest'
+			);
+			const data = await response.json();
+			latestVersion = data.tag_name;
+			releaseDate = new Date(data.created_at).toLocaleString();
+			releaseUrl = data.html_url;
+
+			isNewerVersionAvailable = compareVersions(latestVersion, currentVersion) === 1;
+		} catch (error) {
+			console.error('Error fetching latest version:', error);
+		}
+	});
+
+	function compareVersions(version1: string, version2: string): number {
+		const parts1 = version1.split('.').map((part) => parseInt(part, 10));
+		const parts2 = version2.split('.').map((part) => parseInt(part, 10));
+
+		for (let i = 0; i < 3; i++) {
+			if (parts1[i] > parts2[i]) {
+				return 1;
+			} else if (parts1[i] < parts2[i]) {
+				return -1;
+			}
+		}
+
+		return 0;
+	}
 </script>
 
+{#if latestVersion}
+	<p>
+		{$_('section.firmwareUpdater.latestVersion')}: {latestVersion} - {$_(
+			'section.firmwareUpdater.releaseDate'
+		)}: {releaseDate} -
+		<a href={releaseUrl} target="_blank">{$_('section.firmwareUpdater.viewRelease')}</a><br />
+		{#if isNewerVersionAvailable}
+			{$_('section.firmwareUpdater.swUpdateAvailable')}
+		{:else}
+			{$_('section.firmwareUpdater.swUpToDate')}
+		{/if}
+	</p>
+{:else}
+	<p>Loading...</p>
+{/if}
 <section class="row row-cols-lg-auto align-items-end">
 	<div class="col-12">
 		<label for="firmwareFile" class="form-label">Firmware file ({getFirmwareBinaryName()})</label>

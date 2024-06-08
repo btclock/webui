@@ -65,7 +65,12 @@
 			"fileUploadSuccess": "Datei erfolgreich hochgeladen, Gerät neu gestartet. WebUI in {countdown} Sekunden neu geladen",
 			"fileUploadFailed": "Das Hochladen der Datei ist fehlgeschlagen. \nStellen Sie sicher, dass Sie die richtige Datei ausgewählt haben, und versuchen Sie es erneut.",
 			"uploading": "Hochladen",
-			"firmwareUpdateText": "Wenn Sie die Firmware-Upload-Funktion verwenden, stellen Sie sicher, dass Sie die richtigen Dateien verwenden. \nDas Hochladen der falschen Dateien kann dazu führen, dass das Gerät nicht mehr funktioniert. \nWenn es schief geht, können Sie die Firmware wiederherstellen, indem Sie das vollständige Image hochladen, nachdem Sie das Gerät in den BOOT-Modus versetzt haben."
+			"firmwareUpdateText": "Wenn Sie die Firmware-Upload-Funktion verwenden, stellen Sie sicher, dass Sie die richtigen Dateien verwenden. \nDas Hochladen der falschen Dateien kann dazu führen, dass das Gerät nicht mehr funktioniert. \nWenn es schief geht, können Sie die Firmware wiederherstellen, indem Sie das vollständige Image hochladen, nachdem Sie das Gerät in den BOOT-Modus versetzt haben.",
+			"swUpToDate": "Du hast die neueste Version.",
+			"swUpdateAvailable": "Eine neuere Version ist verfügbar!",
+			"latestVersion": "Letzte Version",
+			"releaseDate": "Veröffentlichungsdatum",
+			"viewRelease": "Veröffentlichung anzeigen"
 		}
 	},
 	"colors": {
