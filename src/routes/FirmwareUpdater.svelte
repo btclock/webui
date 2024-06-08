@@ -1,0 +1,155 @@
+<script lang="ts">
+	import { PUBLIC_BASE_URL } from '$lib/config';
+	import { _ } from 'svelte-i18n';
+	import { writable } from 'svelte/store';
+	import { Progress, Alert, Button } from 'sveltestrap';
+
+	export let settings = { hwRev: '' };
+	const countdown = writable(10);
+	let firmwareUploadFile: File | null = null;
+	let firmwareWebUiFile: File | null = null;
+
+	let firmwareUploadProgress = 0;
+	let firmwareUploadSuccess = false;
+	let firmwareUploadError = false;
+
+	const handleFileChange = (event: Event, setFile: (file: File) => void) => {
+		const target = event.target as HTMLInputElement;
+		if (target.files && target.files.length > 0) {
+			setFile(target.files[0]);
+		}
+	};
+
+	function startCountdownToReload(duration: number) {
+		let timeRemaining = duration;
+
+		const interval = setInterval(() => {
+			timeRemaining -= 1;
+			countdown.set(timeRemaining);
+
+			if (timeRemaining <= 0) {
+				clearInterval(interval);
+				location.reload();
+			}
+		}, 1000); // Update every second
+	}
+
+	const uploadFile = async (file: File | null, endpoint: string) => {
+		if (!file) return;
+
+		const formData = new FormData();
+		formData.append('file', file);
+		firmwareUploadSuccess = false;
+		firmwareUploadError = false;
+		try {
+			const xhr = new XMLHttpRequest();
+			xhr.open('POST', endpoint);
+
+			xhr.upload.onprogress = (event: ProgressEvent) => {
+				if (event.lengthComputable) {
+					firmwareUploadProgress = Math.round((event.loaded * 100) / event.total);
+				}
+			};
+
+			xhr.onload = () => {
+				if (xhr.status === 200 && xhr.responseText != 'FAIL') {
+					firmwareUploadSuccess = true;
+					startCountdownToReload(10);
+				} else {
+					firmwareUploadError = true;
+				}
+			};
+
+			xhr.onerror = () => {
+				firmwareUploadError = true;
+			};
+
+			xhr.send(formData);
+		} catch (error) {
+			firmwareUploadError = true;
+			console.error(error);
+		}
+	};
+
+	const uploadFirmwareFile = () => {
+		uploadFile(firmwareUploadFile, `${PUBLIC_BASE_URL}/upload/firmware`);
+	};
+
+	const uploadWebUiFile = () => {
+		uploadFile(firmwareWebUiFile, `${PUBLIC_BASE_URL}/upload/webui`);
+	};
+
+	const getFirmwareBinaryName = () => {
+		let binaryFilename = '';
+		switch ($settings.hwRev) {
+			case 'REV_B_EPD_2_13':
+				binaryFilename = 'btclock_rev_b_213epd_firmware.bin';
+				break;
+			case 'REV_A_EPD_2_13':
+				binaryFilename = 'lolin_s3_mini_213epd_firmware.bin';
+				break;
+			case 'REV_A_EPD_2_9':
+				binaryFilename = 'lolin_s3_mini_29epd_firmware.bin';
+				break;
+			default:
+				binaryFilename = 'Unsupported hardware, unable to determine firmware binary filename';
+		}
+
+		return binaryFilename;
+	};
+</script>
+
+<section class="row row-cols-lg-auto align-items-end">
+	<div class="col-12">
+		<label for="firmwareFile" class="form-label">Firmware file ({getFirmwareBinaryName()})</label>
+		<input
+			type="file"
+			id="firmwareFile"
+			on:change={(e) => handleFileChange(e, (file) => (firmwareUploadFile = file))}
+			name="update"
+			class="form-control"
+			accept=".bin"
+		/>
+	</div>
+	<div class="flex-fill">
+		<Button block on:click={uploadFirmwareFile} color="primary" disabled={!firmwareUploadFile}
+			>Update firmware</Button
+		>
+	</div>
+	<div class="col mt-2">
+		<label for="webuiFile" class="form-label">WebUI file (littlefs.bin)</label>
+		<input
+			type="file"
+			id="webuiFile"
+			name="update"
+			class="form-control"
+			placeholder="littlefs.bin"
+			on:change={(e) => handleFileChange(e, (file) => (firmwareWebUiFile = file))}
+			accept=".bin"
+		/>
+	</div>
+	<div class="flex-fill">
+		<Button block on:click={uploadWebUiFile} color="secondary" disabled={!firmwareWebUiFile}
+			>Update WebUI</Button
+		>
+	</div>
+</section>
+{#if firmwareUploadProgress > 0}
+	<Progress striped value={firmwareUploadProgress} class="progress" id="firmwareUploadProgress"
+		>{$_('section.firmwareUpdater.uploading')}... {firmwareUploadProgress}%</Progress
+	>
+{/if}
+{#if firmwareUploadSuccess}
+	<Alert color="success" class="firmwareUploadStatusAlert"
+		>{$_('section.firmwareUpdater.fileUploadSuccess', { values: { countdown: $countdown } })}
+	</Alert>
+{/if}
+
+{#if firmwareUploadError}
+	<Alert color="danger" class="firmwareUploadStatusAlert"
+		>{$_('section.firmwareUpdater.fileUploadFailed')}</Alert
+	>
+{/if}
+<small
+	>⚠️ <strong>{$_('warning')}</strong>: {$_('section.firmwareUpdater.firmwareUpdateText')}</small
+>

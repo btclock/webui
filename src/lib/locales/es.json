@@ -59,6 +59,12 @@
 			"title": "Estado",
 			"wifiSignalStrength": "Fuerza de la señal WiFi",
 			"wsDataConnection": "Conexión de fuente de datos BTClock"
+		},
+		"firmwareUpdater": {
+			"fileUploadSuccess": "Archivo cargado exitosamente, reiniciando el dispositivo. Recargando WebUI en {countdown} segundos",
+			"fileUploadFailed": "Error al cargar el archivo. \nAsegúrese de haber seleccionado el archivo correcto e inténtelo nuevamente.",
+			"uploading": "Subiendo",
+			"firmwareUpdateText": "Cuando utilice la función de carga de firmware, asegúrese de utilizar los archivos correctos. \nCargar archivos incorrectos puede provocar que el dispositivo no funcione. \nSi sale mal, puede restaurar el firmware cargando la imagen completa después de configurar el dispositivo en modo BOOT."
 		}
 	},
 	"button": {
@@ -87,5 +93,6 @@
 	},
 	"rssiBar": {
 		"tooltip": "Se consideran buenos valores > -67 dBm. > -30 dBm es increíble"
-	}
+	},
+	"warning": "Aviso"
 }

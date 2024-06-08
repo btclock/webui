@@ -15,8 +15,11 @@
 		Label,
 		Row
 	} from 'sveltestrap';
+	import FirmwareUpdater from './FirmwareUpdater.svelte';
 
 	export let settings = {};
+	export let uiSettings;
+
 	export let customText: string;
 	export let status: Writable<{ leds: [] }>;
 	let ledStatus = [];
@@ -102,25 +105,35 @@
 		<CardBody>
 			<Form>
 				<Row>
-					<Label md={4} for="customText">{$_('section.control.text')}</Label>
+					<Label md={4} for="customText" size={$uiSettings.inputSize}
+						>{$_('section.control.text')}</Label
+					>
 					<Col md="8">
 						<Input
 							type="text"
 							id="customText"
 							bind:value={customText}
-							bsSize="sm"
+							bsSize="$uiSettings.inputSize"
 							maxLength={$settings.numScreens}
 						/>
 					</Col>
 				</Row>
-				<Button color="primary" on:click={setCustomText}>{$_('section.control.showText')}</Button>
+				<Row>
+					<Col class="d-flex justify-content-end">
+						<Button color="primary" on:click={setCustomText} bsSize={$uiSettings.btnSize}
+							>{$_('section.control.showText')}</Button
+						>
+					</Col>
+				</Row>
 			</Form>
 			<hr />
 			{#if !$settings.disableLeds}
 				<h3>LEDs</h3>
 				<Form>
 					<Row>
-						<Label md={4} for="ledColorPicker" size="sm">{$_('section.control.ledColor')}</Label>
+						<Label md={4} for="ledColorPicker" size={$uiSettings.inputSize}
+							>{$_('section.control.ledColor')}</Label
+						>
 						<Col md="8">
 							<Row class="justify-content-between">
 								{#if ledStatus}
@@ -137,51 +150,84 @@
 									{/each}
 								{/if}
 							</Row>
-							<Row class="justify-content-between">
-								<Col>
+							<Row>
+								<Col class="d-flex justify-content-end">
 									<Input
 										bind:checked={keepLedsSameColor}
 										type="switch"
-										class="mx-auto"
 										label={$_('sections.control.keepSameColor')}
+										bsSize={$uiSettings.inputSize}
 									/>
 								</Col>
 							</Row>
 						</Col>
 					</Row>
-					<Button color="secondary" id="turnOffLedsBtn" on:click={turnOffLeds}
-						>{$_('section.control.turnOff')}</Button
-					>
-					<Button color="primary" on:click={setLEDcolor}>{$_('section.control.setColor')}</Button>
+					<Row>
+						<Col class="d-flex justify-content-end">
+							<Button
+								color="secondary"
+								id="turnOffLedsBtn"
+								on:click={turnOffLeds}
+								bsSize={$uiSettings.inputSize}>{$_('section.control.turnOff')}</Button
+							>
+							<div class="mx-2"></div>
+							<Button color="primary" on:click={setLEDcolor} bsSize={$uiSettings.inputSize}
+								>{$_('section.control.setColor')}</Button
+							>
+						</Col>
+					</Row>
 				</Form>
 				<hr />
 			{/if}
 			{#if $settings.hasFrontlight}
 				<h3>{$_('section.control.frontlight')}</h3>
-				<Button color="secondary" id="turnOffFrontlightBtn" on:click={turnOffFrontlight}
-					>{$_('section.control.turnOff')}</Button
-				>
-				<Button color="primary" on:click={turnOnFrontlight}>{$_('section.control.turnOn')}</Button>
-				<Button color="success" id="flashFrontlight" on:click={flashFrontlight}
-					>{$_('section.control.flashFrontlight')}</Button
-				>
+				<Row class="d-flex justify-content-between justify-content-md-end">
+					<Col md="auto" class="">
+						<Button color="secondary" id="turnOffFrontlightBtn" on:click={turnOffFrontlight}
+							>{$_('section.control.turnOff')}</Button
+						>
+					</Col><Col md="auto" class="">
+						<Button color="primary" on:click={turnOnFrontlight}
+							>{$_('section.control.turnOn')}</Button
+						>
+					</Col><Col md="auto" class="">
+						<Button color="success" id="flashFrontlight" on:click={flashFrontlight}
+							>{$_('section.control.flashFrontlight')}</Button
+						>
+					</Col>
+				</Row>
 				<hr />
 			{/if}
 			<h3>{$_('section.control.systemInfo')}</h3>
 			<ul class="small system_info">
-				<li>{$_('section.control.version')}: {$settings.gitRev}</li>
 				<li>
 					{$_('section.control.buildTime')}: {new Date(
 						$settings.lastBuildTime * 1000
 					).toLocaleString()}
 				</li>
 				<li>IP: {$settings.ip}</li>
+				<li>HW revision: {$settings.hwRev}</li>
+				<li>{$_('section.control.fwCommit')}: {$settings.gitRev}</li>
+				<li>WebUI commit: {$settings.fsRev}</li>
 				<li>{$_('section.control.hostname')}: {$settings.hostname}</li>
 			</ul>
-			<Button color="danger" id="restartBtn" on:click={restartClock}>{$_('button.restart')}</Button>
-			<Button color="warning" id="forceFullRefresh" on:click={forceFullRefresh}
-				>{$_('button.forceFullRefresh')}</Button
-			>
+			<Row>
+				<Col class="d-flex justify-content-end">
+					<Button color="danger" id="restartBtn" on:click={restartClock}
+						>{$_('button.restart')}</Button
+					>
+					<div class="mx-2"></div>
+
+					<Button color="warning" id="forceFullRefresh" on:click={forceFullRefresh}
+						>{$_('button.forceFullRefresh')}</Button
+					>
+				</Col>
+			</Row>
+			{#if $settings.otaEnabled}
+				<hr />
+				<h3>{$_('section.control.firmwareUpdate')}</h3>
+				<FirmwareUpdater bind:settings />
+			{/if}
 		</CardBody>
 	</Card>
 </Col>

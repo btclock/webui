@@ -48,7 +48,9 @@
 			"hostname": "Hostname",
 			"frontlight": "Frontlight",
 			"turnOn": "Turn on",
-			"flashFrontlight": "Flash"
+			"flashFrontlight": "Flash",
+			"firmwareUpdate": "Firmware update",
+			"fwCommit": "Firmware commit"
 		},
 		"status": {
 			"title": "Status",
@@ -60,6 +62,12 @@
 			"uptime": "Uptime",
 			"wifiSignalStrength": "WiFi Signal strength",
 			"wsDataConnection": "BTClock data-source connection"
+		},
+		"firmwareUpdater": {
+			"fileUploadFailed": "File upload failed. Make sure you have selected the correct file and try again.",
+			"fileUploadSuccess": "File uploaded successfully, restarting device and reloading WebUI in {countdown} seconds",
+			"uploading": "Uploading",
+			"firmwareUpdateText": "When you use the firmware upload functionality, make sure you use the correct files. Uploading the wrong files can result in a non-working device. If it goes wrong, you can restore firmware by uploading the full image after setting the device in BOOT-mode."
 		}
 	},
 	"colors": {
@@ -88,5 +96,6 @@
 	},
 	"rssiBar": {
 		"tooltip": "Values > -67 dBm are considered good. > -30 dBm is amazing"
-	}
+	},
+	"warning": "Warning"
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_BASE_URL } from '$lib/config';
+	import { screenSize, updateScreenSize } from '$lib/screen';
 
 	import { Container, Row, Toast, ToastBody } from 'sveltestrap';
 
@@ -11,6 +12,12 @@
 
 	let settings = writable({
 		fgColor: '0'
+	});
+
+	let uiSettings = writable({
+		inputSize: 'sm',
+		selectClass: '',
+		btnSize: 'lg'
 	});
 
 	let status = writable({
@@ -61,7 +68,42 @@
 			let dataObj = JSON.parse(e.data);
 			status.set(dataObj);
 		});
+
+		function handleResize() {
+			updateScreenSize();
+		}
+
+		// Add an event listener to update the screen size when the window is resized
+		window.addEventListener('resize', handleResize);
+
+		// Call the function initially to set the initial screen size
+		updateScreenSize();
+
+		// Cleanup function to remove the event listener when the component is destroyed
+		return () => {
+			window.removeEventListener('resize', handleResize);
+		};
 	});
+
+	$: {
+		const lgBreakpoint = parseInt(
+			getComputedStyle(document.documentElement).getPropertyValue('--bs-breakpoint-lg')
+		);
+
+		if ($screenSize >= lgBreakpoint) {
+			uiSettings.set({
+				inputSize: 'sm',
+				selectClass: 'form-select-sm',
+				btnSize: 'sm'
+			});
+		} else {
+			uiSettings.set({
+				inputSize: 'lg',
+				selectClass: 'form-select-lg',
+				btnSize: 'xl'
+			});
+		}
+	}
 
 	let toastIsOpen = false;
 	let toastColor = 'success';
@@ -79,10 +121,15 @@
 </svelte:head>
 
 <Container fluid>
-	<Row>
-		<Control bind:settings bind:status></Control>
+	<Row cols={{ lg: 3, sm: 1 }}>
+		<Control bind:settings bind:uiSettings bind:status></Control>
 		<Status bind:settings bind:status></Status>
-		<Settings bind:settings on:showToast={showToast} on:formReset={fetchSettingsData}></Settings>
+		<Settings
+			bind:settings
+			bind:uiSettings
+			on:showToast={showToast}
+			on:formReset={fetchSettingsData}
+		></Settings>
 	</Row>
 </Container>
 <div class="position-fixed bottom-0 end-0 p-2">

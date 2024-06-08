@@ -36,33 +36,34 @@ $input-font-size-sm: $font-size-base * 0.875;
 @import '../node_modules/bootstrap/scss/progress';
 @import '../node_modules/bootstrap/scss/tooltip';
 @import '../node_modules/bootstrap/scss/toasts';
+@import '../node_modules/bootstrap/scss/alert';
 
 @import '../node_modules/bootstrap/scss/helpers';
 @import '../node_modules/bootstrap/scss/utilities/api';
 
-@include media-breakpoint-down(xl) {
-	html {
-		font-size: 85%;
-	}
+// @include media-breakpoint-down(xl) {
+// 	html {
+// 		// font-size: 85%;
+// 	}
 
-	button.btn,
-	input[type='button'].btn,
-	input[type='submit'].btn,
-	input[type='reset'].btn {
-		@include button-size(
-			$btn-padding-y-sm,
-			$btn-padding-x-sm,
-			$font-size-sm,
-			$btn-border-radius-sm
-		);
-	}
-}
+// 	button.btn,
+// 	input[type='button'].btn,
+// 	input[type='submit'].btn,
+// 	input[type='reset'].btn {
+// 		@include button-size(
+// 			$btn-padding-y-sm,
+// 			$btn-padding-x-sm,
+// 			$font-size-sm,
+// 			$btn-border-radius-sm
+// 		);
+// 	}
+// }
 
-@include media-breakpoint-down(lg) {
-	html {
-		font-size: 75%;
-	}
-}
+// @include media-breakpoint-down(lg) {
+// 	html {
+// 		font-size: 75%;
+// 	}
+// }
 
 nav {
 	margin-bottom: 15px;
@@ -207,4 +208,9 @@ nav {
 .navbar-brand {
 	font-style: italic;
 	font-weight: 600;
+}
+
+.firmwareUploadStatusAlert,
+#firmwareUploadProgress {
+	@extend .my-2;
 }

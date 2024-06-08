@@ -20,6 +20,7 @@
 	} from 'sveltestrap';
 
 	export let settings;
+	export let uiSettings;
 
 	const wifiTxPowerMap = new Map<string, number>([
 		['Default', 80],
@@ -89,7 +90,7 @@
 		<CardBody>
 			<Form on:submit={onSave}>
 				<Row>
-					<Label md={6} for="fgColor" size="sm"
+					<Label md={6} for="fgColor" size={$uiSettings.inputSize}
 						>{$_('section.settings.textColor', { default: 'Text color' })}</Label
 					>
 					<Col md="6">
@@ -98,8 +99,8 @@
 							bind:value={$settings.fgColor}
 							name="select"
 							id="fgColor"
-							bsSize="sm"
-							class="form-select-sm"
+							bsSize={$uiSettings.inputSize}
+							class={$uiSettings.selectClass}
 						>
 							<option value="0">{$_('colors.black')}</option>
 							<option value="65535">{$_('colors.white')}</option>
@@ -107,15 +108,17 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="bgColor" size="sm">{$_('section.settings.backgroundColor')}</Label>
+					<Label md={6} for="bgColor" size={$uiSettings.inputSize}
+						>{$_('section.settings.backgroundColor')}</Label
+					>
 					<Col md="6">
 						<Input
 							type="select"
 							bind:value={$settings.bgColor}
 							name="select"
 							id="bgColor"
-							bsSize="sm"
-							class="form-select-sm"
+							bsSize={$uiSettings.inputSize}
+							class={$uiSettings.selectClass}
 						>
 							<option value="0">{$_('colors.black')}</option>
 							<option value="65535">{$_('colors.white')}</option>
@@ -123,9 +126,11 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="timePerScreen" size="sm">{$_('section.settings.timePerScreen')}</Label>
+					<Label md={6} for="timePerScreen" size={$uiSettings.inputSize}
+						>{$_('section.settings.timePerScreen')}</Label
+					>
 					<Col md="6">
-						<InputGroup size="sm">
+						<InputGroup size={$uiSettings.inputSize}>
 							<Input
 								type="number"
 								id="timePerScreen"
@@ -138,11 +143,11 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="fullRefreshMin" size="sm"
+					<Label md={6} for="fullRefreshMin" size={$uiSettings.inputSize}
 						>{$_('section.settings.fullRefreshEvery')}</Label
 					>
 					<Col md="6">
-						<InputGroup size="sm">
+						<InputGroup size={$uiSettings.inputSize}>
 							<Input
 								type="number"
 								id="fullRefreshMin"
@@ -155,11 +160,11 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="minSecPriceUpd" size="sm"
+					<Label md={6} for="minSecPriceUpd" size={$uiSettings.inputSize}
 						>{$_('section.settings.timeBetweenPriceUpdates')}</Label
 					>
 					<Col md="6">
-						<InputGroup size="sm">
+						<InputGroup size={$uiSettings.inputSize}>
 							<Input
 								type="number"
 								id="minSecPriceUpd"
@@ -173,9 +178,11 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="tzOffset" size="sm">{$_('section.settings.timezoneOffset')}</Label>
+					<Label md={6} for="tzOffset" size={$uiSettings.inputSize}
+						>{$_('section.settings.timezoneOffset')}</Label
+					>
 					<Col md="6">
-						<InputGroup size="sm">
+						<InputGroup size={$uiSettings.inputSize}>
 							<Input
 								type="number"
 								step="1"
@@ -189,7 +196,9 @@
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="ledBrightness" size="sm">{$_('section.settings.ledBrightness')}</Label>
+					<Label md={6} for="ledBrightness" size={$uiSettings.inputSize}
+						>{$_('section.settings.ledBrightness')}</Label
+					>
 					<Col md="6">
 						<Input
 							type="range"
@@ -204,7 +213,7 @@
 				</Row>
 				{#if $settings.hasFrontlight}
 					<Row>
-						<Label md={6} for="flMaxBrightness" size="sm"
+						<Label md={6} for="flMaxBrightness" size={$uiSettings.inputSize}
 							>{$_('section.settings.flMaxBrightness')}</Label
 						>
 						<Col md="6">
@@ -221,7 +230,7 @@
 						</Col>
 					</Row>
 					<Row>
-						<Label md={6} for="flEffectDelay" size="sm"
+						<Label md={6} for="flEffectDelay" size={$uiSettings.inputSize}
 							>{$_('section.settings.flEffectDelay')}</Label
 						>
 						<Col md="6">
@@ -238,7 +247,7 @@
 					</Row>
 				{/if}
 				<Row>
-					<Label md={6} for="hostnamePrefix" size="sm"
+					<Label md={6} for="hostnamePrefix" size={$uiSettings.inputSize}
 						>{$_('section.settings.hostnamePrefix')}</Label
 					>
 					<Col md="6">
@@ -247,12 +256,12 @@
 							bind:value={$settings.hostnamePrefix}
 							name="hostnamePrefix"
 							id="hostnamePrefix"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 						></Input>
 					</Col>
 				</Row>
 				<Row>
-					<Label md={6} for="wifiTxPower" size="sm"
+					<Label md={6} for="wifiTxPower" size={$uiSettings.inputSize}
 						>{$_('section.settings.wifiTxPower', { default: 'WiFi Tx Power' })}</Label
 					>
 					<Col md="6">
@@ -261,8 +270,8 @@
 							bind:value={$settings.txPower}
 							name="select"
 							id="fgColor"
-							bsSize="sm"
-							class="form-select-sm"
+							bsSize={$uiSettings.inputSize}
+							class={$uiSettings.selectClass}
 						>
 							{#each wifiTxPowerMap as [key, value]}
 								<option {value}>{key}</option>
@@ -277,7 +286,7 @@
 							id="ledTestOnPower"
 							bind:checked={$settings.ledTestOnPower}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.ledPowerOnTest')}
 						/>
 					</Col>
@@ -286,7 +295,7 @@
 							id="ledFlashOnUpd"
 							bind:checked={$settings.ledFlashOnUpd}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.ledFlashOnBlock')}
 						/>
 					</Col>
@@ -295,7 +304,7 @@
 							id="stealFocus"
 							bind:checked={$settings.stealFocus}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.StealFocusOnNewBlock')}
 						/>
 					</Col>
@@ -304,7 +313,7 @@
 							id="mcapBigChar"
 							bind:checked={$settings.mcapBigChar}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.useBigCharsMcap')}
 						/>
 					</Col>
@@ -313,7 +322,7 @@
 							id="otaEnabled"
 							bind:checked={$settings.otaEnabled}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label="{$_('section.settings.otaUpdates')} ({$_('restartRequired')})"
 						/>
 					</Col>
@@ -322,7 +331,7 @@
 							id="mdnsEnabled"
 							bind:checked={$settings.mdnsEnabled}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label="{$_('section.settings.enableMdns')} ({$_('restartRequired')})"
 						/>
 					</Col>
@@ -331,7 +340,7 @@
 							id="fetchEurPrice"
 							bind:checked={$settings.fetchEurPrice}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
 						/>
 					</Col>
@@ -340,7 +349,7 @@
 							id="useBlkCountdown"
 							bind:checked={$settings.useBlkCountdown}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.useBlkCountdown')}
 						/>
 					</Col>
@@ -349,7 +358,7 @@
 							id="useSatsSymbol"
 							bind:checked={$settings.useSatsSymbol}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.useSatsSymbol')}
 						/>
 					</Col>
@@ -358,7 +367,7 @@
 							id="suffixPrice"
 							bind:checked={$settings.suffixPrice}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.suffixPrice')}
 						/>
 					</Col>
@@ -367,7 +376,7 @@
 							id="disableLeds"
 							bind:checked={$settings.disableLeds}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.disableLeds')}
 						/>
 					</Col>
@@ -376,7 +385,7 @@
 							id="ownDataSource"
 							bind:checked={$settings.ownDataSource}
 							type="switch"
-							bsSize="sm"
+							bsSize={$uiSettings.inputSize}
 							label="{$_('section.settings.ownDataSource')} ({$_('restartRequired')})"
 						/>
 					</Col>
@@ -386,7 +395,7 @@
 								id="flAlwaysOn"
 								bind:checked={$settings.flAlwaysOn}
 								type="switch"
-								bsSize="sm"
+								bsSize={$uiSettings.inputSize}
 								label={$_('section.settings.flAlwaysOn')}
 							/>
 						</Col>
@@ -395,7 +404,7 @@
 								id="flFlashOnUpd"
 								bind:checked={$settings.flFlashOnUpd}
 								type="switch"
-								bsSize="sm"
+								bsSize={$uiSettings.inputSize}
 								label={$_('section.settings.flFlashOnUpd')}
 							/>
 						</Col>
@@ -411,15 +420,20 @@
 									id="screens_{s.id}"
 									bind:checked={s.enabled}
 									type="switch"
-									bsSize="sm"
+									bsSize={$uiSettings.inputSize}
 									label={s.name}
 								/>
 							</Col>
 						{/each}
 					{/if}
 				</Row>
-				<Button on:click={handleReset} color="secondary">{$_('button.reset')}</Button>
-				<Button color="primary">{$_('button.save')}</Button>
+				<Row>
+					<Col class="d-flex justify-content-end">
+						<Button on:click={handleReset} color="secondary">{$_('button.reset')}</Button>
+						<div class="mx-2"></div>
+						<Button color="primary">{$_('button.save')}</Button>
+					</Col>
+				</Row>
 			</Form>
 		</CardBody>
 	</Card>
