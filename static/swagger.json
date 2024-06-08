@@ -43,7 +43,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": null
+									"$ref": "#/components/schemas/ArrayOfLeds"
 								}
 							}
 						}
@@ -202,7 +202,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/lights/set": {
 			"patch": {
 				"tags": ["lights"],
 				"summary": "Set individual LEDs",
@@ -225,7 +227,7 @@
 				}
 			}
 		},
-		"/lights/{color}": {
+		"/lights/color/{color}": {
 			"get": {
 				"tags": ["lights"],
 				"summary": "Turn on LEDs with specific color",

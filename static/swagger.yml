@@ -33,7 +33,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: #/components/schemas/ArrayOfLeds
+                $ref: '#/components/schemas/ArrayOfLeds'
     post:
       tags:
         - system
@@ -139,6 +139,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArrayOfLeds'
+  /lights/set:
     patch:
       tags:
         - lights
@@ -153,7 +154,7 @@ paths:
           description: succesful operation
         '400':
           description: invalid colors or wrong amount of LEDs
-  /lights/{color}:
+  /lights/color/{color}:
     get:
       tags:
         - lights

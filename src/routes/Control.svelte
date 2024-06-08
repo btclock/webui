@@ -18,7 +18,6 @@
 
 	export let settings = {};
 	export let customText: string;
-	export let ledColor: string = '#FFCC00';
 	export let status: Writable<{ leds: [] }>;
 	let ledStatus = [];
 	let keepLedsSameColor = false;
@@ -41,8 +40,7 @@
 	};
 
 	const setLEDcolor = () => {
-		console.log(`${PUBLIC_BASE_URL}/api/lights/${ledColor}`);
-		fetch(`${PUBLIC_BASE_URL}/api/lights`, {
+		fetch(`${PUBLIC_BASE_URL}/api/lights/set`, {
 			headers: {
 				'Content-Type': 'application/json'
 			},
