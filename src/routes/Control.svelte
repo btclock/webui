@@ -200,6 +200,11 @@
 			{/if}
 			<h3>{$_('section.control.systemInfo')}</h3>
 			<ul class="small system_info">
+				{#if $settings.gitTag}
+					<li>
+						{$_('section.control.version')}: {$settings.gitTag}
+					</li>
+				{/if}
 				<li>
 					{$_('section.control.buildTime')}: {new Date(
 						$settings.lastBuildTime * 1000
