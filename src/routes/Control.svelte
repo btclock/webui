@@ -16,9 +16,9 @@
 		Row
 	} from 'sveltestrap';
 	import FirmwareUpdater from './FirmwareUpdater.svelte';
+	import { uiSettings } from '$lib/uiSettings';
 
 	export let settings = {};
-	export let uiSettings;
 
 	export let customText: string;
 	export let status: Writable<{ leds: [] }>;

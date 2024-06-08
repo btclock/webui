@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { PUBLIC_BASE_URL } from '$lib/config';
+	import { uiSettings } from '$lib/uiSettings';
 	import { createEventDispatcher } from 'svelte';
 
 	import { _ } from 'svelte-i18n';
@@ -20,7 +21,6 @@
 	} from 'sveltestrap';
 
 	export let settings;
-	export let uiSettings;
 
 	const wifiTxPowerMap = new Map<string, number>([
 		['Default', 80],

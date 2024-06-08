@@ -9,16 +9,17 @@
 	import Control from './Control.svelte';
 	import Settings from './Settings.svelte';
 	import Status from './Status.svelte';
+	import { uiSettings } from '$lib/uiSettings';
 
 	let settings = writable({
 		fgColor: '0'
 	});
 
-	let uiSettings = writable({
-		inputSize: 'sm',
-		selectClass: '',
-		btnSize: 'lg'
-	});
+	// let uiSettings = writable({
+	// 	inputSize: 'sm',
+	// 	selectClass: '',
+	// 	btnSize: 'lg'
+	// });
 
 	let status = writable({
 		data: ['L', 'O', 'A', 'D', 'I', 'N', 'G'],
@@ -122,14 +123,9 @@
 
 <Container fluid>
 	<Row cols={{ lg: 3, sm: 1 }}>
-		<Control bind:settings bind:uiSettings bind:status></Control>
+		<Control bind:settings bind:status></Control>
 		<Status bind:settings bind:status></Status>
-		<Settings
-			bind:settings
-			bind:uiSettings
-			on:showToast={showToast}
-			on:formReset={fetchSettingsData}
-		></Settings>
+		<Settings bind:settings on:showToast={showToast} on:formReset={fetchSettingsData}></Settings>
 	</Row>
 </Container>
 <div class="position-fixed bottom-0 end-0 p-2">
