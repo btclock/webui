@@ -102,5 +102,6 @@
 	"rssiBar": {
 		"tooltip": "Values > -67 dBm are considered good. > -30 dBm is amazing"
 	},
-	"warning": "Warning"
+	"warning": "Warning",
+	"auto-detect": "Auto-detect"
 }

@@ -43,6 +43,12 @@
 		dispatch('formReset');
 	};
 
+	const getTzOffsetFromSystem = () => {
+		const dt = new Date();
+		let diffTZ = dt.getTimezoneOffset();
+		$settings.tzOffset = diffTZ * -1;
+	};
+
 	const onSave = async (e: Event) => {
 		e.preventDefault();
 		let formSettings = $settings;
@@ -191,6 +197,9 @@
 								bind:value={$settings.tzOffset}
 							/>
 							<InputGroupText>{$_('time.minutes')}</InputGroupText>
+							<Button type="button" color="info" on:click={getTzOffsetFromSystem}
+								>{$_('auto-detect')}</Button
+							>
 						</InputGroup>
 						<FormText>{$_('section.settings.tzOffsetHelpText')}</FormText>
 					</Col>

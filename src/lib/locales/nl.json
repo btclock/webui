@@ -99,5 +99,6 @@
 	"rssiBar": {
 		"tooltip": "Waarden > -67 dBm zijn goed. > -30 dBm is verbazingwekkend"
 	},
-	"warning": "Waarschuwing"
+	"warning": "Waarschuwing",
+	"auto-detect": "Automatische detectie"
 }

@@ -43,10 +43,12 @@
 	let languageNames = {};
 
 	locale.subscribe(() => {
-		let newLanguageNames = new Intl.DisplayNames([$locale], { type: 'language' });
+		if ($locale) {
+			let newLanguageNames = new Intl.DisplayNames([$locale], { type: 'language' });
 
-		for (let l: string of $locales) {
-			languageNames[l] = newLanguageNames.of(l);
+			for (let l: string of $locales) {
+				languageNames[l] = newLanguageNames.of(l);
+			}
 		}
 	});
 </script>
