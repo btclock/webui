@@ -256,6 +256,34 @@
 					</Row>
 				{/if}
 				<Row>
+					<Label md={6} for="mempoolInstance" size="sm"
+						>{$_('section.settings.mempoolnstance')}</Label
+					>
+					<Col md="6">
+						<InputGroup size={$uiSettings.inputSize}>
+							<Input
+								type="text"
+								bind:value={$settings.mempoolInstance}
+								name="mempoolInstance"
+								id="mempoolInstance"
+								disabled={$settings.ownDataSource}
+								bsSize="sm"
+							></Input>
+							<InputGroupText>
+								<Input
+									addon
+									type="checkbox"
+									bind:checked={$settings.mempoolSecure}
+									disabled={$settings.ownDataSource}
+									bsSize={$uiSettings.inputSize}
+								/>
+								HTTPS
+							</InputGroupText>
+						</InputGroup>
+						<FormText>{$_('section.settings.mempoolInstanceHelpText')}</FormText>
+					</Col>
+				</Row>
+				<Row>
 					<Label md={6} for="hostnamePrefix" size={$uiSettings.inputSize}
 						>{$_('section.settings.hostnamePrefix')}</Label
 					>

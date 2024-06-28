@@ -32,7 +32,8 @@
 			"flMaxBrightness": "Brillo de luz de la pantalla",
 			"flAlwaysOn": "Luz de la pantalla siempre encendida",
 			"flEffectDelay": "Velocidad del efecto de luz de la pantalla",
-			"flFlashOnUpd": "Luz de la pantalla parpadea con un nuevo bloque"
+			"flFlashOnUpd": "Luz de la pantalla parpadea con un nuevo bloque",
+			"mempoolInstanceHelpText": "Solo es efectivo cuando la fuente de datos BTClock está deshabilitada. \nEs necesario reiniciar para aplicar."
 		},
 		"control": {
 			"turnOff": "Apagar",
@@ -52,7 +53,7 @@
 		"status": {
 			"memoryFree": "Memoria RAM libre",
 			"wsPriceConnection": "Conexión WebSocket Precio",
-			"wsMempoolConnection": "Conexión WebSocket Mempool.space",
+			"wsMempoolConnection": "Conexión WebSocket {instance}",
 			"screenCycle": "Ciclo de pantalla",
 			"uptime": "Tiempo de funcionamiento",
 			"fetchEuroNote": "Si utiliza \"Obtener precio en €\", la conexión de Precio WS mostrará ❌ ya que utiliza otra fuente de datos.",

@@ -33,7 +33,8 @@
 			"flMaxBrightness": "Frontlight brightness",
 			"flAlwaysOn": "Frontlight always on",
 			"flEffectDelay": "Frontlight effect speed",
-			"flFlashOnUpd": "Frontlight flash on new block"
+			"flFlashOnUpd": "Frontlight flash on new block",
+			"mempoolInstanceHelpText": "Only effective when BTClock data-source is disabled. A restart is required to apply."
 		},
 		"control": {
 			"systemInfo": "System info",
@@ -57,7 +58,7 @@
 			"screenCycle": "Screen cycle",
 			"memoryFree": "Memory free",
 			"wsPriceConnection": "WS Price connection",
-			"wsMempoolConnection": "WS Mempool.space connection",
+			"wsMempoolConnection": "WS {instance} connection",
 			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
 			"uptime": "Uptime",
 			"wifiSignalStrength": "WiFi Signal strength",

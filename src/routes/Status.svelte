@@ -171,7 +171,9 @@
 						{/if}
 					</span>
 					-
-					{$_('section.status.wsMempoolConnection')}:
+					{$_('section.status.wsMempoolConnection', {
+						values: { instance: $settings.mempoolInstance }
+					})}:
 					<span>
 						{#if $status.connectionStatus && $status.connectionStatus.blocks}
 							&#9989;
