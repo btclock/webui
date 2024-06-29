@@ -81,7 +81,7 @@ jobs:
       - name: gzip build for LittleFS
         run: find dist -type f ! -name ".*" -exec sh -c 'mkdir -p "build_gz/$(dirname "${1#dist/}")" && gzip -k "$1" -c > "build_gz/${1#dist/}".gz' _ {} \;
       - name: Write git rev to file
-        run: echo "$GITHUB_SHA" > build_gz/fs_hash.txt
+        run: echo "$GITHUB_SHA" > build_gz/fs_hash.txt && echo "$GITHUB_SHA" > output/commit.txt
       - name: Check GZipped directory size
         run: |
           # Set the threshold size in bytes
@@ -127,6 +127,6 @@ jobs:
           target-directory: webui/
           destination-github-username: 'btclock'
           destination-repository-name: 'web-flasher'
-          target-branch: btclock
+          target-branch: main
           user-name: ${{github.actor}}
           user-email: ${{github.actor}}@users.noreply.github.com
