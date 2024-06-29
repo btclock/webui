@@ -33,7 +33,8 @@
 			"flAlwaysOn": "Luz de la pantalla siempre encendida",
 			"flEffectDelay": "Velocidad del efecto de luz de la pantalla",
 			"flFlashOnUpd": "Luz de la pantalla parpadea con un nuevo bloque",
-			"mempoolInstanceHelpText": "Solo es efectivo cuando la fuente de datos BTClock está deshabilitada. \nEs necesario reiniciar para aplicar."
+			"mempoolInstanceHelpText": "Solo es efectivo cuando la fuente de datos BTClock está deshabilitada. \nEs necesario reiniciar para aplicar.",
+			"luxLightToggle": "Cambio automático de luz frontal en lux"
 		},
 		"control": {
 			"turnOff": "Apagar",
@@ -59,7 +60,8 @@
 			"fetchEuroNote": "Si utiliza \"Obtener precio en €\", la conexión de Precio WS mostrará ❌ ya que utiliza otra fuente de datos.",
 			"title": "Estado",
 			"wifiSignalStrength": "Fuerza de la señal WiFi",
-			"wsDataConnection": "Conexión de fuente de datos BTClock"
+			"wsDataConnection": "Conexión de fuente de datos BTClock",
+			"lightSensor": "Sensor de luz"
 		},
 		"firmwareUpdater": {
 			"fileUploadSuccess": "Archivo cargado exitosamente, reiniciando el dispositivo. Recargando WebUI en {countdown} segundos",

@@ -146,6 +146,10 @@
 				</div>
 			</div>
 			<hr />
+			{#if $settings.hasLightLevel}
+				{$_('section.status.lightSensor')}: {Number(Math.round($status.lightLevel))} lux
+				<hr />
+			{/if}
 			<Progress striped id="rssiBar" color={wifiStrengthColor} value={rssiPercent}
 				>{rssiPercent}%</Progress
 			>

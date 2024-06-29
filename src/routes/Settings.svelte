@@ -255,6 +255,24 @@
 						</Col>
 					</Row>
 				{/if}
+				{#if $settings.hasLightLevel}
+					<Row>
+						<Label md={6} for="luxLightToggle" size={$uiSettings.inputSize}
+							>{$_('section.settings.luxLightToggle')} ({$settings.luxLightToggle})</Label
+						>
+						<Col md="6">
+							<Input
+								type="range"
+								name="luxLightToggle"
+								id="luxLightToggle"
+								bind:value={$settings.luxLightToggle}
+								min={0}
+								max={1000}
+								step={1}
+							/>
+						</Col>
+					</Row>
+				{/if}
 				<Row>
 					<Label md={6} for="mempoolInstance" size="sm"
 						>{$_('section.settings.mempoolnstance')}</Label

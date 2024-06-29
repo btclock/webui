@@ -34,7 +34,8 @@
 			"flAlwaysOn": "Displaylicht altijd aan",
 			"flEffectDelay": "Displaylicht effect snelheid",
 			"flFlashOnUpd": "Knipper displaylicht bij nieuw blok",
-			"mempoolInstanceHelpText": "Alleen effectief als de BTClock-gegevensbron is uitgeschakeld. \nOm toe te passen is een herstart nodig."
+			"mempoolInstanceHelpText": "Alleen effectief als de BTClock-gegevensbron is uitgeschakeld. \nOm toe te passen is een herstart nodig.",
+			"luxLightToggle": "Schakelen displaylicht op lux"
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",
@@ -59,7 +60,8 @@
 			"fetchEuroNote": "Wanneer je \"Toon € prijs\" aanzet, zal de prijsverbinding als ❌ verbroken getoond worden vanwege het gebruik van een andere bron.",
 			"uptime": "Uptime",
 			"wifiSignalStrength": "WiFi signaalsterkte",
-			"wsDataConnection": "BTClock-gegevensbron verbinding"
+			"wsDataConnection": "BTClock-gegevensbron verbinding",
+			"lightSensor": "Licht sensor"
 		},
 		"firmwareUpdater": {
 			"fileUploadSuccess": "Bestand geüpload, apparaat herstart. WebUI opnieuw geladen over {countdown} seconden",

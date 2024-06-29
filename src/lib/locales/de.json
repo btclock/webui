@@ -34,7 +34,8 @@
 			"flAlwaysOn": "Displaybeleuchtung immer an",
 			"flEffectDelay": "Displaybeleuchtungeffekt Geschwindigkeit",
 			"flFlashOnUpd": "Displaybeleuchting bei neuem Block",
-			"mempoolInstanceHelpText": "Nur wirksam, wenn die BTClock-Datenquelle deaktiviert ist. \nZur Anwendung ist ein Neustart erforderlich."
+			"mempoolInstanceHelpText": "Nur wirksam, wenn die BTClock-Datenquelle deaktiviert ist. \nZur Anwendung ist ein Neustart erforderlich.",
+			"luxLightToggle": "Automatisches Umschalten des Frontlichts bei Lux"
 		},
 		"control": {
 			"systemInfo": "Systeminfo",
@@ -60,7 +61,8 @@
 			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
 			"uptime": "Betriebszeit",
 			"wifiSignalStrength": "WiFi-Signalstärke",
-			"wsDataConnection": "BTClock-Datenquelle verbindung"
+			"wsDataConnection": "BTClock-Datenquelle verbindung",
+			"lightSensor": "Lichtsensor"
 		},
 		"firmwareUpdater": {
 			"fileUploadSuccess": "Datei erfolgreich hochgeladen, Gerät neu gestartet. WebUI in {countdown} Sekunden neu geladen",

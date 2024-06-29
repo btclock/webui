@@ -34,7 +34,8 @@
 			"flAlwaysOn": "Frontlight always on",
 			"flEffectDelay": "Frontlight effect speed",
 			"flFlashOnUpd": "Frontlight flash on new block",
-			"mempoolInstanceHelpText": "Only effective when BTClock data-source is disabled. A restart is required to apply."
+			"mempoolInstanceHelpText": "Only effective when BTClock data-source is disabled. A restart is required to apply.",
+			"luxLightToggle": "Auto toggle frontlight at lux"
 		},
 		"control": {
 			"systemInfo": "System info",
@@ -62,7 +63,8 @@
 			"fetchEuroNote": "If you use \"Fetch € price\" the WS Price connection will show ❌  since it uses another data source.",
 			"uptime": "Uptime",
 			"wifiSignalStrength": "WiFi Signal strength",
-			"wsDataConnection": "BTClock data-source connection"
+			"wsDataConnection": "BTClock data-source connection",
+			"lightSensor": "Light sensor"
 		},
 		"firmwareUpdater": {
 			"fileUploadFailed": "File upload failed. Make sure you have selected the correct file and try again.",
