@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isValidNpub, isValidNostrRelay } from '$lib';
+	import { isValidNostrRelay, getPubKey, isValidHexPubKey } from '$lib';
 	import { PUBLIC_BASE_URL } from '$lib/config';
 	import { uiSettings } from '$lib/uiSettings';
 	import { createEventDispatcher } from 'svelte';
@@ -82,6 +82,10 @@
 	let validNostrRelay = false;
 	const testNostrRelay = async () => {
 		validNostrRelay = await isValidNostrRelay($settings.nostrRelay);
+	};
+
+	const checkValidNostrPubkey = () => {
+		$settings.nostrPubKey = getPubKey($settings.nostrPubKey);
 	};
 
 	const onFlBrightnessChange = async () => {
@@ -279,7 +283,7 @@
 						</Col>
 					</Row>
 				{/if}
-				{#if $settings.nostrPubKey}
+				{#if $settings.useNostr}
 					<Row>
 						<Label md={6} for="nostrPubKey" size={$uiSettings.inputSize}
 							>{$_('section.settings.nostrPubKey')}</Label
@@ -290,7 +294,8 @@
 								bind:value={$settings.nostrPubKey}
 								name="nostrPubKey"
 								id="nostrPubKey"
-								invalid={!isValidNpub($settings.nostrPubKey)}
+								on:change={checkValidNostrPubkey}
+								invalid={!isValidHexPubKey($settings.nostrPubKey)}
 								bsSize={$uiSettings.inputSize}
 							></Input>
 						</Col>
@@ -504,6 +509,17 @@
 							label="{$_('section.settings.ownDataSource')} ({$_('restartRequired')})"
 						/>
 					</Col>
+					{#if $settings.nostrRelay}
+						<Col md="6">
+							<Input
+								id="useNostr"
+								bind:checked={$settings.useNostr}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label="{$_('section.settings.useNostr')} ({$_('restartRequired')})"
+							/>
+						</Col>
+					{/if}
 					{#if $settings.hasFrontlight}
 						<Col md="6">
 							<Input

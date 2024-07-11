@@ -38,7 +38,8 @@
 			"luxLightToggle": "Auto toggle frontlight at lux",
 			"wpTimeout": "WiFi-config portal timeout",
 			"nostrPubKey": "Nostr source pubkey",
-			"nostrRelay": "Nostr Relay"
+			"nostrRelay": "Nostr Relay",
+			"useNostr": "Use Nostr datasource"
 		},
 		"control": {
 			"systemInfo": "System info",

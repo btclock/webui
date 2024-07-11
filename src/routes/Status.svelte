@@ -165,7 +165,9 @@
 			{$_('section.status.uptime')}: {toUptimestring($status.espUptime)}
 			<br />
 			<p>
-				{#if !$settings.ownDataSource}
+				{#if $settings.useNostr}
+					<span>Nostr connection status not available yet.</span>
+				{:else if !$settings.ownDataSource}
 					{$_('section.status.wsPriceConnection')}:
 					<span>
 						{#if $status.connectionStatus && $status.connectionStatus.price}

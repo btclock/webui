@@ -41,4 +41,41 @@ const isValidNostrRelay = async (url: string): Promise<boolean> => {
 	}
 };
 
-export { isValidNpub, isValidNostrRelay };
+/**
+ * Validates if the given parameter is a valid hex public key.
+ * @param pubkey - The public key to validate.
+ * @returns A boolean indicating if the public key is valid.
+ */
+const isValidHexPubKey = (pubkey: string): boolean => {
+	return /^[0-9a-f]{64}$/i.test(pubkey);
+};
+
+/**
+ * Checks if a parameter is a valid pubkey or npub and converts npub to pubkey.
+ * @param input - The input string to check and convert.
+ * @returns The pubkey if valid, otherwise null.
+ */
+
+const getPubKey = (input: string): string | null => {
+	try {
+		// If input is a valid hex public key
+		if (isValidHexPubKey(input)) {
+			return input;
+		}
+
+		// Try to decode the input as npub
+		const { type, data } = nip19.decode(input);
+
+		// Check if the decoded type is 'npub' and the data length is 64 characters (32 bytes in hex)
+		if (type === 'npub' && data.length === 64) {
+			return data;
+		}
+
+		return null;
+	} catch (e) {
+		// If any error is thrown, the input is not valid
+		return null;
+	}
+};
+
+export { isValidNpub, isValidNostrRelay, isValidHexPubKey, getPubKey };
