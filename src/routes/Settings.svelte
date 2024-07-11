@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { isValidNpub, isValidNostrRelay } from '$lib';
 	import { PUBLIC_BASE_URL } from '$lib/config';
 	import { uiSettings } from '$lib/uiSettings';
 	import { createEventDispatcher } from 'svelte';
@@ -76,6 +77,11 @@
 					text: $_('section.settings.errorSavingSettings')
 				});
 			});
+	};
+
+	let validNostrRelay = false;
+	const testNostrRelay = async () => {
+		validNostrRelay = await isValidNostrRelay($settings.nostrRelay);
 	};
 
 	const onFlBrightnessChange = async () => {
@@ -270,6 +276,43 @@
 								max={1000}
 								step={1}
 							/>
+						</Col>
+					</Row>
+				{/if}
+				{#if $settings.nostrPubKey}
+					<Row>
+						<Label md={6} for="nostrPubKey" size={$uiSettings.inputSize}
+							>{$_('section.settings.nostrPubKey')}</Label
+						>
+						<Col md="6">
+							<Input
+								type="text"
+								bind:value={$settings.nostrPubKey}
+								name="nostrPubKey"
+								id="nostrPubKey"
+								invalid={!isValidNpub($settings.nostrPubKey)}
+								bsSize={$uiSettings.inputSize}
+							></Input>
+						</Col>
+					</Row>
+					<Row>
+						<Label md={6} for="nostrRelay" size={$uiSettings.inputSize}
+							>{$_('section.settings.nostrRelay')}</Label
+						>
+						<Col md="6">
+							<InputGroup size={$uiSettings.inputSize}>
+								<Input
+									type="text"
+									bind:value={$settings.nostrRelay}
+									name="nostrRelay"
+									id="nostrRelay"
+									valid={validNostrRelay}
+									bsSize={$uiSettings.inputSize}
+								></Input>
+								<Button type="button" color="success" on:click={testNostrRelay}
+									>{$_('test', { default: 'Test' })}</Button
+								>
+							</InputGroup>
 						</Col>
 					</Row>
 				{/if}
