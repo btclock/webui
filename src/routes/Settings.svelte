@@ -336,6 +336,23 @@
 					</Col>
 				</Row>
 				<Row>
+					<Label md={6} for="wpTimeout" size={$uiSettings.inputSize}
+						>{$_('section.settings.wpTimeout')}</Label
+					>
+					<Col md="6">
+						<InputGroup size={$uiSettings.inputSize}>
+							<Input
+								type="number"
+								id="minSecPriceUpd"
+								min={1}
+								step="1"
+								bind:value={$settings.wpTimeout}
+							/>
+							<InputGroupText>{$_('time.seconds')}</InputGroupText>
+						</InputGroup>
+					</Col>
+				</Row>
+				<Row>
 					<Col md="6">
 						<Input
 							id="ledTestOnPower"

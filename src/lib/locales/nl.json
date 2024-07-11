@@ -35,7 +35,8 @@
 			"flEffectDelay": "Displaylicht effect snelheid",
 			"flFlashOnUpd": "Knipper displaylicht bij nieuw blok",
 			"mempoolInstanceHelpText": "Alleen effectief als de BTClock-gegevensbron is uitgeschakeld. \nOm toe te passen is een herstart nodig.",
-			"luxLightToggle": "Schakelen displaylicht op lux"
+			"luxLightToggle": "Schakelen displaylicht op lux",
+			"wpTimeout": "WiFi-config-portal timeout"
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",

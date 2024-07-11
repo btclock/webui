@@ -35,7 +35,8 @@
 			"flEffectDelay": "Frontlight effect speed",
 			"flFlashOnUpd": "Frontlight flash on new block",
 			"mempoolInstanceHelpText": "Only effective when BTClock data-source is disabled. A restart is required to apply.",
-			"luxLightToggle": "Auto toggle frontlight at lux"
+			"luxLightToggle": "Auto toggle frontlight at lux",
+			"wpTimeout": "WiFi-config portal timeout"
 		},
 		"control": {
 			"systemInfo": "System info",

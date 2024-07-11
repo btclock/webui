@@ -35,7 +35,8 @@
 			"flEffectDelay": "Displaybeleuchtungeffekt Geschwindigkeit",
 			"flFlashOnUpd": "Displaybeleuchting bei neuem Block",
 			"mempoolInstanceHelpText": "Nur wirksam, wenn die BTClock-Datenquelle deaktiviert ist. \nZur Anwendung ist ein Neustart erforderlich.",
-			"luxLightToggle": "Automatisches Umschalten des Frontlichts bei Lux"
+			"luxLightToggle": "Automatisches Umschalten des Frontlichts bei Lux",
+			"wpTimeout": "WiFi-Konfigurationsportal timeout"
 		},
 		"control": {
 			"systemInfo": "Systeminfo",
