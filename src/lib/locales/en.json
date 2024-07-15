@@ -68,7 +68,8 @@
 			"uptime": "Uptime",
 			"wifiSignalStrength": "WiFi Signal strength",
 			"wsDataConnection": "BTClock data-source connection",
-			"lightSensor": "Light sensor"
+			"lightSensor": "Light sensor",
+			"nostrConnection": "Nostr Relay connection"
 		},
 		"firmwareUpdater": {
 			"fileUploadFailed": "File upload failed. Make sure you have selected the correct file and try again.",

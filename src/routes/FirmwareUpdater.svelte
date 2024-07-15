@@ -124,6 +124,8 @@
 	});
 
 	function compareVersions(version1: string, version2: string): number {
+		if (!version2) return 0;
+
 		const parts1 = version1.split('.').map((part) => parseInt(part, 10));
 		const parts2 = version2.split('.').map((part) => parseInt(part, 10));
 

@@ -166,11 +166,18 @@
 			<br />
 			<p>
 				{#if $settings.useNostr}
-					<span>Nostr connection status not available yet.</span>
+					{$_('section.status.nostrConnection')}:
+					<span>
+						{#if $status.connectionStatus && $status.connectionStatus.nostr}
+							&#9989;
+						{:else}
+							&#10060;
+						{/if}
+					</span>
 				{:else if !$settings.ownDataSource}
 					{$_('section.status.wsPriceConnection')}:
 					<span>
-						{#if $status.connectionStatus && $status.connectionStatus.price}
+						{#if $status.connectionStatus && $status.connectionStatus.nostr}
 							&#9989;
 						{:else}
 							&#10060;
