@@ -283,6 +283,22 @@
 						</Col>
 					</Row>
 				{/if}
+				{#if $settings.bitaxeEnabled}
+					<Row>
+						<Label md={6} for="bitaxeHostname" size={$uiSettings.inputSize}
+							>{$_('section.settings.bitaxeHostname')}</Label
+						>
+						<Col md="6">
+							<Input
+								type="text"
+								bind:value={$settings.bitaxeHostname}
+								name="bitaxeHostname"
+								id="bitaxeHostname"
+								bsSize={$uiSettings.inputSize}
+							></Input>
+						</Col>
+					</Row>
+				{/if}
 				{#if $settings.useNostr}
 					<Row>
 						<Label md={6} for="nostrPubKey" size={$uiSettings.inputSize}
@@ -517,6 +533,17 @@
 								type="switch"
 								bsSize={$uiSettings.inputSize}
 								label="{$_('section.settings.useNostr')} ({$_('restartRequired')})"
+							/>
+						</Col>
+					{/if}
+					{#if 'bitaxeEnabled' in $settings}
+						<Col md="6">
+							<Input
+								id="bitaxeEnabled"
+								bind:checked={$settings.bitaxeEnabled}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label="{$_('section.settings.bitaxeEnabled')} ({$_('restartRequired')})"
 							/>
 						</Col>
 					{/if}

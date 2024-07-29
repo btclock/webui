@@ -39,7 +39,9 @@
 			"wpTimeout": "WiFi-config portal timeout",
 			"nostrPubKey": "Nostr source pubkey",
 			"nostrRelay": "Nostr Relay",
-			"useNostr": "Use Nostr datasource"
+			"useNostr": "Use Nostr datasource",
+			"bitaxeHostname": "BitAxe hostname",
+			"bitaxeEnabled": "Enable BitAxe"
 		},
 		"control": {
 			"systemInfo": "System info",
