@@ -299,6 +299,24 @@
 						</Col>
 					</Row>
 				{/if}
+				{#if 'nostrZapNotify' in $settings}
+					<Row>
+						<Label md={6} for="nostrZapPubkey" size={$uiSettings.inputSize}
+							>{$_('section.settings.nostrZapPubkey')}</Label
+						>
+						<Col md="6">
+							<Input
+								type="text"
+								bind:value={$settings.nostrZapPubkey}
+								name="nostrZapPubkey"
+								id="nostrZapPubkey"
+								on:change={checkValidNostrPubkey}
+								invalid={!isValidHexPubKey($settings.nostrZapPubkey)}
+								bsSize={$uiSettings.inputSize}
+							></Input>
+						</Col>
+					</Row>
+				{/if}
 				{#if $settings.useNostr}
 					<Row>
 						<Label md={6} for="nostrPubKey" size={$uiSettings.inputSize}
@@ -316,6 +334,8 @@
 							></Input>
 						</Col>
 					</Row>
+				{/if}
+				{#if 'nostrZapNotify' in $settings || $settings.useNostr}
 					<Row>
 						<Label md={6} for="nostrRelay" size={$uiSettings.inputSize}
 							>{$_('section.settings.nostrRelay')}</Label
@@ -533,6 +553,17 @@
 								type="switch"
 								bsSize={$uiSettings.inputSize}
 								label="{$_('section.settings.useNostr')} ({$_('restartRequired')})"
+							/>
+						</Col>
+					{/if}
+					{#if 'nostrZapNotify' in $settings}
+						<Col md="6">
+							<Input
+								id="nostrZapNotify"
+								bind:checked={$settings.nostrZapNotify}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label="{$_('section.settings.nostrZapNotify')} ({$_('restartRequired')})"
 							/>
 						</Col>
 					{/if}

@@ -38,10 +38,13 @@
 			"luxLightToggle": "Auto toggle frontlight at lux",
 			"wpTimeout": "WiFi-config portal timeout",
 			"nostrPubKey": "Nostr source pubkey",
+			"nostrZapKey": "Nostr zap pubkey",
 			"nostrRelay": "Nostr Relay",
+			"nostrZapNotify": "Nostr Zap Notifications",
 			"useNostr": "Use Nostr datasource",
 			"bitaxeHostname": "BitAxe hostname",
-			"bitaxeEnabled": "Enable BitAxe"
+			"bitaxeEnabled": "Enable BitAxe",
+			"nostrZapPubkey": "Nostr Zap pubkey"
 		},
 		"control": {
 			"systemInfo": "System info",
