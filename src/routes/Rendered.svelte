@@ -7,16 +7,23 @@
 	const isSplitText = (str: string) => {
 		return str.includes('/');
 	};
+
+	export let className = 'btclock-wrapper';
 </script>
 
-<div class="btclock-wrapper" id="btclock-wrapper">
+<div class={className}>
 	<div class="btclock">
 		{#each status.data as char}
 			{#if isSplitText(char)}
 				<div class="splitText">
-					{#each char.split('/') as part}
+					{#if char.split('/').length}
+						<span class="top-text">{char.split('/')[0]}</span>
+						<hr />
+						<span class="bottom-text">{char.split('/')[1]}</span>
+					{/if}
+					<!-- {#each char.split('/') as part}
 						<div class="flex-items">{part}</div>
-					{/each}
+					{/each} -->
 				</div>
 			{:else if char.startsWith('mdi')}
 				<div class="digit icon">

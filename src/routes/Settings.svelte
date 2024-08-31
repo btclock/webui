@@ -96,9 +96,17 @@
 			}
 		});
 	};
+
+	// You can also add more props if needed
+	export let xs = 12;
+	export let sm = xs;
+	export let md = sm;
+	export let lg = md;
+	export let xl = lg;
+	export let xxl = xl;
 </script>
 
-<Col>
+<Col {xs} {sm} {md} {lg} {xl} {xxl}>
 	<Card>
 		<CardHeader>
 			<CardTitle>{$_('section.settings.title', { default: 'Settings' })}</CardTitle>
@@ -437,7 +445,7 @@
 					</Col>
 				</Row>
 				<Row>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="ledTestOnPower"
 							bind:checked={$settings.ledTestOnPower}
@@ -446,7 +454,7 @@
 							label={$_('section.settings.ledPowerOnTest')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="ledFlashOnUpd"
 							bind:checked={$settings.ledFlashOnUpd}
@@ -455,7 +463,7 @@
 							label={$_('section.settings.ledFlashOnBlock')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="stealFocus"
 							bind:checked={$settings.stealFocus}
@@ -464,7 +472,7 @@
 							label={$_('section.settings.StealFocusOnNewBlock')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="mcapBigChar"
 							bind:checked={$settings.mcapBigChar}
@@ -473,7 +481,7 @@
 							label={$_('section.settings.useBigCharsMcap')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="otaEnabled"
 							bind:checked={$settings.otaEnabled}
@@ -482,7 +490,7 @@
 							label="{$_('section.settings.otaUpdates')} ({$_('restartRequired')})"
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="mdnsEnabled"
 							bind:checked={$settings.mdnsEnabled}
@@ -491,7 +499,7 @@
 							label="{$_('section.settings.enableMdns')} ({$_('restartRequired')})"
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="fetchEurPrice"
 							bind:checked={$settings.fetchEurPrice}
@@ -500,7 +508,7 @@
 							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="useBlkCountdown"
 							bind:checked={$settings.useBlkCountdown}
@@ -509,7 +517,7 @@
 							label={$_('section.settings.useBlkCountdown')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="useSatsSymbol"
 							bind:checked={$settings.useSatsSymbol}
@@ -518,7 +526,7 @@
 							label={$_('section.settings.useSatsSymbol')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="suffixPrice"
 							bind:checked={$settings.suffixPrice}
@@ -527,7 +535,7 @@
 							label={$_('section.settings.suffixPrice')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="disableLeds"
 							bind:checked={$settings.disableLeds}
@@ -536,7 +544,7 @@
 							label={$_('section.settings.disableLeds')}
 						/>
 					</Col>
-					<Col md="6">
+					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="ownDataSource"
 							bind:checked={$settings.ownDataSource}
@@ -546,7 +554,7 @@
 						/>
 					</Col>
 					{#if $settings.nostrRelay}
-						<Col md="6">
+						<Col md="6" xl="12" xxl="6">
 							<Input
 								id="useNostr"
 								bind:checked={$settings.useNostr}
@@ -557,7 +565,7 @@
 						</Col>
 					{/if}
 					{#if 'nostrZapNotify' in $settings}
-						<Col md="6">
+						<Col md="6" xl="12" xxl="6">
 							<Input
 								id="nostrZapNotify"
 								bind:checked={$settings.nostrZapNotify}
@@ -568,7 +576,7 @@
 						</Col>
 					{/if}
 					{#if 'bitaxeEnabled' in $settings}
-						<Col md="6">
+						<Col md="6" xl="12" xxl="6">
 							<Input
 								id="bitaxeEnabled"
 								bind:checked={$settings.bitaxeEnabled}
@@ -579,7 +587,7 @@
 						</Col>
 					{/if}
 					{#if $settings.hasFrontlight}
-						<Col md="6">
+						<Col md="6" xl="12" xxl="6">
 							<Input
 								id="flAlwaysOn"
 								bind:checked={$settings.flAlwaysOn}
@@ -588,7 +596,7 @@
 								label={$_('section.settings.flAlwaysOn')}
 							/>
 						</Col>
-						<Col md="6">
+						<Col md="6" xl="12" xxl="6">
 							<Input
 								id="flFlashOnUpd"
 								bind:checked={$settings.flFlashOnUpd}
@@ -604,7 +612,7 @@
 					<h3>{$_('section.settings.screens')}</h3>
 					{#if $settings.screens}
 						{#each $settings.screens as s}
-							<Col md="6">
+							<Col md="6" xl="12" xxl="6">
 								<Input
 									id="screens_{s.id}"
 									bind:checked={s.enabled}

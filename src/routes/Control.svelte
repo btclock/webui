@@ -95,9 +95,17 @@
 	});
 
 	onDestroy(firstLedDataSubscription);
+
+	// You can also add more props if needed
+	export let xs = 12;
+	export let sm = xs;
+	export let md = sm;
+	export let lg = md;
+	export let xl = lg;
+	export let xxl = xl;
 </script>
 
-<Col>
+<Col {xs} {sm} {md} {lg} {xl} {xxl}>
 	<Card>
 		<CardHeader>
 			<CardTitle>{$_('section.control.title', { default: 'Control' })}</CardTitle>

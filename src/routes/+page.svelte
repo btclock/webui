@@ -122,10 +122,11 @@
 </svelte:head>
 
 <Container fluid>
-	<Row cols={{ xl: 3, md: 2, sm: 1 }}>
-		<Control bind:settings bind:status></Control>
-		<Status bind:settings bind:status></Status>
-		<Settings bind:settings on:showToast={showToast} on:formReset={fetchSettingsData}></Settings>
+	<Row>
+		<Control bind:settings bind:status lg="3" xxl="4"></Control>
+		<Status bind:settings bind:status lg="6" xxl="4"></Status>
+		<Settings bind:settings on:showToast={showToast} on:formReset={fetchSettingsData} lg="3" xxl="4"
+		></Settings>
 	</Row>
 </Container>
 <div class="position-fixed bottom-0 end-0 p-2">

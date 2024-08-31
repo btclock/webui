@@ -45,59 +45,106 @@ nav {
 	margin-bottom: 15px;
 }
 
-.splitText div:first-child::after {
-	display: block;
-	content: '';
-	margin-top: 0px;
-	border-bottom: 2px solid;
-	margin-bottom: 3px;
-}
-
 #btclock-wrapper {
 	margin: 0 auto;
 }
 
-//@include media-breakpoint-down(xl) {
 .btn-group-sm .btn {
 	font-size: 0.8rem;
 }
-//}
 
-.btclock {
-	border: 1px solid darkgray;
-	background: #000;
-	border-radius: 5px;
-	padding: 10px;
-	max-width: 700px;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-	align-content: stretch;
-	font-family: 'Oswald', sans-serif;
-	font-size: 1vw;
-	> div {
-		padding: 5px;
+#customText {
+	text-transform: uppercase;
+}
+
+.rbtclock {
+	.btclock {
+		background: #000;
+		display: flex;
+		font-size: calc(3vw + 3vh);
+		font-family: 'Oswald', sans-serif;
+		font-weight: 800;
+		padding: 10px;
+		gap: 10px;
+
+		.digit,
+		.splitText,
+		.mediumText {
+			border: 2px solid gold;
+			border-radius: 8px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 10px;
+			width: calc(12vw + 12vh); /* Set a dynamic width based on viewport */
+			aspect-ratio: 1 / 1.5; /* Maintain a 1:1 aspect ratio */
+
+			hr {
+				width: 80%; /* Line width relative to digit square */
+				border: 0;
+				border-top: 2px solid #fff;
+				margin: 0; /* Remove default margin */
+				padding: 0;
+				opacity: 1;
+			}
+		}
+
+		.mediumText {
+			font-size: calc(1.25vw + 1.25vh);
+		}
+
+		.splitText {
+			flex-direction: column; /* Stack the text and line vertically */
+			align-items: center;
+			justify-content: space-around; /* Distribute items with space between */
+			padding: 10px;
+		}
+
+		.splitText div:first-child::after {
+			display: block;
+			content: '';
+			margin-top: 0px;
+			border-bottom: 2px solid;
+			margin-bottom: 3px;
+		}
+
+		.splitText {
+			font-size: calc(1vw + 1vh);
+
+			.top-text,
+			.bottom-text {
+				margin: 0;
+				line-height: 1;
+			}
+
+			.top-text {
+				margin-bottom: -25px;
+			}
+
+			.bottom-text {
+				margin-top: -25px;
+			}
+		}
+
+		.digit-blank {
+			content: 'abc';
+		}
+
+		.digit.icon {
+			content: 'abc';
+		}
 	}
 
-	.digit,
-	.splitText,
-	.mediumText {
-		border: 2px solid gold;
-		border-radius: 8px;
+	.digit.sats {
+		font-family: 'Satoshi Symbol', sans-serif;
+		content: 'a';
+	}
 
-		@include media-breakpoint-up(sm) {
-			min-width: 10px;
+	@media (max-width: 576px) {
+		.btclock {
+			font-size: calc(3vw + 3vh); /* Adjust for small screens if necessary */
 		}
-
-		@include media-breakpoint-up(xxl) {
-			min-width: 70px;
-		}
-
-		text-align: center;
-		color: #fff;
 	}
 }
 
@@ -106,76 +153,26 @@ nav {
 	border-color: #fff;
 }
 
-.lightMode .btclock > div {
-	background: #fff;
+.darkMode .btclock > div {
+	background: #000;
+	color: #fff;
+}
+
+.lightMode .btclock {
+	& > div {
+		background: #fff;
+		color: #000;
+	}
+
+	.splitText hr {
+		border-top: 2px solid #000;
+	}
 }
 
 .lightMode .btclock > div {
 	color: #000;
 }
 
-.darkMode .btclock > div {
-	background: #000;
-}
-
-.splitText {
-	@include media-breakpoint-up(sm) {
-		font-size: 1rem;
-		padding-top: 8px !important;
-		padding-bottom: 9px !important;
-	}
-	@include media-breakpoint-up(xxl) {
-		font-size: 1.2rem;
-		padding-top: 2.1rem !important;
-		padding-bottom: 2.1rem !important;
-	}
-
-	text-align: center;
-}
-
-.mediumText {
-	font-size: 3rem;
-	padding-left: 5px;
-	padding-right: 5px;
-	@include media-breakpoint-up(sm) {
-		font-size: 1.8rem;
-		padding-top: 13px !important;
-		padding-bottom: 13px !important;
-	}
-	@include media-breakpoint-up(xxl) {
-		font-size: 3rem;
-		padding-top: 29px !important;
-		padding-bottom: 29px !important;
-	}
-}
-
-.digit {
-	font-size: 5rem;
-	@include media-breakpoint-up(sm) {
-		font-size: 2.5rem;
-	}
-	@include media-breakpoint-up(xxl) {
-		font-size: 5rem;
-	}
-	padding-left: 10px;
-	padding-right: 10px;
-}
-
-.digit.sats {
-	padding-top: 15px;
-	padding-bottom: 5px;
-	font-size: 4.5rem;
-	font-family: 'Satoshi Symbol', sans-serif;
-	content: 'a';
-}
-
-.digit-blank {
-	content: 'abc';
-}
-
-#customText {
-	text-transform: uppercase;
-}
 .system_info {
 	padding: 0;
 
