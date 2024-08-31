@@ -2,6 +2,7 @@
 	export let status = {};
 	import RocketIcon from '../icons/RocketIcon.svelte';
 	import PickaxeIcon from '../icons/PickaxeIcon.svelte';
+	import ZapIcon from '../icons/ZapIcon.svelte';
 
 	const isSplitText = (str: string) => {
 		return str.includes('/');
@@ -25,9 +26,12 @@
 					{#if char.endsWith('pickaxe')}
 						<PickaxeIcon></PickaxeIcon>
 					{/if}
+					{#if char.endsWith('bolt')}
+						<ZapIcon></ZapIcon>
+					{/if}
 				</div>
 			{:else if char === 'STS'}
-				<div class="digit sats"></div>
+				<div class="digit sats">S</div>
 			{:else if char.length >= 3}
 				<div class="mediumText">{char}</div>
 			{:else if char.length === 0 || char === ' '}

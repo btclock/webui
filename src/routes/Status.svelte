@@ -165,7 +165,7 @@
 			{$_('section.status.uptime')}: {toUptimestring($status.espUptime)}
 			<br />
 			<p>
-				{#if $settings.useNostr}
+				{#if $settings.useNostr || $settings.nostrZapNotify}
 					{$_('section.status.nostrConnection')}:
 					<span>
 						{#if $status.connectionStatus && $status.connectionStatus.nostr}
@@ -174,35 +174,38 @@
 							&#10060;
 						{/if}
 					</span>
-				{:else if !$settings.ownDataSource}
-					{$_('section.status.wsPriceConnection')}:
-					<span>
-						{#if $status.connectionStatus && $status.connectionStatus.nostr}
-							&#9989;
-						{:else}
-							&#10060;
-						{/if}
-					</span>
-					-
-					{$_('section.status.wsMempoolConnection', {
-						values: { instance: $settings.mempoolInstance }
-					})}:
-					<span>
-						{#if $status.connectionStatus && $status.connectionStatus.blocks}
-							&#9989;
-						{:else}
-							&#10060;
-						{/if}
-					</span><br />
-				{:else}
-					{$_('section.status.wsDataConnection')}:
-					<span>
-						{#if $status.connectionStatus && $status.connectionStatus.price}
-							&#9989;
-						{:else}
-							&#10060;
-						{/if}
-					</span>
+				{/if}
+				{#if !$settings.useNostr}
+					{#if !$settings.ownDataSource}
+						{$_('section.status.wsPriceConnection')}:
+						<span>
+							{#if $status.connectionStatus && $status.connectionStatus.nostr}
+								&#9989;
+							{:else}
+								&#10060;
+							{/if}
+						</span>
+						-
+						{$_('section.status.wsMempoolConnection', {
+							values: { instance: $settings.mempoolInstance }
+						})}:
+						<span>
+							{#if $status.connectionStatus && $status.connectionStatus.blocks}
+								&#9989;
+							{:else}
+								&#10060;
+							{/if}
+						</span><br />
+					{:else}
+						{$_('section.status.wsDataConnection')}:
+						<span>
+							{#if $status.connectionStatus && $status.connectionStatus.price}
+								&#9989;
+							{:else}
+								&#10060;
+							{/if}
+						</span>
+					{/if}
 				{/if}
 				{#if $settings.fetchEurPrice}
 					<small>{$_('section.status.fetchEuroNote')}</small>
