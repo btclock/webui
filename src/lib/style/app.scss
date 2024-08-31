@@ -63,7 +63,7 @@ nav {
 		display: flex;
 		font-size: calc(3vw + 3vh);
 		font-family: 'Oswald', sans-serif;
-		font-weight: 800;
+		font-weight: 400;
 		padding: 10px;
 		gap: 10px;
 
@@ -81,7 +81,7 @@ nav {
 			aspect-ratio: 1 / 1.5; /* Maintain a 1:1 aspect ratio */
 
 			hr {
-				width: 80%; /* Line width relative to digit square */
+				width: 75%; /* Line width relative to digit square */
 				border: 0;
 				border-top: 2px solid #fff;
 				margin: 0; /* Remove default margin */
@@ -110,7 +110,7 @@ nav {
 		}
 
 		.splitText {
-			font-size: calc(1vw + 1vh);
+			font-size: calc(0.5vw + 1vh);
 
 			.top-text,
 			.bottom-text {
@@ -119,11 +119,11 @@ nav {
 			}
 
 			.top-text {
-				margin-bottom: -25px;
+				margin-bottom: -45px;
 			}
 
 			.bottom-text {
-				margin-top: -25px;
+				margin-top: -45px;
 			}
 		}
 
@@ -156,6 +156,8 @@ nav {
 			}
 
 			.splitText {
+				font-size: calc(1.2vw + 1.2vh);
+
 				.top-text,
 				.bottom-text {
 					margin: 0;
