@@ -109,7 +109,7 @@
 				<hr />
 				{#if $status.data}
 					<section class={lightMode ? 'lightMode' : 'darkMode'}>
-						<Rendered status={$status} className="rbtclock"></Rendered>
+						<Rendered status={$status} className="btclock-wrapper"></Rendered>
 					</section>
 					{$_('section.status.screenCycle')}:
 					<a

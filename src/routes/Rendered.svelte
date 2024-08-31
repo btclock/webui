@@ -11,7 +11,7 @@
 	export let className = 'btclock-wrapper';
 </script>
 
-<div class={className}>
+<div class={className} id={className}>
 	<div class="btclock">
 		{#each status.data as char}
 			{#if isSplitText(char)}
