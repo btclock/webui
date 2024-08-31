@@ -21,6 +21,16 @@
 	export let settings;
 	export let status: writable<object>;
 
+	// Function to split array into chunks
+	const chunkArray = (array, chunkSize) => {
+		const result = [];
+		for (let i = 0; i < array.length; i += chunkSize) {
+			result.push(array.slice(i, i + chunkSize));
+		}
+		return result;
+	};
+	let buttonChunks = chunkArray([], 6);
+
 	const toTime = (secs: number) => {
 		var hours = Math.floor(secs / (60 * 60));
 
@@ -65,6 +75,8 @@
 
 	settings.subscribe((value: object) => {
 		lightMode = value.bgColor > value.fgColor;
+
+		if (value.screens) buttonChunks = chunkArray(value.screens, 5);
 	});
 
 	const setScreen = (id: number) => () => {
@@ -95,7 +107,20 @@
 		</CardHeader>
 		<CardBody>
 			{#if $settings.screens}
-				<div class="d-flex justify-content-center">
+				<div class=" d-block d-sm-none mx-auto text-center">
+					{#each buttonChunks as chunk}
+						<ButtonGroup size="sm" class="mx-auto mb-1">
+							{#each chunk as s}
+								<Button
+									color="outline-primary"
+									active={$status.currentScreen == s.id}
+									on:click={setScreen(s.id)}>{s.name}</Button
+								>
+							{/each}
+						</ButtonGroup>
+					{/each}
+				</div>
+				<div class="d-flex justify-content-center d-none d-sm-flex">
 					<ButtonGroup size="sm">
 						{#each $settings.screens as s}
 							<Button
