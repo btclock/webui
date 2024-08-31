@@ -133,7 +133,7 @@
 	<div class="">
 		<Toast
 			isOpen={toastIsOpen}
-			class="me-1 bg-{toastColor}"
+			class="me-1 bg-{toastColor} text-bg-{toastColor}"
 			autohide
 			on:close={() => (toastIsOpen = false)}
 		>

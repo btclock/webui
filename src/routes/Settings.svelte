@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { isValidNostrRelay, getPubKey, isValidHexPubKey } from '$lib';
+	import { isValidNostrRelay, getPubKey, isValidHexPubKey, isValidNpub } from '$lib';
 	import { PUBLIC_BASE_URL } from '$lib/config';
 	import { uiSettings } from '$lib/uiSettings';
 	import { createEventDispatcher } from 'svelte';
@@ -52,6 +52,10 @@
 
 	const onSave = async (e: Event) => {
 		e.preventDefault();
+
+		// const form = e.target as HTMLFormElement;
+		// const formData = new FormData(form);
+
 		let formSettings = $settings;
 
 		delete formSettings['gitRev'];
@@ -84,8 +88,49 @@
 		validNostrRelay = await isValidNostrRelay($settings.nostrRelay);
 	};
 
-	const checkValidNostrPubkey = () => {
-		$settings.nostrPubKey = getPubKey($settings.nostrPubKey);
+	let validBitaxe = false;
+	const testBitaxe = async () => {
+		try {
+			const response = await fetch(`http://${$settings.bitaxeHostname}/api/system/info`);
+
+			if (!response.ok) {
+				dispatch('showToast', {
+					color: 'danger',
+					text: `Failed to connect to BitAxe HTTP error! status: ${response.status}`
+				});
+				validBitaxe = false;
+				throw new Error();
+			}
+
+			const systemInfo = await response.json();
+			dispatch('showToast', {
+				color: 'success',
+				text: `Connected to BitAxe ${systemInfo.ASICModel} (Board version ${systemInfo.boardVersion}) running firmware ${systemInfo.version}.\r\nCurrent hashrate ${Math.round(systemInfo.hashRate)} GH/s`
+			});
+			validBitaxe = true;
+		} catch (error) {
+			if (error instanceof TypeError && error.message.includes('Failed to fetch')) {
+				dispatch('showToast', {
+					color: 'danger',
+					text: `Failed to connect to BitAxe, make sure you are connected to the same network.`
+				});
+			}
+			console.error('Failed to fetch Bitaxe system info:', error);
+			validBitaxe = false;
+		}
+	};
+
+	const checkValidNostrPubkey = (key) => {
+		if (isValidNpub($settings[key])) {
+			dispatch('showToast', {
+				color: 'info',
+				text: $_('section.settings.convertingValidNpub')
+			});
+		}
+
+		let ret = getPubKey($settings[key]);
+
+		if (ret) $settings[key] = ret;
 	};
 
 	const onFlBrightnessChange = async () => {
@@ -160,6 +205,7 @@
 								id="timePerScreen"
 								min={1}
 								step="1"
+								required
 								bind:value={$settings.timePerScreen}
 							/>
 							<InputGroupText>{$_('time.minutes')}</InputGroupText>
@@ -177,6 +223,7 @@
 								id="fullRefreshMin"
 								min={1}
 								step="1"
+								required
 								bind:value={$settings.fullRefreshMin}
 							/>
 							<InputGroupText>{$_('time.minutes')}</InputGroupText>
@@ -212,6 +259,7 @@
 								step="1"
 								name="tzOffset"
 								id="tzOffset"
+								required
 								bind:value={$settings.tzOffset}
 							/>
 							<InputGroupText>{$_('time.minutes')}</InputGroupText>
@@ -297,17 +345,23 @@
 							>{$_('section.settings.bitaxeHostname')}</Label
 						>
 						<Col md="6">
-							<Input
-								type="text"
-								bind:value={$settings.bitaxeHostname}
-								name="bitaxeHostname"
-								id="bitaxeHostname"
-								bsSize={$uiSettings.inputSize}
-							></Input>
+							<InputGroup size={$uiSettings.inputSize}>
+								<Input
+									type="text"
+									bind:value={$settings.bitaxeHostname}
+									name="bitaxeHostname"
+									valid={validBitaxe}
+									id="bitaxeHostname"
+									required
+								></Input>
+								<Button type="button" color="success" on:click={testBitaxe}
+									>{$_('test', { default: 'Test' })}</Button
+								>
+							</InputGroup>
 						</Col>
 					</Row>
 				{/if}
-				{#if 'nostrZapNotify' in $settings}
+				{#if 'nostrZapNotify' in $settings && $settings['nostrZapNotify']}
 					<Row>
 						<Label md={6} for="nostrZapPubkey" size={$uiSettings.inputSize}
 							>{$_('section.settings.nostrZapPubkey')}</Label
@@ -318,10 +372,15 @@
 								bind:value={$settings.nostrZapPubkey}
 								name="nostrZapPubkey"
 								id="nostrZapPubkey"
-								on:change={checkValidNostrPubkey}
+								on:change={() => checkValidNostrPubkey('nostrZapPubkey')}
 								invalid={!isValidHexPubKey($settings.nostrZapPubkey)}
 								bsSize={$uiSettings.inputSize}
+								required
+								minlength="64"
 							></Input>
+							{#if !isValidHexPubKey($settings.nostrZapPubkey)}
+								<FormText>{$_('section.settings.invalidNostrPubkey')}</FormText>
+							{/if}
 						</Col>
 					</Row>
 				{/if}
@@ -336,10 +395,13 @@
 								bind:value={$settings.nostrPubKey}
 								name="nostrPubKey"
 								id="nostrPubKey"
-								on:change={checkValidNostrPubkey}
+								on:change={() => checkValidNostrPubkey('nostrPubKey')}
 								invalid={!isValidHexPubKey($settings.nostrPubKey)}
 								bsSize={$uiSettings.inputSize}
 							></Input>
+							{#if !isValidHexPubKey($settings.nostrPubKey)}
+								<FormText>{$_('section.settings.invalidNostrPubkey')}</FormText>
+							{/if}
 						</Col>
 					</Row>
 				{/if}
@@ -357,6 +419,7 @@
 									id="nostrRelay"
 									valid={validNostrRelay}
 									bsSize={$uiSettings.inputSize}
+									required
 								></Input>
 								<Button type="button" color="success" on:click={testNostrRelay}
 									>{$_('test', { default: 'Test' })}</Button
@@ -378,6 +441,7 @@
 								id="mempoolInstance"
 								disabled={$settings.ownDataSource}
 								bsSize="sm"
+								required
 							></Input>
 							<InputGroupText>
 								<Input
@@ -404,6 +468,8 @@
 							name="hostnamePrefix"
 							id="hostnamePrefix"
 							bsSize={$uiSettings.inputSize}
+							required
+							minlength="1"
 						></Input>
 					</Col>
 				</Row>
@@ -439,6 +505,7 @@
 								min={1}
 								step="1"
 								bind:value={$settings.wpTimeout}
+								required
 							/>
 							<InputGroupText>{$_('time.seconds')}</InputGroupText>
 						</InputGroup>

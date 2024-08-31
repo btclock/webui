@@ -42,9 +42,11 @@
 			"nostrRelay": "Nostr Relay",
 			"nostrZapNotify": "Nostr Zap Notifications",
 			"useNostr": "Use Nostr datasource",
-			"bitaxeHostname": "BitAxe hostname",
+			"bitaxeHostname": "BitAxe hostname or IP",
 			"bitaxeEnabled": "Enable BitAxe",
-			"nostrZapPubkey": "Nostr Zap pubkey"
+			"nostrZapPubkey": "Nostr Zap pubkey",
+			"invalidNostrPubkey": "Invalid Nostr pubkey, note that your pubkey does NOT start with npub.",
+			"convertingValidNpub": "Converting valid npub to pubkey"
 		},
 		"control": {
 			"systemInfo": "System info",

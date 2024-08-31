@@ -44,6 +44,13 @@ const settingsJson = {
 	ip: '192.168.20.231',
 	txPower: 78,
 	gitRev: '25d8b92bcbc8938417c140355ea3ba99ff9eb4b7',
+	gitTag: '3.1.9',
+	bitaxeEnabled: false,
+	bitaxeHostname: 'bitaxe1',
+	nostrZapNotify: true,
+	hwRev: 'REV_A_EPD_2_13',
+	fsRev: '4c5d9616212b27e3f05c35370f0befcf2c5a04b2',
+	nostrZapPubkey: 'b5127a08cf33616274800a4387881a9f98e04b9c37116e92de5250498635c422',
 	lastBuildTime: '1700666677',
 	screens: [
 		{ id: 0, name: 'Block Height', enabled: true },
@@ -185,6 +192,34 @@ test('info message when fetch eur price is enabled', async ({ page }) => {
 	expect(isSwitchNowEnabled).toBe(true);
 
 	await expect(page.getByText('the WS Price connection will show')).toBeVisible();
+});
+
+test('npub values will be converted to hex pubkeys', async ({ page }) => {
+	await page.goto('/');
+
+	for (const field of ['#nostrZapPubkey']) {
+		for (const val of ['npub1k5f85zx0xdskyayqpfpc0zq6n7vwqjuuxugkayk72fgynp34cs3qfcvqg2']) {
+			await page.fill(field, val);
+
+			await page.getByLabel('Nostr Relay').click();
+			const resultValue = await page.$eval(field, (input: HTMLInputElement) => input.value);
+
+			expect(resultValue).toBe('b5127a08cf33616274800a4387881a9f98e04b9c37116e92de5250498635c422');
+		}
+	}
+});
+
+test('empty nostr relay field is not accepted', async ({ page }) => {
+	await page.goto('/');
+
+	const nostrRelayField = page.getByLabel('Nostr Relay');
+
+	nostrRelayField.fill('');
+
+	await page.getByRole('button', { name: 'Save' }).click();
+	const validationMessage = await nostrRelayField.evaluate((el) => el.validationMessage);
+
+	expect(validationMessage).toContain('Please fill out this field');
 });
 
 test('screens should be able to change', async ({ page }) => {
