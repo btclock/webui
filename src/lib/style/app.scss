@@ -7,12 +7,6 @@
 @import '@fontsource/oswald/latin-400.css';
 @import './satsymbol';
 
-$bootstrap-icons-font: 'bootstrap-icons' !default;
-$bootstrap-icons-font-dir: 'bootstrap-icons/font//fonts' !default;
-$bootstrap-icons-font-file: '#{$bootstrap-icons-font-dir}/#{$bootstrap-icons-font}' !default;
-
-@import 'bootstrap-icons/font/bootstrap-icons.scss';
-
 $color-mode-type: media-query;
 $font-family-base: 'Ubuntu';
 $font-size-base: 0.9rem;

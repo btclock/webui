@@ -14,13 +14,14 @@
 		Col,
 		Form,
 		FormText,
-		Icon,
 		Input,
 		InputGroup,
 		InputGroupText,
 		Label,
 		Row
 	} from 'sveltestrap';
+	import EyeIcon from '../icons/EyeIcon.svelte';
+	import EyeSlashIcon from '../icons/EyeSlashIcon.svelte';
 
 	export let settings;
 
@@ -504,7 +505,8 @@
 									type="button"
 									on:click={() => (showPassword = !showPassword)}
 									color={showPassword ? 'success' : 'danger'}
-									><Icon name={showPassword ? 'eye-slash' : 'eye'}></Icon></Button
+									>{#if !showPassword}<EyeIcon></EyeIcon>{:else}<EyeSlashIcon
+										></EyeSlashIcon>{/if}</Button
 								>
 							</InputGroup>
 							<FormText>{$_('section.settings.httpAuthText')}</FormText>
