@@ -37,7 +37,10 @@
 			"luxLightToggle": "Cambio automático de luz frontal en lux",
 			"wpTimeout": "Portal de configuración WiFi timeout",
 			"useNostr": "Utilice la fuente de datos Nostr",
-			"flDisable": "Desactivar luz de la pantalla"
+			"flDisable": "Desactivar luz de la pantalla",
+			"httpAuthUser": "Nombre de usuario WebUI",
+			"httpAuthPass": "Contraseña WebUI",
+			"httpAuthText": "Solo la WebUI está protegida con contraseña, no las llamadas API."
 		},
 		"control": {
 			"turnOff": "Apagar",

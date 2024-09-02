@@ -38,7 +38,10 @@
 			"luxLightToggle": "Schakelen displaylicht op lux",
 			"wpTimeout": "WiFi-config-portal timeout",
 			"useNostr": "Gebruik Nostr-gegevensbron",
-			"flDisable": "Schakel Displaylicht uit"
+			"flDisable": "Schakel Displaylicht uit",
+			"httpAuthUser": "WebUI-gebruikersnaam",
+			"httpAuthPass": "WebUI-wachtwoord",
+			"httpAuthText": "Beveiligd enkel WebUI, niet de API."
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",

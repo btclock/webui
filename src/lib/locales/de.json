@@ -38,7 +38,10 @@
 			"luxLightToggle": "Automatisches Umschalten des Frontlichts bei Lux",
 			"wpTimeout": "WiFi-Konfigurationsportal timeout",
 			"useNostr": "Nostr-Datenquelle verwenden",
-			"flDisable": "Displaybeleuchtung deaktivieren"
+			"flDisable": "Displaybeleuchtung deaktivieren",
+			"httpAuthUser": "WebUI-Benutzername",
+			"httpAuthPass": "WebUI-Passwort",
+			"httpAuthText": "Schützt nur die WebUI mit einem Passwort, nicht API-Aufrufe."
 		},
 		"control": {
 			"systemInfo": "Systeminfo",

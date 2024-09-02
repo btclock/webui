@@ -14,6 +14,7 @@
 		Col,
 		Form,
 		FormText,
+		Icon,
 		Input,
 		InputGroup,
 		InputGroupText,
@@ -62,18 +63,32 @@
 		delete formSettings['ip'];
 		delete formSettings['lastBuildTime'];
 
+		let headers = new Headers({
+			'Content-Type': 'application/json'
+		});
+
+		//if ($settings.httpAuthEnabled) {
+		//	headers.set('Authorization', 'Basic ' + btoa($settings.httpAuthUser + ":" + $settings.httpAuthPass));
+		//}
+
 		await fetch(`${PUBLIC_BASE_URL}/api/json/settings`, {
 			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json'
-			},
+			headers: headers,
+			credentials: 'same-origin',
 			body: JSON.stringify(formSettings)
 		})
-			.then(() => {
-				dispatch('showToast', {
-					color: 'success',
-					text: $_('section.settings.settingsSaved')
-				});
+			.then((data) => {
+				if (data.status == 200) {
+					dispatch('showToast', {
+						color: 'success',
+						text: $_('section.settings.settingsSaved')
+					});
+				} else {
+					dispatch('showToast', {
+						color: 'danger',
+						text: `${data.status}: ${data.statusText}`
+					});
+				}
 			})
 			.catch(() => {
 				dispatch('showToast', {
@@ -141,6 +156,8 @@
 			}
 		});
 	};
+
+	let showPassword = false;
 
 	// You can also add more props if needed
 	export let xs = 12;
@@ -457,6 +474,43 @@
 						<FormText>{$_('section.settings.mempoolInstanceHelpText')}</FormText>
 					</Col>
 				</Row>
+				{#if $settings.httpAuthEnabled}
+					<Row>
+						<Label md={6} for="httpAuthUser" size="sm">{$_('section.settings.httpAuthUser')}</Label>
+						<Col md="6">
+							<Input
+								type="text"
+								bind:value={$settings.httpAuthUser}
+								name="httpAuthUser"
+								id="httpAuthUser"
+								bsSize="sm"
+								required
+							></Input>
+						</Col>
+					</Row>
+					<Row>
+						<Label md={6} for="httpAuthPass" size="sm">{$_('section.settings.httpAuthPass')}</Label>
+						<Col md="6">
+							<InputGroup size={$uiSettings.inputSize}>
+								<Input
+									type={showPassword ? 'text' : 'password'}
+									bind:value={$settings.httpAuthPass}
+									name="httpAuthPass"
+									id="httpAuthPass"
+									bsSize="sm"
+									required
+								></Input>
+								<Button
+									type="button"
+									on:click={() => (showPassword = !showPassword)}
+									color={showPassword ? 'success' : 'danger'}
+									><Icon name={showPassword ? 'eye-slash' : 'eye'}></Icon></Button
+								>
+							</InputGroup>
+							<FormText>{$_('section.settings.httpAuthText')}</FormText>
+						</Col>
+					</Row>
+				{/if}
 				<Row>
 					<Label md={6} for="hostnamePrefix" size={$uiSettings.inputSize}
 						>{$_('section.settings.hostnamePrefix')}</Label
@@ -482,7 +536,7 @@
 							type="select"
 							bind:value={$settings.txPower}
 							name="select"
-							id="fgColor"
+							id="wifiTxPower"
 							bsSize={$uiSettings.inputSize}
 							class={$uiSettings.selectClass}
 						>
@@ -501,7 +555,7 @@
 						<InputGroup size={$uiSettings.inputSize}>
 							<Input
 								type="number"
-								id="minSecPriceUpd"
+								id="wpTimeout"
 								min={1}
 								step="1"
 								bind:value={$settings.wpTimeout}
@@ -683,6 +737,15 @@
 							type="switch"
 							bsSize={$uiSettings.inputSize}
 							label="{$_('section.settings.enableMdns')} ({$_('restartRequired')})"
+						/>
+					</Col>
+					<Col md="6" xl="12" xxl="6">
+						<Input
+							id="httpAuthEnabled"
+							bind:checked={$settings.httpAuthEnabled}
+							type="switch"
+							bsSize={$uiSettings.inputSize}
+							label="{$_('section.settings.httpAuthEnabled')} ({$_('restartRequired')})"
 						/>
 					</Col>
 				</Row>
