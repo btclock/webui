@@ -33,7 +33,7 @@
 	});
 
 	const fetchStatusData = () => {
-		fetch(`${PUBLIC_BASE_URL}/api/status`)
+		fetch(`${PUBLIC_BASE_URL}/api/status`, { credentials: 'same-origin' })
 			.then((res) => res.json())
 			.then((data) => {
 				status.set(data);
@@ -41,7 +41,7 @@
 	};
 
 	const fetchSettingsData = () => {
-		fetch(PUBLIC_BASE_URL + `/api/settings`)
+		fetch(PUBLIC_BASE_URL + `/api/settings`, { credentials: 'same-origin' })
 			.then((res) => res.json())
 			.then((data) => {
 				data.fgColor = String(data.fgColor);
