@@ -286,7 +286,7 @@
 						/>
 					</Col>
 				</Row>
-				{#if $settings.hasFrontlight}
+				{#if $settings.hasFrontlight && !$settings.flDisable}
 					<Row>
 						<Label md={6} for="flMaxBrightness" size={$uiSettings.inputSize}
 							>{$_('section.settings.flMaxBrightness')}</Label
@@ -548,33 +548,7 @@
 							label={$_('section.settings.useBigCharsMcap')}
 						/>
 					</Col>
-					<Col md="6" xl="12" xxl="6">
-						<Input
-							id="otaEnabled"
-							bind:checked={$settings.otaEnabled}
-							type="switch"
-							bsSize={$uiSettings.inputSize}
-							label="{$_('section.settings.otaUpdates')} ({$_('restartRequired')})"
-						/>
-					</Col>
-					<Col md="6" xl="12" xxl="6">
-						<Input
-							id="mdnsEnabled"
-							bind:checked={$settings.mdnsEnabled}
-							type="switch"
-							bsSize={$uiSettings.inputSize}
-							label="{$_('section.settings.enableMdns')} ({$_('restartRequired')})"
-						/>
-					</Col>
-					<Col md="6" xl="12" xxl="6">
-						<Input
-							id="fetchEurPrice"
-							bind:checked={$settings.fetchEurPrice}
-							type="switch"
-							bsSize={$uiSettings.inputSize}
-							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
-						/>
-					</Col>
+
 					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="useBlkCountdown"
@@ -609,6 +583,46 @@
 							type="switch"
 							bsSize={$uiSettings.inputSize}
 							label={$_('section.settings.disableLeds')}
+						/>
+					</Col>
+					{#if $settings.hasFrontlight}
+						<Col md="6" xl="12" xxl="6">
+							<Input
+								id="flDisable"
+								bind:checked={$settings.flDisable}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label={$_('section.settings.flDisable')}
+							/>
+						</Col>
+					{/if}
+					{#if $settings.hasFrontlight && !$settings.flDisable}
+						<Col md="6" xl="12" xxl="6">
+							<Input
+								id="flAlwaysOn"
+								bind:checked={$settings.flAlwaysOn}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label={$_('section.settings.flAlwaysOn')}
+							/>
+						</Col>
+						<Col md="6" xl="12" xxl="6">
+							<Input
+								id="flFlashOnUpd"
+								bind:checked={$settings.flFlashOnUpd}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label={$_('section.settings.flFlashOnUpd')}
+							/>
+						</Col>
+					{/if}
+					<Col md="6" xl="12" xxl="6">
+						<Input
+							id="fetchEurPrice"
+							bind:checked={$settings.fetchEurPrice}
+							type="switch"
+							bsSize={$uiSettings.inputSize}
+							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
 						/>
 					</Col>
 					<Col md="6" xl="12" xxl="6">
@@ -653,26 +667,24 @@
 							/>
 						</Col>
 					{/if}
-					{#if $settings.hasFrontlight}
-						<Col md="6" xl="12" xxl="6">
-							<Input
-								id="flAlwaysOn"
-								bind:checked={$settings.flAlwaysOn}
-								type="switch"
-								bsSize={$uiSettings.inputSize}
-								label={$_('section.settings.flAlwaysOn')}
-							/>
-						</Col>
-						<Col md="6" xl="12" xxl="6">
-							<Input
-								id="flFlashOnUpd"
-								bind:checked={$settings.flFlashOnUpd}
-								type="switch"
-								bsSize={$uiSettings.inputSize}
-								label={$_('section.settings.flFlashOnUpd')}
-							/>
-						</Col>
-					{/if}
+					<Col md="6" xl="12" xxl="6">
+						<Input
+							id="otaEnabled"
+							bind:checked={$settings.otaEnabled}
+							type="switch"
+							bsSize={$uiSettings.inputSize}
+							label="{$_('section.settings.otaUpdates')} ({$_('restartRequired')})"
+						/>
+					</Col>
+					<Col md="6" xl="12" xxl="6">
+						<Input
+							id="mdnsEnabled"
+							bind:checked={$settings.mdnsEnabled}
+							type="switch"
+							bsSize={$uiSettings.inputSize}
+							label="{$_('section.settings.enableMdns')} ({$_('restartRequired')})"
+						/>
+					</Col>
 				</Row>
 
 				<Row>

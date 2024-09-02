@@ -37,7 +37,8 @@
 			"mempoolInstanceHelpText": "Alleen effectief als de BTClock-gegevensbron is uitgeschakeld. \nOm toe te passen is een herstart nodig.",
 			"luxLightToggle": "Schakelen displaylicht op lux",
 			"wpTimeout": "WiFi-config-portal timeout",
-			"useNostr": "Gebruik Nostr-gegevensbron"
+			"useNostr": "Gebruik Nostr-gegevensbron",
+			"flDisable": "Schakel Displaylicht uit"
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",

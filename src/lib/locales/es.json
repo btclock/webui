@@ -36,7 +36,8 @@
 			"mempoolInstanceHelpText": "Solo es efectivo cuando la fuente de datos BTClock está deshabilitada. \nEs necesario reiniciar para aplicar.",
 			"luxLightToggle": "Cambio automático de luz frontal en lux",
 			"wpTimeout": "Portal de configuración WiFi timeout",
-			"useNostr": "Utilice la fuente de datos Nostr"
+			"useNostr": "Utilice la fuente de datos Nostr",
+			"flDisable": "Desactivar luz de la pantalla"
 		},
 		"control": {
 			"turnOff": "Apagar",

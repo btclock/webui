@@ -187,7 +187,7 @@
 				</Form>
 				<hr />
 			{/if}
-			{#if $settings.hasFrontlight}
+			{#if $settings.hasFrontlight && !$settings.flDisable}
 				<h3>{$_('section.control.frontlight')}</h3>
 				<Row class="d-flex justify-content-between justify-content-md-end">
 					<Col md="auto" class="">

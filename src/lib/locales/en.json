@@ -46,7 +46,8 @@
 			"bitaxeEnabled": "Enable BitAxe",
 			"nostrZapPubkey": "Nostr Zap pubkey",
 			"invalidNostrPubkey": "Invalid Nostr pubkey, note that your pubkey does NOT start with npub.",
-			"convertingValidNpub": "Converting valid npub to pubkey"
+			"convertingValidNpub": "Converting valid npub to pubkey",
+			"flDisable": "Disable frontlight"
 		},
 		"control": {
 			"systemInfo": "System info",

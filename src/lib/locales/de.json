@@ -37,7 +37,8 @@
 			"mempoolInstanceHelpText": "Nur wirksam, wenn die BTClock-Datenquelle deaktiviert ist. \nZur Anwendung ist ein Neustart erforderlich.",
 			"luxLightToggle": "Automatisches Umschalten des Frontlichts bei Lux",
 			"wpTimeout": "WiFi-Konfigurationsportal timeout",
-			"useNostr": "Nostr-Datenquelle verwenden"
+			"useNostr": "Nostr-Datenquelle verwenden",
+			"flDisable": "Displaybeleuchtung deaktivieren"
 		},
 		"control": {
 			"systemInfo": "Systeminfo",
