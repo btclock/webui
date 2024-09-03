@@ -179,7 +179,7 @@ test('time values can not be zero or negative', async ({ page }) => {
 test('info message when fetch eur price is enabled', async ({ page }) => {
 	await page.goto('/');
 	const inputField = 'input#fetchEurPrice';
-	const switchElement = await page.$(inputField);
+	const switchElement = await page.locator(inputField);
 
 	expect(switchElement).toBeTruthy();
 	const isSwitchEnabled = await switchElement.isChecked();
