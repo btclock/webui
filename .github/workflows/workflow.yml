@@ -100,7 +100,9 @@ jobs:
       - name: Create tarball
         run: tar czf webui.tgz --strip-components=1 dist
       - name: Build LittleFS
-        run: /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 output/littlefs.bin
+        run: |
+          set -e
+          /tmp/mklittlefs/mklittlefs -c build_gz -s 409600 output/littlefs.bin
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
