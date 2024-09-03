@@ -108,6 +108,7 @@ jobs:
             webui.tgz
             output/littlefs.bin
       - name: Create release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         uses: ncipollo/release-action@v1
         with:
           tag: ${{ steps.getBlockHeight.outputs.blockHeight }}
@@ -118,6 +119,7 @@ jobs:
           removeArtifacts: true
           makeLatest: true
       - name: Pushes littlefs.bin to web flasher
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         id: push_directory
         uses: cpina/github-action-push-to-another-repository@main
         env:

@@ -46,7 +46,7 @@
 		if ($locale) {
 			let newLanguageNames = new Intl.DisplayNames([$locale], { type: 'language' });
 
-			for (let l: string of $locales) {
+			for (let l of $locales) {
 				languageNames[l] = newLanguageNames.of(l);
 			}
 		}

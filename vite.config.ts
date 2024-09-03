@@ -10,7 +10,7 @@ const doRewrap = ({ cssClass }) => {
 		if (fs.existsSync(path.resolve(__dirname, 'dist/bundle.js'))) {
 			return;
 		}
-	} catch (e) {}
+	} catch {}
 	console.log('\nStart re-wrapping...');
 	fs.readFile(path.resolve(__dirname, 'dist/bundle.html'), 'utf8', function (err, data) {
 		if (!data) {
@@ -36,10 +36,10 @@ const doRewrap = ({ cssClass }) => {
 							path.resolve(__dirname, 'dist/index.html'),
 							() => {}
 						);
-					} catch (e) {}
+					} catch {}
 					try {
 						fs.unlinkSync(path.resolve(__dirname, 'dist/bundle.html'));
-					} catch (e) {}
+					} catch {}
 					console.log('Finished: bundle.js + index.html have been regenerated.\n');
 				}
 			});

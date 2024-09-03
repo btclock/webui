@@ -79,16 +79,16 @@ test.beforeEach(async ({ page }) => {
 
 	await page.route('*/**/api/show/screen/2', async (route) => {
 		statusJson.currentScreen = 2;
-		(statusJson.data = ['BTC/USD', '$', '3', '7', '8', '2', '4']),
-			(statusJson.rendered = statusJson.data);
+		statusJson.data = ['BTC/USD', '$', '3', '7', '8', '2', '4'];
+		statusJson.rendered = statusJson.data;
 
 		await route.fulfill({ json: statusJson });
 	});
 
 	await page.route('*/**/api/show/screen/4', async (route) => {
 		statusJson.currentScreen = 4;
-		(statusJson.data = ['BIT/COIN', 'HALV/ING', '0/YRS', '149/DAYS', '8/HRS', '30/MINS', 'TO/GO']),
-			(statusJson.rendered = statusJson.data);
+		statusJson.data = ['BIT/COIN', 'HALV/ING', '0/YRS', '149/DAYS', '8/HRS', '30/MINS', 'TO/GO'];
+		statusJson.rendered = statusJson.data;
 
 		await route.fulfill({ json: statusJson });
 	});

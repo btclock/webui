@@ -12,7 +12,7 @@ const isValidNpub = (npub: string): boolean => {
 		const { type, data } = nip19.decode(npub);
 		// Check if the type is 'npub' and the data length is 32 bytes
 		return type === 'npub' && data.length === 64;
-	} catch (e) {
+	} catch {
 		// If any error is thrown, the npub is not valid
 		return false;
 	}
@@ -35,7 +35,7 @@ const isValidNostrRelay = async (url: string): Promise<boolean> => {
 		}
 
 		return false;
-	} catch (e) {
+	} catch {
 		// If any error is thrown, the URL is not a valid Nostr relay
 		return false;
 	}
@@ -72,7 +72,7 @@ const getPubKey = (input: string): string | null => {
 		}
 
 		return null;
-	} catch (e) {
+	} catch {
 		// If any error is thrown, the input is not valid
 		return null;
 	}
