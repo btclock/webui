@@ -19,7 +19,7 @@
 		InputGroupText,
 		Label,
 		Row
-	} from 'sveltestrap';
+	} from '@sveltestrap/sveltestrap';
 	import EyeIcon from '../icons/EyeIcon.svelte';
 	import EyeSlashIcon from '../icons/EyeSlashIcon.svelte';
 

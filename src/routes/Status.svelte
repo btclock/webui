@@ -15,7 +15,7 @@
 		Progress,
 		Tooltip,
 		Row
-	} from 'sveltestrap';
+	} from '@sveltestrap/sveltestrap';
 	import Rendered from './Rendered.svelte';
 
 	export let settings;

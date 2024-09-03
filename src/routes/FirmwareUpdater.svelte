@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { writable } from 'svelte/store';
-	import { Progress, Alert, Button } from 'sveltestrap';
+	import { Progress, Alert, Button } from '@sveltestrap/sveltestrap';
 
 	export let settings = { hwRev: '' };
 
@@ -112,12 +112,17 @@
 			const response = await fetch(
 				'https://api.github.com/repos/btclock/btclock_v3/releases/latest'
 			);
-			const data = await response.json();
-			latestVersion = data.tag_name;
-			releaseDate = new Date(data.created_at).toLocaleString();
-			releaseUrl = data.html_url;
 
-			isNewerVersionAvailable = compareVersions(latestVersion, currentVersion) === 1;
+			if (!response.ok) {
+				latestVersion = 'error';
+			} else {
+				const data = await response.json();
+				latestVersion = data.tag_name;
+				releaseDate = new Date(data.created_at).toLocaleString();
+				releaseUrl = data.html_url;
+
+				isNewerVersionAvailable = compareVersions(latestVersion, currentVersion) === 1;
+			}
 		} catch (error) {
 			console.error('Error fetching latest version:', error);
 		}
@@ -141,7 +146,7 @@
 	}
 </script>
 
-{#if latestVersion}
+{#if latestVersion && latestVersion != 'error'}
 	<p>
 		{$_('section.firmwareUpdater.latestVersion')}: {latestVersion} - {$_(
 			'section.firmwareUpdater.releaseDate'
@@ -153,6 +158,8 @@
 			{$_('section.firmwareUpdater.swUpToDate')}
 		{/if}
 	</p>
+{:else if latestVersion == 'error'}
+	<p>Error loading version, try again later.</p>
 {:else}
 	<p>Loading...</p>
 {/if}

@@ -121,11 +121,12 @@ test('index page has working language selector', async ({ page }) => {
 	await page.goto('/');
 	await expect(page.locator('//*[@id="nav-language-dropdown"]/a')).toBeVisible();
 	page.locator('//*[@id="nav-language-dropdown"]/a').click();
-	await expect(page.locator('//*[@id="nav-language-dropdown"]/div/button[1]')).toBeVisible();
-	page.locator('//*[@id="nav-language-dropdown"]/div/button[2]').click();
+	//*[@id="nav-language-dropdown"]/ul/li[1]/button
+	await expect(page.locator('//*[@id="nav-language-dropdown"]/ul/li[1]/button')).toBeVisible();
+	page.locator('//*[@id="nav-language-dropdown"]/ul/li[2]/button').click();
 	await expect(page.getByRole('heading', { name: 'Instellingen' })).toBeVisible();
 	page.locator('//*[@id="nav-language-dropdown"]/a').click();
-	page.locator('//*[@id="nav-language-dropdown"]/div/button[3]').click();
+	page.locator('//*[@id="nav-language-dropdown"]/ul/li[3]/button').click();
 	await expect(page.getByRole('heading', { name: 'Configuración' })).toBeVisible();
 });
 

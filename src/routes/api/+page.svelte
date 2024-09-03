@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Button, Container } from 'sveltestrap';
+	import { Button, Container } from '@sveltestrap/sveltestrap';
 
 	import { onMount } from 'svelte';
 	let swaggerLoaded: boolean = false;

@@ -10,7 +10,7 @@
 		NavLink,
 		Navbar,
 		NavbarBrand
-	} from 'sveltestrap';
+	} from '@sveltestrap/sveltestrap';
 
 	import { page } from '$app/stores';
 	import { locale, locales, isLoading } from 'svelte-i18n';

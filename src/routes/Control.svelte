@@ -14,7 +14,7 @@
 		Input,
 		Label,
 		Row
-	} from 'sveltestrap';
+	} from '@sveltestrap/sveltestrap';
 	import FirmwareUpdater from './FirmwareUpdater.svelte';
 	import { uiSettings } from '$lib/uiSettings';
 

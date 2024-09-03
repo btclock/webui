@@ -2,7 +2,7 @@
 	import { PUBLIC_BASE_URL } from '$lib/config';
 	import { screenSize, updateScreenSize } from '$lib/screen';
 
-	import { Container, Row, Toast, ToastBody } from 'sveltestrap';
+	import { Container, Row, Toast, ToastBody } from '@sveltestrap/sveltestrap';
 
 	import { onMount } from 'svelte';
 	import { writable } from 'svelte/store';
