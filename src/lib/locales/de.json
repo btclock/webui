@@ -41,7 +41,8 @@
 			"flDisable": "Displaybeleuchtung deaktivieren",
 			"httpAuthUser": "WebUI-Benutzername",
 			"httpAuthPass": "WebUI-Passwort",
-			"httpAuthText": "Schützt nur die WebUI mit einem Passwort, nicht API-Aufrufe."
+			"httpAuthText": "Schützt nur die WebUI mit einem Passwort, nicht API-Aufrufe.",
+			"currencies": "Währungen"
 		},
 		"control": {
 			"systemInfo": "Systeminfo",

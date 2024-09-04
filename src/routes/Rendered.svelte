@@ -9,6 +9,38 @@
 	};
 
 	export let className = 'btclock-wrapper';
+
+	// Define the currency symbols as constants
+	const CURRENCY_USD = '$';
+	const CURRENCY_EUR = '[';
+	const CURRENCY_GBP = ']';
+	const CURRENCY_JPY = '^';
+	const CURRENCY_AUD = '_';
+	//const CURRENCY_CHF = '_';
+	const CURRENCY_CAD = '`';
+
+	function getCurrencySymbol(input: string): string {
+		// Split the string into an array of characters to process each one
+		return input
+			.split('')
+			.map((char) => {
+				switch (char) {
+					case CURRENCY_EUR:
+						return '€'; // Euro symbol
+					case CURRENCY_GBP:
+						return '£'; // Pound symbol
+					case CURRENCY_JPY:
+						return '¥'; // Yen symbol
+					case CURRENCY_AUD:
+					case CURRENCY_CAD:
+					case CURRENCY_USD:
+						return '$'; // Dollar symbol
+					default:
+						return char; // Return the original character if no match
+				}
+			})
+			.join(''); // Join the array back into a string
+	}
 </script>
 
 <div class={className} id={className}>
@@ -44,7 +76,7 @@
 			{:else if char.length === 0 || char === ' '}
 				<div class="digit">&nbsp;&nbsp;</div>
 			{:else}
-				<div class="digit">{char}</div>
+				<div class="digit">{getCurrencySymbol(char)}</div>
 			{/if}
 		{/each}
 	</div>

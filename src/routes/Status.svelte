@@ -83,6 +83,10 @@
 		fetch(`${PUBLIC_BASE_URL}/api/show/screen/${id}`).catch(() => {});
 	};
 
+	const setCurrency = (c: string) => () => {
+		fetch(`${PUBLIC_BASE_URL}/api/show/currency/${c}`).catch(() => {});
+	};
+
 	const toggleTimer = (currentStatus: boolean) => (e: Event) => {
 		e.preventDefault();
 		if (currentStatus) {
@@ -131,6 +135,19 @@
 						{/each}
 					</ButtonGroup>
 				</div>
+				{#if $settings.actCurrencies}
+					<div class="d-flex justify-content-center d-none d-sm-flex mt-2">
+						<ButtonGroup size="sm">
+							{#each $settings.actCurrencies as c}
+								<Button
+									color="outline-success"
+									active={$status.currency == c}
+									on:click={setCurrency(c)}>{c}</Button
+								>
+							{/each}
+						</ButtonGroup>
+					</div>
+				{/if}
 				<hr />
 				{#if $status.data}
 					<section class={lightMode ? 'lightMode' : 'darkMode'}>

@@ -40,7 +40,8 @@
 			"flDisable": "Desactivar luz de la pantalla",
 			"httpAuthUser": "Nombre de usuario WebUI",
 			"httpAuthPass": "Contraseña WebUI",
-			"httpAuthText": "Solo la WebUI está protegida con contraseña, no las llamadas API."
+			"httpAuthText": "Solo la WebUI está protegida con contraseña, no las llamadas API.",
+			"currencies": "Monedas"
 		},
 		"control": {
 			"turnOff": "Apagar",

@@ -51,7 +51,8 @@
 			"httpAuthEnabled": "Require authentication for WebUI",
 			"httpAuthUser": "WebUI Username",
 			"httpAuthPass": "WebUI Password",
-			"httpAuthText": "Only password-protects WebUI, not API-calls."
+			"httpAuthText": "Only password-protects WebUI, not API-calls.",
+			"currencies": "Currencies"
 		},
 		"control": {
 			"systemInfo": "System info",

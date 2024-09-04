@@ -4,7 +4,9 @@
 
 //@import "@fontsource/antonio/latin-400.css";
 @import '@fontsource/ubuntu/latin-400.css';
-@import '@fontsource/oswald/latin-400.css';
+//@import '@fontsource/oswald/latin-400.css';
+@import '@fontsource/antonio/latin-400.css';
+
 @import './satsymbol';
 
 $color-mode-type: media-query;
@@ -62,7 +64,7 @@ nav {
 		background: #000;
 		display: flex;
 		font-size: calc(3vw + 3vh);
-		font-family: 'Oswald', sans-serif;
+		font-family: 'Antonio', sans-serif;
 		font-weight: 400;
 		padding: 10px;
 		gap: 10px;
@@ -76,7 +78,7 @@ nav {
 			align-items: center;
 			justify-content: center;
 			text-align: center;
-			padding: 10px;
+			padding: 10px 10px 15px 10px;
 			width: calc(12vw + 12vh); /* Set a dynamic width based on viewport */
 			aspect-ratio: 1 / 1.5; /* Maintain a 1:1 aspect ratio */
 
@@ -88,6 +90,10 @@ nav {
 				padding: 0;
 				opacity: 1;
 			}
+		}
+
+		.digit.sats {
+			padding-top: 35px;
 		}
 
 		.mediumText {

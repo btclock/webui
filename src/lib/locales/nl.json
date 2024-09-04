@@ -41,7 +41,8 @@
 			"flDisable": "Schakel Displaylicht uit",
 			"httpAuthUser": "WebUI-gebruikersnaam",
 			"httpAuthPass": "WebUI-wachtwoord",
-			"httpAuthText": "Beveiligd enkel WebUI, niet de API."
+			"httpAuthText": "Beveiligd enkel WebUI, niet de API.",
+			"currencies": "Valuta's"
 		},
 		"control": {
 			"systemInfo": "Systeeminformatie",

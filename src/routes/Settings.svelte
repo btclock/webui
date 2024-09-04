@@ -160,7 +160,6 @@
 
 	let showPassword = false;
 
-	// You can also add more props if needed
 	export let xs = 12;
 	export let sm = xs;
 	export let md = sm;
@@ -768,6 +767,30 @@
 						{/each}
 					{/if}
 				</Row>
+				{#if $settings.actCurrencies}
+					<Row>
+						<h3>{$_('section.settings.currencies')}</h3>
+						<small>{$_('restartRequired')}</small>
+						{#if $settings.availableCurrencies}
+							{#each $settings.availableCurrencies as c}
+								<Col md="6" xl="12" xxl="6">
+									<div class="form-check form-control-{$uiSettings.inputSize}">
+										<input
+											id="currency_{c}"
+											bind:group={$settings.actCurrencies}
+											value={c}
+											type="checkbox"
+											class="form-check-input"
+											bsSize={$uiSettings.inputSize}
+											label={c}
+										/>
+										<label class="form-check-label" for="currency_{c}">{c}</label>
+									</div>
+								</Col>
+							{/each}
+						{/if}
+					</Row>
+				{/if}
 				<Row>
 					<Col class="d-flex justify-content-end">
 						<Button on:click={handleReset} color="secondary">{$_('button.reset')}</Button>
