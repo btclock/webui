@@ -135,7 +135,7 @@
 						{/each}
 					</ButtonGroup>
 				</div>
-				{#if $settings.actCurrencies}
+				{#if $settings.actCurrencies && $settings.ownDataSource}
 					<div class="d-flex justify-content-center d-none d-sm-flex mt-2">
 						<ButtonGroup size="sm">
 							{#each $settings.actCurrencies as c}
@@ -248,7 +248,7 @@
 					{:else}
 						{$_('section.status.wsDataConnection')}:
 						<span>
-							{#if $status.connectionStatus && $status.connectionStatus.price}
+							{#if $status.connectionStatus && $status.connectionStatus.V2}
 								&#9989;
 							{:else}
 								&#10060;

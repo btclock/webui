@@ -12,7 +12,8 @@
 	import { uiSettings } from '$lib/uiSettings';
 
 	let settings = writable({
-		fgColor: '0'
+		fgColor: '0',
+		bgColor: '0'
 	});
 
 	// let uiSettings = writable({

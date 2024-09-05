@@ -22,6 +22,7 @@
 	} from '@sveltestrap/sveltestrap';
 	import EyeIcon from '../icons/EyeIcon.svelte';
 	import EyeSlashIcon from '../icons/EyeSlashIcon.svelte';
+	import { derived } from 'svelte/store';
 
 	export let settings;
 
@@ -160,6 +161,40 @@
 
 	let showPassword = false;
 
+	let textColor = '0';
+	const colorStore = derived(settings, ($settings) => ({
+		fgColor: $settings.fgColor,
+		bgColor: $settings.bgColor
+	}));
+
+	// $: {
+	// 	if ($colorStore) {
+	// 		console.log('Settings model changed:', $colorStore);
+	// 		if ($colorStore.fgColor < $colorStore.bgColor)
+	// 			textColor = "0";
+	// 		else
+	// 			textColor = "1"; // 65535
+	// 	}
+	// }
+
+	colorStore.subscribe(() => {
+		if ($colorStore) {
+			if ($colorStore.fgColor < $colorStore.bgColor) textColor = '0';
+			else textColor = '1'; // 65535
+		}
+	});
+
+	const setTextColor = () => {
+		console.log(textColor);
+		if (textColor == '1') {
+			$settings.fgColor = 65535;
+			$settings.bgColor = 0;
+		} else {
+			$settings.fgColor = 0;
+			$settings.bgColor = 65535;
+		}
+	};
+
 	export let xs = 12;
 	export let sm = xs;
 	export let md = sm;
@@ -176,41 +211,25 @@
 		<CardBody>
 			<Form on:submit={onSave}>
 				<Row>
-					<Label md={6} for="fgColor" size={$uiSettings.inputSize}
+					<Label md={6} for="textColor" size={$uiSettings.inputSize}
 						>{$_('section.settings.textColor', { default: 'Text color' })}</Label
 					>
 					<Col md="6">
 						<Input
 							type="select"
-							bind:value={$settings.fgColor}
+							bind:value={textColor}
 							name="select"
-							id="fgColor"
+							id="textColor"
+							on:change={setTextColor}
 							bsSize={$uiSettings.inputSize}
 							class={$uiSettings.selectClass}
 						>
-							<option value="0">{$_('colors.black')}</option>
-							<option value="65535">{$_('colors.white')}</option>
+							<option value="0">{$_('colors.black')} on {$_('colors.white')}</option>
+							<option value="1">{$_('colors.white')} on {$_('colors.black')}</option>
 						</Input>
 					</Col>
 				</Row>
-				<Row>
-					<Label md={6} for="bgColor" size={$uiSettings.inputSize}
-						>{$_('section.settings.backgroundColor')}</Label
-					>
-					<Col md="6">
-						<Input
-							type="select"
-							bind:value={$settings.bgColor}
-							name="select"
-							id="bgColor"
-							bsSize={$uiSettings.inputSize}
-							class={$uiSettings.selectClass}
-						>
-							<option value="0">{$_('colors.black')}</option>
-							<option value="65535">{$_('colors.white')}</option>
-						</Input>
-					</Col>
-				</Row>
+
 				<Row>
 					<Label md={6} for="timePerScreen" size={$uiSettings.inputSize}
 						>{$_('section.settings.timePerScreen')}</Label
@@ -671,15 +690,17 @@
 							/>
 						</Col>
 					{/if}
-					<Col md="6" xl="12" xxl="6">
-						<Input
-							id="fetchEurPrice"
-							bind:checked={$settings.fetchEurPrice}
-							type="switch"
-							bsSize={$uiSettings.inputSize}
-							label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
-						/>
-					</Col>
+					{#if !$settings.actCurrencies}
+						<Col md="6" xl="12" xxl="6">
+							<Input
+								id="fetchEurPrice"
+								bind:checked={$settings.fetchEurPrice}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label="{$_('section.settings.fetchEuroPrice')} ({$_('restartRequired')})"
+							/>
+						</Col>
+					{/if}
 					<Col md="6" xl="12" xxl="6">
 						<Input
 							id="ownDataSource"
