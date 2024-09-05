@@ -52,7 +52,8 @@
 			"httpAuthUser": "WebUI Username",
 			"httpAuthPass": "WebUI Password",
 			"httpAuthText": "Only password-protects WebUI, not API-calls.",
-			"currencies": "Currencies"
+			"currencies": "Currencies",
+			"stagingSource": "Use Staging datasource (for development)"
 		},
 		"control": {
 			"systemInfo": "System info",

@@ -770,6 +770,17 @@
 							label="{$_('section.settings.httpAuthEnabled')} ({$_('restartRequired')})"
 						/>
 					</Col>
+					{#if 'stagingSource' in $settings}
+						<Col md="6" xl="12" xxl="6">
+							<Input
+								id="stagingSource"
+								bind:checked={$settings.stagingSource}
+								type="switch"
+								bsSize={$uiSettings.inputSize}
+								label="{$_('section.settings.stagingSource')} ({$_('restartRequired')})"
+							/>
+						</Col>
+					{/if}
 				</Row>
 
 				<Row>
