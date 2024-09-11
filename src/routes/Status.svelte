@@ -228,7 +228,7 @@
 					{#if !$settings.ownDataSource}
 						{$_('section.status.wsPriceConnection')}:
 						<span>
-							{#if $status.connectionStatus && $status.connectionStatus.nostr}
+							{#if $status.connectionStatus && $status.connectionStatus.price}
 								&#9989;
 							{:else}
 								&#10060;

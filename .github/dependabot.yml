@@ -10,3 +10,6 @@ updates:
     schedule:
       interval: 'daily'
     versioning-strategy: 'increase-if-necessary'
+    ignore:
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
