@@ -94,7 +94,8 @@
 			"swUpToDate": "You are up to date.",
 			"latestVersion": "Latest Version",
 			"releaseDate": "Release Date",
-			"viewRelease": "View Release"
+			"viewRelease": "View Release",
+			"autoUpdate": "Install update (experimental)"
 		}
 	},
 	"colors": {

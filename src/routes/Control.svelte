@@ -239,7 +239,7 @@
 			{#if $settings.otaEnabled}
 				<hr />
 				<h3>{$_('section.control.firmwareUpdate')}</h3>
-				<FirmwareUpdater bind:settings />
+				<FirmwareUpdater on:showToast bind:settings />
 			{/if}
 		</CardBody>
 	</Card>

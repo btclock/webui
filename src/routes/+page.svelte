@@ -124,7 +124,7 @@
 
 <Container fluid>
 	<Row>
-		<Control bind:settings bind:status lg="3" xxl="4"></Control>
+		<Control bind:settings on:showToast={showToast} bind:status lg="3" xxl="4"></Control>
 		<Status bind:settings bind:status lg="6" xxl="4"></Status>
 		<Settings bind:settings on:showToast={showToast} on:formReset={fetchSettingsData} lg="3" xxl="4"
 		></Settings>

@@ -80,7 +80,8 @@
 			"swUpdateAvailable": "Een nieuwere versie is beschikbaar!",
 			"latestVersion": "Laatste versie",
 			"releaseDate": "Datum van publicatie",
-			"viewRelease": "Bekijk publicatie"
+			"viewRelease": "Bekijk publicatie",
+			"autoUpdate": "Update installeren (experimenteel)"
 		}
 	},
 	"colors": {

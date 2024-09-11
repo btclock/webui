@@ -80,7 +80,8 @@
 			"swUpdateAvailable": "¡Una nueva versión está disponible!",
 			"latestVersion": "Ultima versión",
 			"releaseDate": "Fecha de lanzamiento",
-			"viewRelease": "Ver lanzamiento"
+			"viewRelease": "Ver lanzamiento",
+			"autoUpdate": "Instalar actualización (experimental)"
 		}
 	},
 	"button": {

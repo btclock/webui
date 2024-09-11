@@ -1,9 +1,11 @@
 <script lang="ts">
 	import { PUBLIC_BASE_URL } from '$lib/config';
-	import { onMount } from 'svelte';
+	import { createEventDispatcher, onMount } from 'svelte';
 	import { _ } from 'svelte-i18n';
 	import { writable } from 'svelte/store';
 	import { Progress, Alert, Button } from '@sveltestrap/sveltestrap';
+
+	const dispatch = createEventDispatcher();
 
 	export let settings = { hwRev: '' };
 
@@ -107,6 +109,36 @@
 		return binaryFilename;
 	};
 
+	const onAutoUpdate = async (e: Event) => {
+		e.preventDefault();
+
+		try {
+			const response = await fetch(`${PUBLIC_BASE_URL}/api/firmware/auto_update`);
+
+			if (!response.ok) {
+				let msg = (await response.json()).msg;
+
+				dispatch('showToast', {
+					color: 'danger',
+					text: msg
+				});
+			} else {
+				let msg = (await response.json()).msg;
+
+				dispatch('showToast', {
+					color: 'info',
+					text: msg
+				});
+			}
+		} catch (error) {
+			dispatch('showToast', {
+				color: 'danger',
+				text: error
+			});
+			console.error('Error fetching latest version:', error);
+		}
+	};
+
 	onMount(async () => {
 		try {
 			const response = await fetch(
@@ -153,7 +185,8 @@
 		)}: {releaseDate} -
 		<a href={releaseUrl} target="_blank">{$_('section.firmwareUpdater.viewRelease')}</a><br />
 		{#if isNewerVersionAvailable}
-			{$_('section.firmwareUpdater.swUpdateAvailable')}
+			{$_('section.firmwareUpdater.swUpdateAvailable')} -
+			<a href="/" on:click={onAutoUpdate}>{$_('section.firmwareUpdater.autoUpdate')}</a>.
 		{:else}
 			{$_('section.firmwareUpdater.swUpToDate')}
 		{/if}

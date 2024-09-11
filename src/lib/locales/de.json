@@ -81,7 +81,8 @@
 			"swUpdateAvailable": "Eine neuere Version ist verfügbar!",
 			"latestVersion": "Letzte Version",
 			"releaseDate": "Veröffentlichungsdatum",
-			"viewRelease": "Veröffentlichung anzeigen"
+			"viewRelease": "Veröffentlichung anzeigen",
+			"autoUpdate": "Update installieren (experimentell)"
 		}
 	},
 	"colors": {
