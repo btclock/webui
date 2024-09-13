@@ -358,9 +358,9 @@
   integrity sha512-bOD8xZ9SrxPlgtGSxKoTV6ZQfRo1mp4HGvon8+oxR2s3My7tRqGYTLY2FWRVZOMUWfYwzF3tHDEjvbFVGzt4aQ==
 
 "@fontsource/oswald@^5.0.17":
-  version "5.0.22"
-  resolved "https://registry.yarnpkg.com/@fontsource/oswald/-/oswald-5.0.22.tgz#d6a0484b8b0a5509e6cf23b5a13eb9488c5af54b"
-  integrity sha512-86WuXyTSXLS1gJfSOFZZ0lq7r6nsBWOE6SndIREvFoaT45Ayvl0Ql10AnzT8TQl3vklozo8peaMJUaTyjiXPTA==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/oswald/-/oswald-5.1.0.tgz#00fdbe5ab911bfb261ec26e565eb51d02cb95095"
+  integrity sha512-MwHMRCNCeTvaUWk15AHVfUi84T4TB4dshJrCOcfBYqUkY0V8IxKEwqFzSgGBG7zIfTZ0Diu+/CKpiktKqo5Gkg==
 
 "@fontsource/ubuntu@^5.0.8":
   version "5.0.15"
