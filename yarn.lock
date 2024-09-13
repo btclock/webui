@@ -353,9 +353,9 @@
     levn "^0.4.1"
 
 "@fontsource/antonio@^5.0.17":
-  version "5.0.22"
-  resolved "https://registry.yarnpkg.com/@fontsource/antonio/-/antonio-5.0.22.tgz#5a43d10383fcdf4af26b60f4dda0cbe9f59f91cf"
-  integrity sha512-bOD8xZ9SrxPlgtGSxKoTV6ZQfRo1mp4HGvon8+oxR2s3My7tRqGYTLY2FWRVZOMUWfYwzF3tHDEjvbFVGzt4aQ==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/antonio/-/antonio-5.1.0.tgz#e3159a104d364629852ffc5170764f619a8c5754"
+  integrity sha512-5FHPDnNXhLg/ccgTSOzqL0v8TqUIYw+HXYXVKsA97dYXm+SpkypXW/R/bTe8eNHVarnNRfYkhYyZq6dKA9/vGQ==
 
 "@fontsource/oswald@^5.0.17":
   version "5.0.22"
