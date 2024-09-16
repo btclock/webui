@@ -228,3 +228,17 @@ nav {
 #firmwareUploadProgress {
 	@extend .my-2;
 }
+
+.sats {
+	font-family: 'Satoshi Symbol';
+}
+
+.currencyCode {
+	width: 20%;
+	text-align: center;
+	display: inline-block;
+}
+
+input[type='number'] {
+	text-align: right;
+}

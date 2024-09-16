@@ -357,7 +357,7 @@
 						</Col>
 					</Row>
 				{/if}
-				{#if $settings.hasLightLevel}
+				{#if !$settings.flDisable && $settings.hasLightLevel}
 					<Row>
 						<Label md={6} for="luxLightToggle" size={$uiSettings.inputSize}
 							>{$_('section.settings.luxLightToggle')} ({$settings.luxLightToggle})</Label

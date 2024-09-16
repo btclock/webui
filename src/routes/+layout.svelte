@@ -9,7 +9,8 @@
 		NavItem,
 		NavLink,
 		Navbar,
-		NavbarBrand
+		NavbarBrand,
+		NavbarToggler
 	} from '@sveltestrap/sveltestrap';
 
 	import { page } from '$app/stores';
@@ -51,14 +52,25 @@
 			}
 		}
 	});
+
+	let isOpen = false;
+
+	const toggle = () => {
+		isOpen = !isOpen;
+	};
 </script>
 
 <Navbar expand="md">
 	<NavbarBrand>&#8383;TClock</NavbarBrand>
-	<Collapse navbar expand="md">
+	<NavbarToggler on:click={toggle} />
+
+	<Collapse {isOpen} navbar expand="sm">
 		<Nav class="me-auto" navbar>
 			<NavItem>
 				<NavLink href="/" active={$page.url.pathname === '/'}>Home</NavLink>
+			</NavItem>
+			<NavItem>
+				<NavLink href="/convert" active={$page.url.pathname === '/convert'}>Convert</NavLink>
 			</NavItem>
 			<NavItem>
 				<NavLink href="/api" active={$page.url.pathname === '/api'}>API</NavLink>
