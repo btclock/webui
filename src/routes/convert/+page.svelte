@@ -1,18 +1,18 @@
 <script lang="ts">
 	import { Col, Container, Input, InputGroup, InputGroupText, Row } from '@sveltestrap/sveltestrap';
 	import { onDestroy, onMount } from 'svelte';
+	import { encode, decode } from 'msgpack-es';
 
 	let exchangeRates = {
 		USD: 57798,
 		GBP: 44236,
-		CHF: 49362,
 		AUD: 86552,
 		JPY: 8221088,
 		EUR: 52347,
 		CAD: 78508
 	};
 
-	let updateInterval: number;
+	let socket: WebSocket;
 
 	let currencies = { ...exchangeRates };
 	let btcValue = 1;
@@ -65,25 +65,44 @@
 		}
 	}
 
-	async function fetchExchangeRates() {
-		try {
-			const response = await fetch('http://localhost:8080/api/lastprice');
-			const data = await response.json();
-			exchangeRates = data;
-			currencies = { ...data };
-			updateValues(lastEditedField, inputValues[lastEditedField]);
-		} catch (error) {
-			console.error('Error fetching exchange rates:', error);
-		}
-	}
+	// async function fetchExchangeRates() {
+	// 	try {
+	// 		const response = await fetch('https://ws.btclock.dev/api/lastprice');
+	// 		const data = await response.json();
+	// 		exchangeRates = data;
+	// 		currencies = { ...data };
+	// 		updateValues(lastEditedField, inputValues[lastEditedField]);
+	// 	} catch (error) {
+	// 		console.error('Error fetching exchange rates:', error);
+	// 	}
+	// }
 
 	onMount(() => {
-		fetchExchangeRates();
-		updateInterval = setInterval(fetchExchangeRates, 10000);
+		socket = new WebSocket('ws://ws.btclock.dev/api/v2/ws');
+		socket.binaryType = 'arraybuffer';
+
+		socket.addEventListener('open', () => {
+			socket.send(
+				encode({
+					type: 'subscribe',
+					eventType: 'price',
+					currencies: ['USD', 'EUR', 'GBP', 'CAD', 'AUD', 'JPY']
+				})
+			);
+		});
+
+		socket.addEventListener('message', (event) => {
+			let data = decode(event.data);
+			if ('price' in data) {
+				let currencyKey = Object.keys(data.price);
+				exchangeRates[currencyKey] = data.price[currencyKey];
+				updateValues(lastEditedField, inputValues[lastEditedField]);
+			}
+		});
 	});
 
 	onDestroy(() => {
-		clearInterval(updateInterval);
+		socket.close();
 	});
 </script>
 
