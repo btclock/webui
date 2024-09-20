@@ -3687,9 +3687,9 @@ sander@^0.5.0:
     rimraf "^2.5.2"
 
 sass@^1.69.5:
-  version "1.79.0"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.79.0.tgz#4a58442b6c094ac57a0805519bff6133d70590c9"
-  integrity sha512-9Q1xXsm9XT54yYkmQAoH3vCMEIavwWWQGJ3cZ0WJAgecR4edDDTdtiPyEeFDNWO/hLCy3qZKvwjK4ulPR5Yzow==
+  version "1.79.2"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.79.2.tgz#e0ee2877eaadaf17b4086fd15783e625bb77447e"
+  integrity sha512-YmT1aoF1MwHsZEu/eXhbAJNsPGAhNP4UixW9ckEwWCvPcVdVF0/C104OGDVEqtoctKq0N+wM20O/rj+sSPsWeg==
   dependencies:
     chokidar "^4.0.0"
     immutable "^4.0.0"
@@ -3821,15 +3821,10 @@ sorcery@^0.11.0:
     minimist "^1.2.0"
     sander "^0.5.0"
 
-"source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.2.1:
+"source-map-js@>=0.6.2 <2.0.0", source-map-js@^1.0.1, source-map-js@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.1.tgz#1ce5650fddd87abc099eda37dcff024c2667ae46"
   integrity sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==
-
-source-map-js@^1.0.1:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/source-map-js/-/source-map-js-1.2.0.tgz#16b809c162517b5b8c3e7dcd315a2a5c2612b2af"
-  integrity sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==
 
 space-separated-tokens@^1.0.0:
   version "1.1.5"
