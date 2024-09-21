@@ -57,8 +57,7 @@
 		"msgpack-es": "^0.0.5",
 		"nostr-tools": "^2.7.1",
 		"patch-package": "^8.0.0",
-		"svelte-i18n": "^4.0.0",
-		"swagger-ui": "^5.10.0"
+		"svelte-i18n": "^4.0.0"
 	},
 	"resolutions": {
 		"es5-ext": ">=0.10.64",

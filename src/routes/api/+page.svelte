@@ -31,21 +31,21 @@
 <svelte:head>
 	<title>API playground</title>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.10.0/swagger-ui-bundle.min.js"
-		integrity="sha512-Ckle4LZv9LhAfEdohBdUi+QCu0e7HkXHTeSPXfbDzbCsR87QNTUBylkBEPsBNn4Ph83yK1hJ6f2uH4QMtB0hTA=="
+		src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-bundle.min.js"
+		integrity="sha512-7ihPQv5ibiTr0DW6onbl2MIKegdT6vjpPySyIb4Ftp68kER6Z7Yiub0tFoMmCHzZfQE9+M+KSjQndv6NhYxDgg=="
 		crossorigin="anonymous"
 		referrerpolicy="no-referrer"
 	></script>
 	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.10.0/swagger-ui-standalone-preset.min.js"
-		integrity="sha512-qwGi7EG31HcylzamsmacHLZJrfUGRuuHEaCMcOojuNpMu+paR554VjaCZ9LdUVTrmF8xC03YVqTzuKx0SDdruA=="
+		src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui-standalone-preset.min.js"
+		integrity="sha512-UrYi+60Ci3WWWcoDXbMmzpoi1xpERbwjPGij6wTh8fXl81qNdioNNHExr9ttnBebKF0ZbVnPlTPlw+zECUK1Xw=="
 		crossorigin="anonymous"
 		referrerpolicy="no-referrer"
 	></script>
 	<link
 		rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.10.0/swagger-ui.min.css"
-		integrity="sha512-Ck+X9SARG7WscOTG4a8Qod5Zgd1MZlz4VtyyucjMJ3PnZy2lUl7q/v/0055yIfGM/v+f+216ME0/dv0qqtm6+g=="
+		href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/5.17.14/swagger-ui.min.css"
+		integrity="sha512-+9UD8YSD9GF7FzOH38L9S6y56aYNx3R4dYbOCgvTJ2ZHpJScsahNdaMQJU/8osUiz9FPu0YZ8wdKf4evUbsGSg=="
 		crossorigin="anonymous"
 		referrerpolicy="no-referrer"
 	/>

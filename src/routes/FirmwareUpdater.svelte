@@ -93,6 +93,9 @@
 	const getFirmwareBinaryName = () => {
 		let binaryFilename = '';
 		switch ($settings.hwRev) {
+			case 'REV_V8_EPD_2_13':
+				binaryFilename = 'btclock_rev_v8_213epd_firmware.bin';
+				break;
 			case 'REV_B_EPD_2_13':
 				binaryFilename = 'btclock_rev_b_213epd_firmware.bin';
 				break;
