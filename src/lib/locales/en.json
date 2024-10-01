@@ -53,7 +53,8 @@
 			"httpAuthPass": "WebUI Password",
 			"httpAuthText": "Only password-protects WebUI, not API-calls.",
 			"currencies": "Currencies",
-			"stagingSource": "Use Staging datasource (for development)"
+			"stagingSource": "Use Staging datasource (for development)",
+			"useNostrTooltip": "Very experimental and unstable. Nostr data source is not required for Nostr Zap notifications."
 		},
 		"control": {
 			"systemInfo": "System info",

@@ -18,6 +18,7 @@
 		InputGroup,
 		InputGroupText,
 		Label,
+		Tooltip,
 		Row
 	} from '@sveltestrap/sveltestrap';
 	import EyeIcon from '../icons/EyeIcon.svelte';
@@ -718,7 +719,10 @@
 								type="switch"
 								bsSize={$uiSettings.inputSize}
 								label="{$_('section.settings.useNostr')} ({$_('restartRequired')})"
-							/>
+							></Input>
+							<Tooltip target="useNostr" placement="left">
+								{$_('section.settings.useNostrTooltip')}
+							</Tooltip>
 						</Col>
 					{/if}
 					{#if 'nostrZapNotify' in $settings}
@@ -799,7 +803,7 @@
 						{/each}
 					{/if}
 				</Row>
-				{#if $settings.actCurrencies}
+				{#if $settings.actCurrencies && $settings.useNostr !== true}
 					<Row>
 						<h3>{$_('section.settings.currencies')}</h3>
 						<small>{$_('restartRequired')}</small>

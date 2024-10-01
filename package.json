@@ -50,6 +50,7 @@
 		"@fontsource/ubuntu": "^5.1.0",
 		"@noble/secp256k1": "^2.1.0",
 		"@playwright/test": "^1.46.0",
+		"@popperjs/core": "^2.11.8",
 		"@sveltestrap/sveltestrap": "^6.2.7",
 		"@testing-library/jest-dom": "^6.5.0",
 		"bootstrap": "^5.3.3",
