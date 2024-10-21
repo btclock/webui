@@ -725,9 +725,9 @@
     redent "^3.0.0"
 
 "@testing-library/svelte@^5.2.1":
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/svelte/-/svelte-5.2.1.tgz#bd930ec36e868f245ce1f12b44ac296ec1dd7dfc"
-  integrity sha512-yXSqBsYaQAeP2xt7gqKu135Q67+NTsBDcpL1akv5MVAQ/amb7AQ0zW5nzrquTIE2lvrc6q58KZhQA61Vc05ZOg==
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@testing-library/svelte/-/svelte-5.2.4.tgz#378dbed8a71de0d63c1911b1325a5c6b241aee3c"
+  integrity sha512-EFdy73+lULQgMJ1WolAymrxWWrPv9DWyDuDFKKlUip2PA/EXuHptzfYOKWljccFWDKhhGOu3dqNmoc2f/h/Ecg==
   dependencies:
     "@testing-library/dom" "^10.0.0"
 
