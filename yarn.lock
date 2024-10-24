@@ -2366,9 +2366,9 @@ node-addon-api@^7.0.0:
   integrity sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==
 
 nostr-tools@^2.7.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/nostr-tools/-/nostr-tools-2.8.1.tgz#28e1493bd83ac20103c82311ebdb3914811f3e34"
-  integrity sha512-lInnbSjtBHviiEpxRt4rV73XdC9lMUuaMkvsiNVpIboGwebP19w4NOx91QRfupczGTSiKxV5X3GzxRr3IvHuCw==
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/nostr-tools/-/nostr-tools-2.9.1.tgz#f81ee4e5d72d77ce9a763affdc5f0b1000d6d7e2"
+  integrity sha512-QYK/M2eugK82dEriVGSzZCRn6Sbb88bxICA15wr+ebEULSACysZnDhNoCxdJyqZPva5x+Ql7h4JmEfpc6Ov2fQ==
   dependencies:
     "@noble/ciphers" "^0.5.1"
     "@noble/curves" "1.2.0"
